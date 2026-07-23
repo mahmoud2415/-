@@ -206,6 +206,22 @@ let currentSelectedSize = null;
 let currentSpiceLevel = 'عادي';
 let selectedExtras = [];
 let orderType = 'delivery'; // delivery or pickup
+let searchQuery = '';
+
+// Helper function to normalize Arabic text for better search matching
+function normalizeArabic(str) {
+    if (!str) return '';
+    return str
+        .replace(/[أإآ]/g, 'ا')
+        .replace(/ة/g, 'ه')
+        .replace(/ى/g, 'ي')
+        .toLowerCase();
+}
+
+function filterMenu(query) {
+    searchQuery = query.trim();
+    renderMenu();
+}
 
 // Fetch image dynamically
 function getProductImage(item) {
@@ -235,9 +251,23 @@ function renderMenu() {
     const container = document.getElementById('dynamic-menu-container');
     if (!container) return;
 
-    container.innerHTML = mainSections.map(section => {
-        const sectionItems = menuData.filter(item => item.section === section.id);
+    const normalizedQuery = normalizeArabic(searchQuery);
+    let totalVisibleItems = 0;
+
+    const sectionsHTML = mainSections.map(section => {
+        let sectionItems = menuData.filter(item => item.section === section.id);
+
+        // Filter by search query if present
+        if (normalizedQuery) {
+            sectionItems = sectionItems.filter(item => 
+                normalizeArabic(item.name).includes(normalizedQuery) || 
+                normalizeArabic(item.desc).includes(normalizedQuery)
+            );
+        }
+
         if (sectionItems.length === 0) return '';
+
+        totalVisibleItems += sectionItems.length;
 
         const itemsHTML = sectionItems.map(item => {
             let priceDisplay = '';
@@ -251,7 +281,8 @@ function renderMenu() {
             const imgFile = getProductImage(item);
 
             return `
-                <div class="glass rounded-2xl overflow-hidden group flex flex-col justify-between">
+                <div class="glass rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer hover:border-primary-container/30 border border-transparent transition-all"
+                     onclick='openCustomizationModal(${JSON.stringify(item)})'>
                     <div class="relative h-32 md:h-40 overflow-hidden">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                              src="${imgFile}" 
@@ -265,10 +296,9 @@ function renderMenu() {
                             <h4 class="font-bold text-sm mb-1 text-white leading-snug">${item.name}</h4>
                             <p class="text-[10px] text-on-surface-variant line-clamp-2 leading-relaxed">${item.desc || 'وجبة زنجر المميزة بنكهتها الخاصة.'}</p>
                         </div>
-                        <button class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all hover:bg-primary-container/35 hover:text-white" 
-                                onclick='openCustomizationModal(${JSON.stringify(item)})'>
+                        <div class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all group-hover:bg-primary-container group-hover:text-white">
                             <span class="material-symbols-outlined text-xl">add</span>
-                        </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -279,12 +309,24 @@ function renderMenu() {
                 <div class="flex items-center justify-between mb-5">
                     <h3 class="text-2xl font-bold border-r-4 border-primary-container pr-2 text-white">${section.name}</h3>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     ${itemsHTML}
                 </div>
             </section>
         `;
     }).join('');
+
+    if (totalVisibleItems === 0 && normalizedQuery) {
+        container.innerHTML = `
+            <div class="text-center text-on-surface-variant py-20 flex flex-col items-center gap-3">
+                <span class="material-symbols-outlined text-6xl opacity-30 text-primary-container">search_off</span>
+                <p class="text-lg font-bold text-white">ملقناش أكلة بالاسم ده! 🔍</p>
+                <p class="text-xs">جرب تبحث بكلمة تانية زي (كريب، بيتزا، برجر)</p>
+            </div>
+        `;
+    } else {
+        container.innerHTML = sectionsHTML;
+    }
 }
 
 // Smooth scroll to selected category section
@@ -370,6 +412,7 @@ function openCustomizationModal(item) {
     overlay.classList.remove('hidden');
     setTimeout(() => overlay.classList.add('opacity-100'), 10);
     modal.classList.remove('translate-y-full');
+    document.body.classList.add('overflow-hidden');
 }
 
 function closeCustomization() {
@@ -379,6 +422,7 @@ function closeCustomization() {
     overlay.classList.remove('opacity-100');
     modal.classList.add('translate-y-full');
     setTimeout(() => overlay.classList.add('hidden'), 300);
+    document.body.classList.remove('overflow-hidden');
 }
 
 function setSize(idx) {
@@ -486,10 +530,12 @@ function toggleCart() {
         setTimeout(() => overlay.classList.add('opacity-100'), 10);
         drawer.classList.remove('translate-x-[-100%]');
         updateCartUI();
+        document.body.classList.add('overflow-hidden');
     } else {
         overlay.classList.remove('opacity-100');
         drawer.classList.add('translate-x-[-100%]');
         setTimeout(() => overlay.classList.add('hidden'), 300);
+        document.body.classList.remove('overflow-hidden');
     }
 }
 
@@ -550,17 +596,21 @@ function updateCartUI() {
     cartFooter.classList.remove('hidden');
 
     container.innerHTML = cart.map((item, index) => `
-        <div class="flex items-center justify-between p-4 glass rounded-2xl animate-fade-in-up">
-            <div class="flex-1 text-right">
-                <h5 class="text-sm font-bold text-white leading-snug">${item.name}</h5>
+        <div class="p-4 glass rounded-2xl animate-fade-in-up space-y-3">
+            <div class="text-right">
+                <h5 class="text-sm font-bold text-white leading-relaxed mb-1">${item.name}</h5>
                 <span class="text-xs text-tertiary font-semibold">${item.price} ج.م</span>
             </div>
-            <div class="flex items-center gap-3 bg-white/5 rounded-xl px-2 py-1 mx-3 border border-white/5">
-                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary-container font-extrabold hover:bg-white/5 rounded transition-all">-</button>
-                <span class="text-sm font-bold text-white w-4 text-center">${item.qty}</span>
-                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-400 font-extrabold hover:bg-white/5 rounded transition-all">+</button>
+            <div class="flex items-center justify-between pt-2.5 border-t border-white/5">
+                <div class="flex items-center gap-3 bg-white/5 rounded-xl px-2.5 py-1 border border-white/5">
+                    <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary-container font-extrabold hover:bg-white/5 rounded transition-all">-</button>
+                    <span class="text-sm font-bold text-white w-4 text-center">${item.qty}</span>
+                    <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-400 font-extrabold hover:bg-white/5 rounded transition-all">+</button>
+                </div>
+                <button onclick="removeFromCart(${index})" class="text-gray-500 hover:text-red-500 hover:bg-red-500/10 w-8 h-8 rounded-full flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
             </div>
-            <button onclick="removeFromCart(${index})" class="material-symbols-outlined text-gray-500 hover:text-red-500 w-8 h-8 rounded-full flex items-center justify-center transition-colors">delete</button>
         </div>
     `).join('');
 
@@ -606,6 +656,12 @@ function checkout() {
 
     if (!name) { alert("من فضلك اكتب اسمك بالكامل لخدمتك بشكل أفضل 👤"); return; }
     if (!phone) { alert("من فضلك اكتب رقم الموبايل للتواصل 📞"); return; }
+    // Egyptian phone regex: starting with 010, 011, 012, or 015 followed by 8 digits
+    const egPhoneRegex = /^01[0125]\d{8}$/;
+    if (!egPhoneRegex.test(phone)) {
+        alert("من فضلك اكتب رقم موبايل مصري صحيح مكون من 11 رقماً ويبدأ بـ (010, 011, 012, 015) 🇪🇬");
+        return;
+    }
     if (orderType === 'delivery' && !address) { alert("من فضلك اكتب العنوان بالتفصيل لتوصيل طلبك سريعاً 🛵"); return; }
 
     // Prepare message
@@ -659,6 +715,7 @@ function showBranches() {
         overlay.classList.add('opacity-100');
         modal.classList.remove('scale-95', 'opacity-0');
     }, 10);
+    document.body.classList.add('overflow-hidden');
 }
 
 function closeBranches() {
@@ -673,10 +730,13 @@ function closeBranches() {
         overlay.classList.add('hidden');
         modal.classList.add('hidden');
     }, 300);
+    document.body.classList.remove('overflow-hidden');
 }
 
-// 7. Dynamic Scroll Highlighting for navbar
+// 7. Dynamic Scroll Highlighting and scroll-to-hide header
+let lastScrollTop = 0;
 window.addEventListener('scroll', () => {
+    // 7a. Highlighting logic
     let currentActive = '';
     mainSections.forEach(section => {
         const el = document.getElementById(section.id);
@@ -701,11 +761,104 @@ window.addEventListener('scroll', () => {
             }
         });
     }
+
+    // 7b. Scroll-to-hide header & show-on-up-scroll logic
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop < 0) return; // avoid iOS bounce behavior
+
+    const header = document.querySelector('header');
+    const categoriesNav = document.getElementById('categories-nav')?.parentElement; // nav container
+
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling down: hide header, set nav sticky top-0
+        if (header) header.style.transform = 'translateY(-100%)';
+        if (categoriesNav) categoriesNav.style.top = '0px';
+    } else {
+        // Scrolling up: show header, set nav sticky top-16 (64px)
+        if (header) header.style.transform = 'translateY(0)';
+        if (categoriesNav) categoriesNav.style.top = '64px';
+    }
+    lastScrollTop = scrollTop;
+}, { passive: true });
+
+// === PWA Install Logic ===
+let deferredPrompt;
+const installBanner = document.getElementById('pwa-install-banner');
+
+// Check if running on iOS
+function isiOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+// Check if app is already running in standalone mode (installed)
+function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    // Show the custom install banner (if not dismissed before)
+    if (installBanner && !localStorage.getItem('pwa-dismissed')) {
+        setTimeout(() => {
+            installBanner.classList.remove('-translate-y-40', 'opacity-0');
+        }, 2000); // show after 2 seconds
+    }
 });
+
+function triggerPwaInstall() {
+    if (deferredPrompt) {
+        // Show the native install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+            dismissPwaInstall();
+        });
+    }
+}
+
+function dismissPwaInstall() {
+    if (installBanner) {
+        installBanner.classList.add('-translate-y-40', 'opacity-0');
+        localStorage.setItem('pwa-dismissed', 'true');
+    }
+}
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
     renderCategoriesNav();
     renderMenu();
     updateCartUI();
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker registered successfully!', reg.scope))
+            .catch(err => console.log('Service Worker registration failed:', err));
+    }
+
+    // Show iOS Safari installation banner if on iOS, not installed, and not dismissed
+    if (isiOS() && !isStandalone() && installBanner && !localStorage.getItem('pwa-dismissed')) {
+        const bannerTitle = installBanner.querySelector('h4');
+        const bannerDesc = installBanner.querySelector('p');
+        const installBtn = installBanner.querySelector('button');
+
+        if (bannerTitle && bannerDesc && installBtn) {
+            bannerTitle.innerText = "ثبت التطبيق على الآيفون! 🍏";
+            bannerDesc.innerHTML = "اضغط على زر المشاركة <span class='material-symbols-outlined text-xs align-middle'>ios_share</span> ثم اختر *إضافة للشاشة الرئيسية*.";
+            installBtn.classList.add('hidden'); // hide native install button for iOS
+        }
+
+        setTimeout(() => {
+            installBanner.classList.remove('-translate-y-40', 'opacity-0');
+        }, 3000);
+    }
 });
