@@ -1,379 +1,603 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="dark" dir="rtl" lang="ar"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-<title>Zinger | أقوى طعم زنجر في مصر</title>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Cairo Font for Arabic Premium Typography -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass {
-            background: rgba(32, 31, 31, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-dark {
-            background: rgba(14, 14, 14, 0.85);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .brand-glow {
-            box-shadow: 0 0 20px rgba(255, 86, 37, 0.3);
-        }
-        .safe-bottom {
-            padding-bottom: env(safe-area-inset-bottom, 20px);
-        }
+<html class="dark" dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+    <title>Zinger | أقوى طعم زنجر في مصر</title>
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Cairo Font for Arabic Premium Typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass {
+        background: rgba(32, 31, 31, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .glass-dark {
+        background: rgba(14, 14, 14, 0.85);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .brand-glow {
+        box-shadow: 0 0 20px rgba(255, 86, 37, 0.3);
+      }
+      .safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+      }
     </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface-variant": "#353534",
-                        "inverse-surface": "#e5e2e1",
-                        "surface-container-lowest": "#0e0e0e",
-                        "primary-container": "#ff5625",
-                        "secondary-container": "#b73a00",
-                        "on-primary": "#601400",
-                        "primary": "#ffb5a0",
-                        "tertiary": "#fbbc00",
-                        "on-surface": "#e5e2e1",
-                        "on-surface-variant": "#e7bdb2",
-                        "surface": "#131313",
-                        "background": "#131313",
-                    },
-                    spacing: {
-                        "gutter": "16px",
-                        "margin-mobile": "20px",
-                    },
-                    fontSize: {
-                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "800"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
-                    }
-                }
-            }
-        }
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#353534",
+              "inverse-surface": "#e5e2e1",
+              "surface-container-lowest": "#0e0e0e",
+              "primary-container": "#ff5625",
+              "secondary-container": "#b73a00",
+              "on-primary": "#601400",
+              primary: "#ffb5a0",
+              tertiary: "#fbbc00",
+              "on-surface": "#e5e2e1",
+              "on-surface-variant": "#e7bdb2",
+              surface: "#131313",
+              background: "#131313",
+            },
+            spacing: {
+              gutter: "16px",
+              "margin-mobile": "20px",
+            },
+            fontSize: {
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "800" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "700" },
+              ],
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-background text-on-surface overflow-x-hidden">
-<!-- Top App Bar -->
-<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-surface-container/80 border-b border-white/10 shadow-sm flex items-center justify-between px-margin-mobile h-16">
-<div class="flex items-center gap-3">
-<button class="active:scale-95 transition-transform">
-<span class="material-symbols-outlined text-primary">menu</span>
-</button>
-<h1 class="font-display-lg-mobile text-headline-md text-primary-container tracking-tighter">ZINGER</h1>
-</div>
-<div class="flex items-center gap-4">
-<div class="hidden md:flex flex-col items-end">
-<span class="text-xs text-on-surface-variant">مفتوح الآن</span>
-<span class="text-sm font-bold">11:00 AM - 02:00 AM</span>
-</div>
-<a class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 border border-primary-container/20 text-primary active:scale-95 transition-transform" href="tel:12345">
-<span class="material-symbols-outlined">call</span>
-</a>
-</div>
-</header>
-<main class="pt-16 pb-32">
-<!-- Hero Section -->
-<section class="relative h-[70vh] flex items-end overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Zinger Special Burger" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaIIiE8tVUO_dYVtQMBUGb92tppSs4AmrKTa3NT_NU1esh1T0zc0_R8h8j5vcrGv6PVqg-JfZe8KLdHRKBB7ZeoHto5d435a0IG4QoIXhdVyoFMB_HhAv7XGZgj1orR1zFOw5_SmtnEdwDP5aO7S8NTsYFosxeoGe65ub4j5dAsS9xHZxDbG_zfAjR-bz6Q8kaY900OxJqJENWhHFlF_7fNmhGXwfU0jI9wNR8R_vJ5VNFKWkniogR7ddrR0IPYFgV6h_w72ghANA"/>
-<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-</div>
-<div class="relative z-10 px-margin-mobile pb-12 w-full">
-<span class="inline-block px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] font-bold mb-4">حصرياً في مصر</span>
-<h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">أقوى طعم زنجر <br/><span class="text-primary-container">في مصر</span></h2>
-<p class="text-on-surface-variant max-w-md">نستخدم أجود أنواع الدجاج الطازج مع خلطة التوابل السرية التي تمنحك القرمشة المثالية في كل قطمة.</p>
-</div>
-</section>
-<!-- Categories -->
-<nav class="sticky top-16 z-40 bg-background/60 backdrop-blur-md py-4">
-<div class="flex gap-4 overflow-x-auto no-scrollbar px-margin-mobile">
-<button class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow" onclick="scrollToCategory('burgers')">
-<span class="material-symbols-outlined text-xl">lunch_dining</span>
-<span>برجر</span>
-</button>
-<button class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors" onclick="scrollToCategory('crepe')">
-<span class="material-symbols-outlined text-xl">flatware</span>
-<span>كريب</span>
-</button>
-<button class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors" onclick="scrollToCategory('meals')">
-<span class="material-symbols-outlined text-xl">fastfood</span>
-<span>وجبات</span>
-</button>
-<button class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors" onclick="scrollToCategory('sides')">
-<span class="material-symbols-outlined text-xl">icecream</span>
-<span>مقبلات</span>
-</button>
-</div>
-</nav>
-<!-- Menu Grid -->
-<section class="px-margin-mobile mt-8" id="burgers">
-<div class="flex items-center justify-between mb-6">
-<h3 class="text-2xl font-bold">الأكثر مبيعاً</h3>
-<span class="text-primary-container text-sm font-semibold">عرض الكل</span>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<!-- Burger Card 1 -->
-<div class="glass rounded-2xl overflow-hidden group">
-<div class="relative h-40 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up shot of a gourmet crispy fried chicken burger with melting cheese, spicy jalapenos, and fresh lettuce, professional food photography, vibrant red and orange lighting, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVSlTA1B_sMwg1caLbtBaNkf-taKHyiIO0R3MzzMKH2CEK0JsenPp05NNWCyuA3KqWEpZMZ00Yfr9SmbbnHmxNQp5HFcMRddnZmo9IE985vf4ZQtYCqbjEyMcA1NOv2l2wz2YFiE2zMuUNaHnCNVJEU3O-N0xad1eKEIx4feg9HpAq4Cmdi-e8LYywlsmT11fD7kBPqe334YuppCV5S50mVIThnNM_yQPGGAX9EDKD8Ckm802QxJ78bDuLOjocNUSV3vDKyq967rY"/>
-<div class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold">45 ج.م</div>
-</div>
-<div class="p-3">
-<h4 class="font-bold text-sm mb-1">زنجر سوبريم</h4>
-<p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">دجاج مقرمش، خس، طماطم، صوص الزنجر الحار</p>
-<button class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all" onclick="openCustomization('زنجر سوبريم', 45)">
-<span class="material-symbols-outlined text-xl">add</span>
-</button>
-</div>
-</div>
-<!-- Burger Card 2 -->
-<div class="glass rounded-2xl overflow-hidden group">
-<div class="relative h-40 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A massive double patty chicken burger dripping with cheddar cheese and fiery buffalo sauce, dark background, professional lighting highlighting the texture of the breading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJjB0k12O_CX8nrcBmPKtrqkflTS97UZbqfURT1sX3Vn2Ilw27v2BTxS4KD_PPRKHRX7w_RXGVT0LFj3zY11kgQCRV5dUmbpG4dX2DwVOFaSKQbtETk3iWIdssDtgQZq9C1ENaWK4AxlSMpG_9w3a4-zL7xxiveopPTTiw4c6RULQvPTBO0kQMFY0FBD0KGOROMzgfB8-mBtXOOD0gnq6eZiLR1tfkNSszcxtOLtjCpukqpuPyty6cpixHSD7s79Q6tOI_hZ4X0cc"/>
-<div class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold">65 ج.م</div>
-</div>
-<div class="p-3">
-<h4 class="font-bold text-sm mb-1">دبل تشيز زنجر</h4>
-<p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">طبقتين دجاج، شيدر مضاعف، صوص رانش</p>
-<button class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all" onclick="openCustomization('دبل تشيز زنجر', 65)">
-<span class="material-symbols-outlined text-xl">add</span>
-</button>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="glass rounded-2xl overflow-hidden group">
-<div class="relative h-40 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A large chicken wrap with golden crispy strips, fresh veggies, and white sauce, studio lighting, dark charcoal background with soft orange glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDreNuV3UP2_wDJh5HRciAs-ZOqTY2qa1pQgxSrld4Qoc_4ToMj9Sxok2Scgq2apCkqX4ZpoDKyZVwZ5Ze9C-KZDSho9x45gK8iGbhWfrGueMqmiN95G6Wzkz5tVCWj5KJNgl6gPD9K3PKsOy-LfjiVtR6i8AnvI0jWulleowHhgZtz4BI4wZb3LiQdbUsExIU1e7m3TkW__t0Z_zgV1bH_4vL673YaFmCbmPErE_sRtTkFxGl63Kaaj2Bcy-V19KUVHo6Un7HpafM"/>
-<div class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold">40 ج.م</div>
-</div>
-<div class="p-3">
-<h4 class="font-bold text-sm mb-1">كريب زنجر صاروخ</h4>
-<p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">كريب عملاق محشو بقطع الزنجر والموتزاريللا</p>
-<button class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all" onclick="openCustomization('كريب زنجر صاروخ', 40)">
-<span class="material-symbols-outlined text-xl">add</span>
-</button>
-</div>
-</div>
-<!-- Card 4 -->
-<div class="glass rounded-2xl overflow-hidden group">
-<div class="relative h-40 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Gourmet french fries topped with melted cheese, jalapenos, and bits of crispy chicken, artistic messy food style, premium dark theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8sJVHFnUpkGjfPY5ghESXmTxaD-b1wwyELtyL0dHNiAiP0fUgCnW2P3hV0QlM2gVlP3SFrAC6KhcXX9wIQYUoI6pyP-y9bIcsyjqQ25TqMXJf2PARBTfl2fbdtA4e23D2HuBA8K7JUr3hG9TOeMjiCEezSGl5wXbD_wjztK-WamTFL8vkpZC6f5ZA5JMPNFVxglfrDvW2faqR7okwvMeD8BQE4PqI0ROPHwiXAUIxhrrQyqr-Y_N2DqY0NSUK8cuQTppENLvUsp4"/>
-<div class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold">25 ج.م</div>
-</div>
-<div class="p-3">
-<h4 class="font-bold text-sm mb-1">بطاطس بالجبنة</h4>
-<p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">بطاطس مقلية ذهبية مع غرقانة صوص جبنة</p>
-<button class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all" onclick="openCustomization('بطاطس بالجبنة', 25)">
-<span class="material-symbols-outlined text-xl">add</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Bottom Nav Bar -->
-<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/70 backdrop-blur-2xl dark:bg-surface-container-high/70 border-t border-white/5 shadow-[0_-4px_20px_rgba(255,69,0,0.15)] flex justify-around items-center h-20 pb-safe px-4">
-<button class="flex flex-col items-center justify-center text-primary-container drop-shadow-[0_0_8px_rgba(255,86,37,0.5)]">
-<span class="material-symbols-outlined">home</span>
-<span class="text-[10px] mt-1 font-bold">الرئيسية</span>
-</button>
-<button class="relative flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" onclick="toggleCart()">
-<span class="material-symbols-outlined">shopping_cart</span>
-<span class="absolute -top-1 -right-1 bg-primary-container text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center hidden" id="cart-badge">0</span>
-<span class="text-[10px] mt-1">السلة</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">phone</span>
-<span class="text-[10px] mt-1">اتصال</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">location_on</span>
-<span class="text-[10px] mt-1">الفروع</span>
-</button>
-</nav>
-<!-- Customization Modal Overlay -->
-<div class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm" id="custom-modal-overlay" onclick="closeCustomization()"></div>
-<!-- Customization Modal -->
-<div class="fixed bottom-0 left-0 right-0 z-[70] translate-y-full transition-transform duration-500 ease-out" id="custom-modal">
-<div class="glass-dark rounded-t-3xl p-6 safe-bottom">
-<div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
-<h3 class="text-xl font-bold mb-2" id="modal-item-name">اسم الوجبة</h3>
-<p class="text-tertiary font-bold mb-6" id="modal-item-price">45 ج.م</p>
-<div class="space-y-6">
-<!-- Size -->
-<div>
-<label class="block text-sm font-bold mb-3">الحجم</label>
-<div class="grid grid-cols-2 gap-3">
-<button class="size-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold active bg-primary-container/20 border-primary-container/50">وسط</button>
-<button class="size-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold">كبير (+15 ج.م)</button>
-</div>
-</div>
-<!-- Spice Level -->
-<div>
-<div class="flex items-center justify-between mb-3">
-<label class="text-sm font-bold flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                            مستوى الشطة
-                        </label>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<button class="spice-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold">عادي</button>
-<button class="spice-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold active bg-primary-container/20 border-primary-container/50">حار جداً</button>
-</div>
-</div>
-<!-- Add-ons -->
-<div>
-<label class="block text-sm font-bold mb-3">إضافات</label>
-<div class="space-y-3">
-<label class="flex items-center justify-between p-4 glass rounded-xl">
-<span class="text-sm">جبنة زيادة</span>
-<input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container" type="checkbox"/>
-</label>
-<label class="flex items-center justify-between p-4 glass rounded-xl">
-<span class="text-sm">صوص كول سلو</span>
-<input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container" type="checkbox"/>
-</label>
-</div>
-</div>
-</div>
-<button class="w-full mt-8 py-4 bg-primary-container text-on-primary-container font-bold rounded-2xl shadow-lg brand-glow active:scale-[0.98] transition-all" onclick="addToCartFromModal()">
-                أضف للسلة
-            </button>
-</div>
-</div>
-<!-- Cart Drawer -->
-<div class="fixed inset-0 bg-black/60 z-[80] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm" id="cart-drawer-overlay" onclick="toggleCart()"></div>
-<div class="fixed left-0 top-0 bottom-0 w-[85%] max-w-md bg-surface-container-highest z-[90] translate-x-[-100%] transition-transform duration-500 ease-in-out border-r border-white/10 shadow-2xl overflow-y-auto" id="cart-drawer">
-<div class="p-6">
-<div class="flex items-center justify-between mb-8">
-<h3 class="text-2xl font-bold">سلة المشتريات</h3>
-<button class="material-symbols-outlined text-on-surface-variant" onclick="toggleCart()">close</button>
-</div>
-<div class="space-y-4 mb-8" id="cart-items">
-<!-- Cart items dynamically injected here -->
-<p class="text-on-surface-variant text-center py-10 italic">السلة فارغة حالياً</p>
-</div>
-<div class="hidden" id="order-form">
-<hr class="border-white/10 mb-8"/>
-<h4 class="text-lg font-bold mb-4">بيانات التوصيل</h4>
-<div class="space-y-4">
-<input class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors" placeholder="الاسم بالكامل" type="text"/>
-<input class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors" placeholder="رقم الموبايل" type="tel"/>
-<div class="flex gap-3">
-<button class="flex-1 py-3 glass rounded-xl border border-primary-container/50 text-sm font-bold text-primary-container">توصيل</button>
-<button class="flex-1 py-3 glass rounded-xl border border-white/10 text-sm font-bold">استلام من الفرع</button>
-</div>
-<textarea class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors" placeholder="العنوان بالتفصيل (أو اسم المنطقة)" rows="3"></textarea>
-</div>
-<div class="mt-8 space-y-3">
-<div class="flex justify-between text-on-surface-variant">
-<span>المجموع الفرعي</span>
-<span id="subtotal">0 ج.م</span>
-</div>
-<div class="flex justify-between text-on-surface-variant">
-<span>رسوم التوصيل</span>
-<span>15 ج.م</span>
-</div>
-<div class="flex justify-between text-xl font-bold text-white border-t border-white/10 pt-3 mt-3">
-<span>الإجمالي</span>
-<span id="total-price">0 ج.م</span>
-</div>
-</div>
-<button class="w-full mt-8 py-4 bg-[#25D366] text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-3 active:scale-[0.98] transition-all" onclick="confirmOrder()">
-<span>تأكيد الطلب عبر واتساب</span>
-<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.512-2.96-2.626-.087-.114-.694-.925-.694-1.769 0-.843.441-1.258.599-1.428.158-.171.343-.214.458-.214.114 0 .229 0 .329.004.106.005.25.006.388.341.144.35.487 1.187.53 1.273.043.086.072.185.014.3-.058.114-.087.185-.171.285l-.258.3c-.086.1-.174.209-.074.38.1.171.442.729.948 1.18.651.58 1.201.76 1.372.845.171.086.271.071.371-.043.1-.114.428-.499.543-.671.114-.171.229-.142.386-.085.158.057 1 .471 1.172.557.171.086.286.128.329.2.043.071.043.414-.101.819z"></path></svg>
-</button>
-</div>
-</div>
-</div>
-<script>
-        let cart = [];
-        let currentItem = null;
+  </head>
+  <body class="bg-background text-on-surface overflow-x-hidden">
+    <!-- Top App Bar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-surface-container/80 border-b border-white/10 shadow-sm flex items-center justify-between px-margin-mobile h-16"
+    >
+      <div class="flex items-center gap-3">
+        <button class="active:scale-95 transition-transform">
+          <span class="material-symbols-outlined text-primary">menu</span>
+        </button>
+        <h1
+          class="font-display-lg-mobile text-headline-md text-primary-container tracking-tighter"
+        >
+          ZINGER
+        </h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex flex-col items-end">
+          <span class="text-xs text-on-surface-variant">مفتوح الآن</span>
+          <span class="text-sm font-bold">11:00 AM - 02:00 AM</span>
+        </div>
+        <a
+          class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 border border-primary-container/20 text-primary active:scale-95 transition-transform"
+          href="tel:12345"
+        >
+          <span class="material-symbols-outlined">call</span>
+        </a>
+      </div>
+    </header>
+    <main class="pt-16 pb-32">
+      <!-- Hero Section -->
+      <section class="relative h-[70vh] flex items-end overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img
+            alt="Zinger Special Burger"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaIIiE8tVUO_dYVtQMBUGb92tppSs4AmrKTa3NT_NU1esh1T0zc0_R8h8j5vcrGv6PVqg-JfZe8KLdHRKBB7ZeoHto5d435a0IG4QoIXhdVyoFMB_HhAv7XGZgj1orR1zFOw5_SmtnEdwDP5aO7S8NTsYFosxeoGe65ub4j5dAsS9xHZxDbG_zfAjR-bz6Q8kaY900OxJqJENWhHFlF_7fNmhGXwfU0jI9wNR8R_vJ5VNFKWkniogR7ddrR0IPYFgV6h_w72ghANA"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
+          ></div>
+        </div>
+        <div class="relative z-10 px-margin-mobile pb-12 w-full">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] font-bold mb-4"
+            >حصرياً في مصر</span
+          >
+          <h2
+            class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight"
+          >
+            أقوى طعم زنجر <br /><span class="text-primary-container"
+              >في مصر</span
+            >
+          </h2>
+          <p class="text-on-surface-variant max-w-md">
+            نستخدم أجود أنواع الدجاج الطازج مع خلطة التوابل السرية التي تمنحك
+            القرمشة المثالية في كل قطمة.
+          </p>
+        </div>
+      </section>
+      <!-- Categories -->
+      <nav class="sticky top-16 z-40 bg-background/60 backdrop-blur-md py-4">
+        <div class="flex gap-4 overflow-x-auto no-scrollbar px-margin-mobile">
+          <button
+            class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow"
+            onclick="scrollToCategory('burgers')"
+          >
+            <span class="material-symbols-outlined text-xl">lunch_dining</span>
+            <span>برجر</span>
+          </button>
+          <button
+            class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors"
+            onclick="scrollToCategory('crepe')"
+          >
+            <span class="material-symbols-outlined text-xl">flatware</span>
+            <span>كريب</span>
+          </button>
+          <button
+            class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors"
+            onclick="scrollToCategory('meals')"
+          >
+            <span class="material-symbols-outlined text-xl">fastfood</span>
+            <span>وجبات</span>
+          </button>
+          <button
+            class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-colors"
+            onclick="scrollToCategory('sides')"
+          >
+            <span class="material-symbols-outlined text-xl">icecream</span>
+            <span>مقبلات</span>
+          </button>
+        </div>
+      </nav>
+      <!-- Menu Grid -->
+      <section class="px-margin-mobile mt-8" id="burgers">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-2xl font-bold">الأكثر مبيعاً</h3>
+          <span class="text-primary-container text-sm font-semibold"
+            >عرض الكل</span
+          >
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Burger Card 1 -->
+          <div class="glass rounded-2xl overflow-hidden group">
+            <div class="relative h-40 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="Close-up shot of a gourmet crispy fried chicken burger with melting cheese, spicy jalapenos, and fresh lettuce, professional food photography, vibrant red and orange lighting, high contrast."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVSlTA1B_sMwg1caLbtBaNkf-taKHyiIO0R3MzzMKH2CEK0JsenPp05NNWCyuA3KqWEpZMZ00Yfr9SmbbnHmxNQp5HFcMRddnZmo9IE985vf4ZQtYCqbjEyMcA1NOv2l2wz2YFiE2zMuUNaHnCNVJEU3O-N0xad1eKEIx4feg9HpAq4Cmdi-e8LYywlsmT11fD7kBPqe334YuppCV5S50mVIThnNM_yQPGGAX9EDKD8Ckm802QxJ78bDuLOjocNUSV3vDKyq967rY"
+              />
+              <div
+                class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold"
+              >
+                45 ج.م
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="font-bold text-sm mb-1">زنجر سوبريم</h4>
+              <p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">
+                دجاج مقرمش، خس، طماطم، صوص الزنجر الحار
+              </p>
+              <button
+                class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all"
+                onclick="openCustomization('زنجر سوبريم', 45)"
+              >
+                <span class="material-symbols-outlined text-xl">add</span>
+              </button>
+            </div>
+          </div>
+          <!-- Burger Card 2 -->
+          <div class="glass rounded-2xl overflow-hidden group">
+            <div class="relative h-40 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="A massive double patty chicken burger dripping with cheddar cheese and fiery buffalo sauce, dark background, professional lighting highlighting the texture of the breading."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJjB0k12O_CX8nrcBmPKtrqkflTS97UZbqfURT1sX3Vn2Ilw27v2BTxS4KD_PPRKHRX7w_RXGVT0LFj3zY11kgQCRV5dUmbpG4dX2DwVOFaSKQbtETk3iWIdssDtgQZq9C1ENaWK4AxlSMpG_9w3a4-zL7xxiveopPTTiw4c6RULQvPTBO0kQMFY0FBD0KGOROMzgfB8-mBtXOOD0gnq6eZiLR1tfkNSszcxtOLtjCpukqpuPyty6cpixHSD7s79Q6tOI_hZ4X0cc"
+              />
+              <div
+                class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold"
+              >
+                65 ج.م
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="font-bold text-sm mb-1">دبل تشيز زنجر</h4>
+              <p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">
+                طبقتين دجاج، شيدر مضاعف، صوص رانش
+              </p>
+              <button
+                class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all"
+                onclick="openCustomization('دبل تشيز زنجر', 65)"
+              >
+                <span class="material-symbols-outlined text-xl">add</span>
+              </button>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="glass rounded-2xl overflow-hidden group">
+            <div class="relative h-40 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="A large chicken wrap with golden crispy strips, fresh veggies, and white sauce, studio lighting, dark charcoal background with soft orange glow."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDreNuV3UP2_wDJh5HRciAs-ZOqTY2qa1pQgxSrld4Qoc_4ToMj9Sxok2Scgq2apCkqX4ZpoDKyZVwZ5Ze9C-KZDSho9x45gK8iGbhWfrGueMqmiN95G6Wzkz5tVCWj5KJNgl6gPD9K3PKsOy-LfjiVtR6i8AnvI0jWulleowHhgZtz4BI4wZb3LiQdbUsExIU1e7m3TkW__t0Z_zgV1bH_4vL673YaFmCbmPErE_sRtTkFxGl63Kaaj2Bcy-V19KUVHo6Un7HpafM"
+              />
+              <div
+                class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold"
+              >
+                40 ج.م
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="font-bold text-sm mb-1">كريب زنجر صاروخ</h4>
+              <p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">
+                كريب عملاق محشو بقطع الزنجر والموتزاريللا
+              </p>
+              <button
+                class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all"
+                onclick="openCustomization('كريب زنجر صاروخ', 40)"
+              >
+                <span class="material-symbols-outlined text-xl">add</span>
+              </button>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="glass rounded-2xl overflow-hidden group">
+            <div class="relative h-40 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="Gourmet french fries topped with melted cheese, jalapenos, and bits of crispy chicken, artistic messy food style, premium dark theme."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8sJVHFnUpkGjfPY5ghESXmTxaD-b1wwyELtyL0dHNiAiP0fUgCnW2P3hV0QlM2gVlP3SFrAC6KhcXX9wIQYUoI6pyP-y9bIcsyjqQ25TqMXJf2PARBTfl2fbdtA4e23D2HuBA8K7JUr3hG9TOeMjiCEezSGl5wXbD_wjztK-WamTFL8vkpZC6f5ZA5JMPNFVxglfrDvW2faqR7okwvMeD8BQE4PqI0ROPHwiXAUIxhrrQyqr-Y_N2DqY0NSUK8cuQTppENLvUsp4"
+              />
+              <div
+                class="absolute top-2 left-2 px-2 py-1 glass rounded-lg text-tertiary text-xs font-bold"
+              >
+                25 ج.م
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="font-bold text-sm mb-1">بطاطس بالجبنة</h4>
+              <p class="text-[10px] text-on-surface-variant line-clamp-2 mb-3">
+                بطاطس مقلية ذهبية مع غرقانة صوص جبنة
+              </p>
+              <button
+                class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all"
+                onclick="openCustomization('بطاطس بالجبنة', 25)"
+              >
+                <span class="material-symbols-outlined text-xl">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Bottom Nav Bar -->
+    <nav
+      class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/70 backdrop-blur-2xl dark:bg-surface-container-high/70 border-t border-white/5 shadow-[0_-4px_20px_rgba(255,69,0,0.15)] flex justify-around items-center h-20 pb-safe px-4"
+    >
+      <button
+        class="flex flex-col items-center justify-center text-primary-container drop-shadow-[0_0_8px_rgba(255,86,37,0.5)]"
+      >
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
+      </button>
+      <button
+        class="relative flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+        onclick="toggleCart()"
+      >
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span
+          class="absolute -top-1 -right-1 bg-primary-container text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center hidden"
+          id="cart-badge"
+          >0</span
+        >
+        <span class="text-[10px] mt-1">السلة</span>
+      </button>
+      <button
+        class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined">phone</span>
+        <span class="text-[10px] mt-1">اتصال</span>
+      </button>
+      <button
+        class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined">location_on</span>
+        <span class="text-[10px] mt-1">الفروع</span>
+      </button>
+    </nav>
+    <!-- Customization Modal Overlay -->
+    <div
+      class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm"
+      id="custom-modal-overlay"
+      onclick="closeCustomization()"
+    ></div>
+    <!-- Customization Modal -->
+    <div
+      class="fixed bottom-0 left-0 right-0 z-[70] translate-y-full transition-transform duration-500 ease-out"
+      id="custom-modal"
+    >
+      <div class="glass-dark rounded-t-3xl p-6 safe-bottom">
+        <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
+        <h3 class="text-xl font-bold mb-2" id="modal-item-name">اسم الوجبة</h3>
+        <p class="text-tertiary font-bold mb-6" id="modal-item-price">45 ج.م</p>
+        <div class="space-y-6">
+          <!-- Size -->
+          <div>
+            <label class="block text-sm font-bold mb-3">الحجم</label>
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                class="size-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold active bg-primary-container/20 border-primary-container/50"
+              >
+                وسط
+              </button>
+              <button
+                class="size-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold"
+              >
+                كبير (+15 ج.م)
+              </button>
+            </div>
+          </div>
+          <!-- Spice Level -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-sm font-bold flex items-center gap-2">
+                <span
+                  class="material-symbols-outlined text-primary-container"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >local_fire_department</span
+                >
+                مستوى الشطة
+              </label>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                class="spice-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold"
+              >
+                عادي
+              </button>
+              <button
+                class="spice-btn py-3 rounded-xl border border-white/10 glass text-sm font-bold active bg-primary-container/20 border-primary-container/50"
+              >
+                حار جداً
+              </button>
+            </div>
+          </div>
+          <!-- Add-ons -->
+          <div>
+            <label class="block text-sm font-bold mb-3">إضافات</label>
+            <div class="space-y-3">
+              <label
+                class="flex items-center justify-between p-4 glass rounded-xl"
+              >
+                <span class="text-sm">جبنة زيادة</span>
+                <input
+                  class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container"
+                  type="checkbox"
+                />
+              </label>
+              <label
+                class="flex items-center justify-between p-4 glass rounded-xl"
+              >
+                <span class="text-sm">صوص كول سلو</span>
+                <input
+                  class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container"
+                  type="checkbox"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <button
+          class="w-full mt-8 py-4 bg-primary-container text-on-primary-container font-bold rounded-2xl shadow-lg brand-glow active:scale-[0.98] transition-all"
+          onclick="addToCartFromModal()"
+        >
+          أضف للسلة
+        </button>
+      </div>
+    </div>
+    <!-- Cart Drawer -->
+    <div
+      class="fixed inset-0 bg-black/60 z-[80] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm"
+      id="cart-drawer-overlay"
+      onclick="toggleCart()"
+    ></div>
+    <div
+      class="fixed left-0 top-0 bottom-0 w-[85%] max-w-md bg-surface-container-highest z-[90] translate-x-[-100%] transition-transform duration-500 ease-in-out border-r border-white/10 shadow-2xl overflow-y-auto"
+      id="cart-drawer"
+    >
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+          <h3 class="text-2xl font-bold">سلة المشتريات</h3>
+          <button
+            class="material-symbols-outlined text-on-surface-variant"
+            onclick="toggleCart()"
+          >
+            close
+          </button>
+        </div>
+        <div class="space-y-4 mb-8" id="cart-items">
+          <!-- Cart items dynamically injected here -->
+          <p class="text-on-surface-variant text-center py-10 italic">
+            السلة فارغة حالياً
+          </p>
+        </div>
+        <div class="hidden" id="order-form">
+          <hr class="border-white/10 mb-8" />
+          <h4 class="text-lg font-bold mb-4">بيانات التوصيل</h4>
+          <div class="space-y-4">
+            <input
+              class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors"
+              placeholder="الاسم بالكامل"
+              type="text"
+            />
+            <input
+              class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors"
+              placeholder="رقم الموبايل"
+              type="tel"
+            />
+            <div class="flex gap-3">
+              <button
+                class="flex-1 py-3 glass rounded-xl border border-primary-container/50 text-sm font-bold text-primary-container"
+              >
+                توصيل
+              </button>
+              <button
+                class="flex-1 py-3 glass rounded-xl border border-white/10 text-sm font-bold"
+              >
+                استلام من المطعم بنفسي
+              </button>
+            </div>
+            <textarea
+              class="w-full p-4 glass rounded-xl border-white/10 focus:border-primary-container focus:ring-0 transition-colors"
+              placeholder="العنوان بالتفصيل (أو اسم المنطقة)"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="mt-8 space-y-3">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>المجموع الفرعي</span>
+              <span id="subtotal">0 ج.م</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>رسوم التوصيل</span>
+              <span>15 ج.م</span>
+            </div>
+            <div
+              class="flex justify-between text-xl font-bold text-white border-t border-white/10 pt-3 mt-3"
+            >
+              <span>الإجمالي</span>
+              <span id="total-price">0 ج.م</span>
+            </div>
+          </div>
+          <button
+            class="w-full mt-8 py-4 bg-[#25D366] text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-3 active:scale-[0.98] transition-all"
+            onclick="confirmOrder()"
+          >
+            <span>تأكيد الطلب عبر واتساب</span>
+            <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+              <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.512-2.96-2.626-.087-.114-.694-.925-.694-1.769 0-.843.441-1.258.599-1.428.158-.171.343-.214.458-.214.114 0 .229 0 .329.004.106.005.25.006.388.341.144.35.487 1.187.53 1.273.043.086.072.185.014.3-.058.114-.087.185-.171.285l-.258.3c-.086.1-.174.209-.074.38.1.171.442.729.948 1.18.651.58 1.201.76 1.372.845.171.086.271.071.371-.043.1-.114.428-.499.543-.671.114-.171.229-.142.386-.085.158.057 1 .471 1.172.557.171.086.286.128.329.2.043.071.043.414-.101.819z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let cart = [];
+      let currentItem = null;
 
-        function openCustomization(name, price) {
-            currentItem = { name, price };
-            document.getElementById('modal-item-name').innerText = name;
-            document.getElementById('modal-item-price').innerText = price + ' ج.م';
-            
-            const overlay = document.getElementById('custom-modal-overlay');
-            const modal = document.getElementById('custom-modal');
-            
-            overlay.classList.remove('hidden');
-            setTimeout(() => overlay.classList.add('opacity-100'), 10);
-            modal.classList.remove('translate-y-full');
+      function openCustomization(name, price) {
+        currentItem = { name, price };
+        document.getElementById("modal-item-name").innerText = name;
+        document.getElementById("modal-item-price").innerText = price + " ج.م";
+
+        const overlay = document.getElementById("custom-modal-overlay");
+        const modal = document.getElementById("custom-modal");
+
+        overlay.classList.remove("hidden");
+        setTimeout(() => overlay.classList.add("opacity-100"), 10);
+        modal.classList.remove("translate-y-full");
+      }
+
+      function closeCustomization() {
+        const overlay = document.getElementById("custom-modal-overlay");
+        const modal = document.getElementById("custom-modal");
+
+        overlay.classList.remove("opacity-100");
+        modal.classList.add("translate-y-full");
+        setTimeout(() => overlay.classList.add("hidden"), 300);
+      }
+
+      function addToCartFromModal() {
+        cart.push({ ...currentItem });
+        updateCartUI();
+        closeCustomization();
+
+        // Visual feedback
+        const badge = document.getElementById("cart-badge");
+        badge.classList.remove("hidden");
+        badge.innerText = cart.length;
+        badge.classList.add("animate-bounce");
+        setTimeout(() => badge.classList.remove("animate-bounce"), 1000);
+      }
+
+      function toggleCart() {
+        const overlay = document.getElementById("cart-drawer-overlay");
+        const drawer = document.getElementById("cart-drawer");
+
+        if (drawer.classList.contains("translate-x-[-100%]")) {
+          overlay.classList.remove("hidden");
+          setTimeout(() => overlay.classList.add("opacity-100"), 10);
+          drawer.classList.remove("translate-x-[-100%]");
+          updateCartUI();
+        } else {
+          overlay.classList.remove("opacity-100");
+          drawer.classList.add("translate-x-[-100%]");
+          setTimeout(() => overlay.classList.add("hidden"), 300);
+        }
+      }
+
+      function updateCartUI() {
+        const container = document.getElementById("cart-items");
+        const form = document.getElementById("order-form");
+
+        if (cart.length === 0) {
+          container.innerHTML =
+            '<p class="text-on-surface-variant text-center py-10 italic">السلة فارغة حالياً</p>';
+          form.classList.add("hidden");
+          document.getElementById("cart-badge").classList.add("hidden");
+          return;
         }
 
-        function closeCustomization() {
-            const overlay = document.getElementById('custom-modal-overlay');
-            const modal = document.getElementById('custom-modal');
-            
-            overlay.classList.remove('opacity-100');
-            modal.classList.add('translate-y-full');
-            setTimeout(() => overlay.classList.add('hidden'), 300);
-        }
-
-        function addToCartFromModal() {
-            cart.push({...currentItem});
-            updateCartUI();
-            closeCustomization();
-            
-            // Visual feedback
-            const badge = document.getElementById('cart-badge');
-            badge.classList.remove('hidden');
-            badge.innerText = cart.length;
-            badge.classList.add('animate-bounce');
-            setTimeout(() => badge.classList.remove('animate-bounce'), 1000);
-        }
-
-        function toggleCart() {
-            const overlay = document.getElementById('cart-drawer-overlay');
-            const drawer = document.getElementById('cart-drawer');
-            
-            if(drawer.classList.contains('translate-x-[-100%]')) {
-                overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.add('opacity-100'), 10);
-                drawer.classList.remove('translate-x-[-100%]');
-                updateCartUI();
-            } else {
-                overlay.classList.remove('opacity-100');
-                drawer.classList.add('translate-x-[-100%]');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-            }
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items');
-            const form = document.getElementById('order-form');
-            
-            if(cart.length === 0) {
-                container.innerHTML = '<p class="text-on-surface-variant text-center py-10 italic">السلة فارغة حالياً</p>';
-                form.classList.add('hidden');
-                document.getElementById('cart-badge').classList.add('hidden');
-                return;
-            }
-
-            form.classList.remove('hidden');
-            container.innerHTML = cart.map((item, index) => `
+        form.classList.remove("hidden");
+        container.innerHTML = cart
+          .map(
+            (item, index) => `
                 <div class="flex items-center justify-between p-4 glass rounded-2xl animate-fadeIn">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary-container font-bold">1x</div>
@@ -384,50 +608,62 @@
                     </div>
                     <button onclick="removeFromCart(${index})" class="material-symbols-outlined text-on-surface-variant hover:text-error text-sm">delete</button>
                 </div>
-            `).join('');
+            `,
+          )
+          .join("");
 
-            const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-            document.getElementById('subtotal').innerText = subtotal + ' ج.م';
-            document.getElementById('total-price').innerText = (subtotal + 15) + ' ج.م';
-            document.getElementById('cart-badge').innerText = cart.length;
-            document.getElementById('cart-badge').classList.remove('hidden');
+        const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+        document.getElementById("subtotal").innerText = subtotal + " ج.م";
+        document.getElementById("total-price").innerText =
+          subtotal + 15 + " ج.م";
+        document.getElementById("cart-badge").innerText = cart.length;
+        document.getElementById("cart-badge").classList.remove("hidden");
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+      }
+
+      function confirmOrder() {
+        alert("سيتم تحويلك الآن لتأكيد طلبك عبر واتساب...");
+        // Logic to construct WhatsApp URL would go here
+      }
+
+      function scrollToCategory(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 140;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = el.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         }
+      }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function confirmOrder() {
-            alert('سيتم تحويلك الآن لتأكيد طلبك عبر واتساب...');
-            // Logic to construct WhatsApp URL would go here
-        }
-
-        function scrollToCategory(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 140;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Handle Size and Spice button toggles
-        document.querySelectorAll('.size-btn, .spice-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const parent = this.parentElement;
-                parent.querySelectorAll('button').forEach(b => {
-                    b.classList.remove('bg-primary-container/20', 'border-primary-container/50', 'active');
-                });
-                this.classList.add('bg-primary-container/20', 'border-primary-container/50', 'active');
-            });
+      // Handle Size and Spice button toggles
+      document.querySelectorAll(".size-btn, .spice-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const parent = this.parentElement;
+          parent.querySelectorAll("button").forEach((b) => {
+            b.classList.remove(
+              "bg-primary-container/20",
+              "border-primary-container/50",
+              "active",
+            );
+          });
+          this.classList.add(
+            "bg-primary-container/20",
+            "border-primary-container/50",
+            "active",
+          );
         });
+      });
     </script>
-</body></html>
+  </body>
+</html>

@@ -2,309 +2,1422 @@
 // --- Zinger Gourmet Restaurant Code ---
 // ==========================================
 
-const WA_NUMBER = "201027450811";
+const WA_NUMBER = "201020805451";
 
 // Main sections mapping for top scroll nav
 const mainSections = [
-    { id: 'burgers', name: 'برجر لحم', icon: 'lunch_dining' },
-    { id: 'crepes', name: 'الكريب', icon: 'flatware' },
-    { id: 'pizza', name: 'البيتزا', icon: 'local_pizza' },
-    { id: 'pasta', name: 'الباستا', icon: 'restaurant' },
-    { id: 'rolls', name: 'وتش رول', icon: 'layers' },
-    { id: 'hawawshi', name: 'حواوشي إيطالي', icon: 'local_fire_department' },
-    { id: 'melted_cheese', name: 'غرقانة جبنة', icon: 'opacity' }
+  { id: "burgers", name: "برجر لحم", icon: "lunch_dining" },
+  { id: "crepes", name: "الكريب", icon: "flatware" },
+  { id: "pizza", name: "البيتزا", icon: "local_pizza" },
+  { id: "pasta", name: "الباستا", icon: "restaurant" },
+  { id: "rolls", name: "وتش رول", icon: "layers" },
+  { id: "hawawshi", name: "حواوشي إيطالي", icon: "local_fire_department" },
+  { id: "melted_cheese", name: "غرقانة جبنة", icon: "opacity" },
 ];
 
 // Grouping local images to distribute them dynamically and beautifully
 const imagesByCategory = {
-    crepes: [
-        'WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.02 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.03 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.03 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.03 AM (2).jpeg'
-    ],
-    pizza: [
-        'WhatsApp Image 2026-07-22 at 2.03.03 AM (3).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.03 AM (4).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.04 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.04 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.04 AM (2).jpeg'
-    ],
-    pasta: [
-        'WhatsApp Image 2026-07-22 at 2.03.04 AM (3).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.04 AM (4).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.05 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.05 AM (1).jpeg'
-    ],
-    burgers: [
-        'WhatsApp Image 2026-07-22 at 2.04.19 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.04.19 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.05 AM (2).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.03.05 AM (3).jpeg'
-    ],
-    rolls: [
-        'WhatsApp Image 2026-07-22 at 2.00.34 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.00.34 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.00.34 AM (2).jpeg'
-    ],
-    hawawshi: [
-        'WhatsApp Image 2026-07-22 at 2.01.51 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.01.59 AM.jpeg'
-    ],
-    melted_cheese: [
-        'WhatsApp Image 2026-07-22 at 2.04.20 AM.jpeg',
-        'WhatsApp Image 2026-07-22 at 2.04.20 AM (1).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.04.20 AM (2).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.04.20 AM (3).jpeg',
-        'WhatsApp Image 2026-07-22 at 2.04.20 AM (4).jpeg'
-    ]
+  crepes: [
+    "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.02 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.03 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.03 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.03 AM (2).jpeg",
+  ],
+  pizza: [
+    "WhatsApp Image 2026-07-22 at 2.03.03 AM (3).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.03 AM (4).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.04 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.04 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.04 AM (2).jpeg",
+  ],
+  pasta: [
+    "WhatsApp Image 2026-07-22 at 2.03.04 AM (3).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.04 AM (4).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.05 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.05 AM (1).jpeg",
+  ],
+  burgers: [
+    "WhatsApp Image 2026-07-22 at 2.04.19 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.04.19 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.05 AM (2).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.03.05 AM (3).jpeg",
+  ],
+  rolls: [
+    "WhatsApp Image 2026-07-22 at 2.00.34 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.00.34 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.00.34 AM (2).jpeg",
+  ],
+  hawawshi: [
+    "WhatsApp Image 2026-07-22 at 2.01.51 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.01.59 AM.jpeg",
+  ],
+  melted_cheese: [
+    "WhatsApp Image 2026-07-22 at 2.04.20 AM.jpeg",
+    "WhatsApp Image 2026-07-22 at 2.04.20 AM (1).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.04.20 AM (2).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.04.20 AM (3).jpeg",
+    "WhatsApp Image 2026-07-22 at 2.04.20 AM (4).jpeg",
+  ],
 };
 
 // Transcribed Menu Data
 const menuData = [
-    // === BURGERS ===
-    { id: 101, section: 'burgers', name: 'كلاسيك بيف برجر', desc: 'قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل', sizes: [{name: 'سنجل (200جم)', price: 180}, {name: 'دبل (400جم)', price: 235}, {name: 'تربل (600جم)', price: 365}] },
-    { id: 102, section: 'burgers', name: 'برجر هالبينو', desc: 'قطعة برجر + هالبينو + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل', sizes: [{name: 'سنجل (200جم)', price: 180}, {name: 'دبل (400جم)', price: 235}, {name: 'تربل (600جم)', price: 365}] },
-    { id: 103, section: 'burgers', name: 'إكسترا مايل', desc: 'قطعة برجر + موزاريلا تكساس + صوص جبنة + كابوتشا + طماطم + خيار مخلل', sizes: [{name: 'سنجل (200جم)', price: 180}, {name: 'دبل (400جم)', price: 235}, {name: 'تربل (600جم)', price: 365}] },
-    { id: 104, section: 'burgers', name: 'سوبر نايت برجر', desc: 'قطعة برجر + شرائح شيدر + بيف بيكون + بصل مكرمل + مشوي + كابوتشا + طماطم + خيار مخلل', sizes: [{name: 'سنجل (200جم)', price: 180}, {name: 'دبل (400جم)', price: 235}, {name: 'تربل (600جم)', price: 365}] },
-    { id: 105, section: 'burgers', name: 'برجر تشيز فري', desc: 'قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل', price: 340, sizes: [{name: 'تربل (600جم)', price: 340}] },
-    { id: 106, section: 'burgers', name: 'برجر كوردن بلو', desc: 'قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل', sizes: [{name: 'سنجل (200جم)', price: 160}, {name: 'دبل (400جم)', price: 210}] },
+  // === BURGERS ===
+  {
+    id: 101,
+    section: "burgers",
+    name: "كلاسيك بيف برجر",
+    desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
+    sizes: [
+      { name: "سنجل (200جم)", price: 180 },
+      { name: "دبل (400جم)", price: 235 },
+      { name: "تربل (600جم)", price: 365 },
+    ],
+  },
+  {
+    id: 102,
+    section: "burgers",
+    name: "برجر هالبينو",
+    desc: "قطعة برجر + هالبينو + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
+    sizes: [
+      { name: "سنجل (200جم)", price: 180 },
+      { name: "دبل (400جم)", price: 235 },
+      { name: "تربل (600جم)", price: 365 },
+    ],
+  },
+  {
+    id: 103,
+    section: "burgers",
+    name: "إكسترا مايل",
+    desc: "قطعة برجر + موزاريلا تكساس + صوص جبنة + كابوتشا + طماطم + خيار مخلل",
+    sizes: [
+      { name: "سنجل (200جم)", price: 180 },
+      { name: "دبل (400جم)", price: 235 },
+      { name: "تربل (600جم)", price: 365 },
+    ],
+  },
+  {
+    id: 104,
+    section: "burgers",
+    name: "سوبر نايت برجر",
+    desc: "قطعة برجر + شرائح شيدر + بيف بيكون + بصل مكرمل + مشوي + كابوتشا + طماطم + خيار مخلل",
+    sizes: [
+      { name: "سنجل (200جم)", price: 180 },
+      { name: "دبل (400جم)", price: 235 },
+      { name: "تربل (600جم)", price: 365 },
+    ],
+  },
+  {
+    id: 105,
+    section: "burgers",
+    name: "برجر تشيز فري",
+    desc: "قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل",
+    price: 340,
+    sizes: [{ name: "تربل (600جم)", price: 340 }],
+  },
+  {
+    id: 106,
+    section: "burgers",
+    name: "برجر كوردن بلو",
+    desc: "قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل",
+    sizes: [
+      { name: "سنجل (200جم)", price: 160 },
+      { name: "دبل (400جم)", price: 210 },
+    ],
+  },
 
-    // === CREPES ===
-    { id: 201, section: 'crepes', name: 'كريب مشكل جبن', desc: 'ميكس أجبان زنجر الخاصة', sizes: [{name: 'M', price: 100}, {name: 'L', price: 120}, {name: 'XL', price: 140}, {name: 'رول', price: 155}] },
-    { id: 202, section: 'crepes', name: 'كريب بانية / تشيكن كرسبي', desc: 'قطع بانيه مقرمش', sizes: [{name: 'M', price: 80}, {name: 'L', price: 95}, {name: 'XL', price: 115}, {name: 'رول', price: 130}] },
-    { id: 203, section: 'crepes', name: 'كريب كرسبي ناجتس', desc: 'قطع ناجتس دجاج ذهبية', sizes: [{name: 'M', price: 95}, {name: 'L', price: 105}, {name: 'XL', price: 125}, {name: 'رول', price: 135}] },
-    { id: 204, section: 'crepes', name: 'كريب سوبر كرانشي (زنجر)', desc: 'صدور الدجاج الحارة المقرمشة', sizes: [{name: 'M', price: 140}, {name: 'L', price: 155}, {name: 'XL', price: 170}, {name: 'رول', price: 185}] },
-    { id: 205, section: 'crepes', name: 'كريب زنجر سوبريم', desc: 'زنجر مقرمش مع تركي مدخن وصوصات', sizes: [{name: 'M', price: 145}, {name: 'L', price: 155}, {name: 'XL', price: 175}, {name: 'رول', price: 185}] },
-    { id: 206, section: 'crepes', name: 'كريب تشيكن باربيكيو', desc: 'دجاج مقرمش مع صوص الباربيكيو المميز', sizes: [{name: 'M', price: 145}, {name: 'L', price: 155}, {name: 'XL', price: 175}, {name: 'رول', price: 185}] },
-    { id: 207, section: 'crepes', name: 'كريب تشيكن رانش', desc: 'صدور دجاج كرسبي مع صوص الرانش الغني', sizes: [{name: 'M', price: 145}, {name: 'L', price: 155}, {name: 'XL', price: 175}, {name: 'رول', price: 185}] },
-    { id: 208, section: 'crepes', name: 'كريب تشيكن هالبينو', desc: 'دجاج كرسبي مع شرائح هالبينو وصوص حار', sizes: [{name: 'M', price: 145}, {name: 'L', price: 160}, {name: 'XL', price: 180}, {name: 'رول', price: 185}] },
-    { id: 209, section: 'crepes', name: 'كريب شيش فحم', desc: 'شيش طاووق مشوي على الفحم متبل', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 210, section: 'crepes', name: 'كريب فاهيتا دجاج', desc: 'فاهيتا دجاج جريل مع فلفل وبصل وبهارات', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 211, section: 'crepes', name: 'كريب مكس فراخ', desc: 'ميكس صدور وشيش طاووق وكرسبي', sizes: [{name: 'M', price: 150}, {name: 'L', price: 165}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 212, section: 'crepes', name: 'كريب مكس لحوم', desc: 'ميكس برجر لحم وسجق وهوت دوج', sizes: [{name: 'M', price: 150}, {name: 'L', price: 165}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 213, section: 'crepes', name: 'كريب مكس مشكل', desc: 'ميكس لحوم ودجاج متبل معاً', sizes: [{name: 'M', price: 155}, {name: 'L', price: 170}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 214, section: 'crepes', name: 'كريب شيش ع زنجر', desc: 'شيش طاووق مشوي مع قطع زنجر حارة', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 215, section: 'crepes', name: 'كريب زنجر سبيشيال', desc: 'زنجر حار مضاعف مع إضافات السعادة', sizes: [{name: 'XL', price: 190}, {name: 'رول', price: 205}] },
-    { id: 216, section: 'crepes', name: 'كريب تشيكن بيكون', desc: 'كرسبي مع بيف بيكون وصوص جبنة', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 190}, {name: 'رول', price: 205}] },
-    { id: 217, section: 'crepes', name: 'كريب شيش على سوسيس', desc: 'شيش مشوي مع قطع سوسيس', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 180}, {name: 'رول', price: 195}] },
-    { id: 218, section: 'crepes', name: 'كريب زنجر ع بانية', desc: 'ميكس زنجر حار وبانيه كلاسيك', sizes: [{name: 'M', price: 140}, {name: 'L', price: 155}, {name: 'XL', price: 170}, {name: 'رول', price: 185}] },
-    { id: 219, section: 'crepes', name: 'كريب زنجر ع سوسيس', desc: 'زنجر حار مع هوت دوج جريل', sizes: [{name: 'M', price: 150}, {name: 'L', price: 165}, {name: 'XL', price: 180}, {name: 'رول', price: 195}] },
-    { id: 220, section: 'crepes', name: 'كريب زنجر ع بطاطس', desc: 'زنجر حار مقرمش مع بطاطس بوم فريت', sizes: [{name: 'M', price: 155}, {name: 'L', price: 170}, {name: 'XL', price: 180}, {name: 'رول', price: 185}] },
-    { id: 221, section: 'crepes', name: 'كريب سوسيس ع بانية', desc: 'هوت دوج مع بانيه مقرمش', sizes: [{name: 'M', price: 140}, {name: 'L', price: 155}, {name: 'XL', price: 170}, {name: 'رول', price: 185}] },
-    { id: 222, section: 'crepes', name: 'كريب بانية ع كفتة', desc: 'بانيه مع كفتة مشوية على الفحم', sizes: [{name: 'M', price: 120}, {name: 'L', price: 135}, {name: 'XL', price: 140}, {name: 'رول', price: 155}] },
-    { id: 223, section: 'crepes', name: 'كريب بانية ع بطاطس', desc: 'بانيه مقرمش اقتصادي مع بطاطس', sizes: [{name: 'M', price: 115}, {name: 'L', price: 125}, {name: 'XL', price: 135}, {name: 'رول', price: 145}] },
-    { id: 224, section: 'crepes', name: 'كريب برجر', desc: 'برجر لحم بلدي مشوي', sizes: [{name: 'M', price: 110}, {name: 'L', price: 120}, {name: 'XL', price: 135}, {name: 'رول', price: 145}] },
-    { id: 225, section: 'crepes', name: 'كريب سجق', desc: 'سجق بلدي متبل جريل', sizes: [{name: 'M', price: 110}, {name: 'L', price: 120}, {name: 'XL', price: 135}, {name: 'رول', price: 145}] },
-    { id: 226, section: 'crepes', name: 'كريب سوسيس', desc: 'هوت دوج مقطع صوصات شرقية', sizes: [{name: 'M', price: 110}, {name: 'L', price: 120}, {name: 'XL', price: 135}, {name: 'رول', price: 145}] },
-    { id: 227, section: 'crepes', name: 'كريب جمبري كرسبي', desc: 'جمبري جامبو مقرمش لعشاق السي فود', sizes: [{name: 'XL', price: 230}] },
-    { id: 228, section: 'crepes', name: 'كريب كوردون بلو', desc: 'رول دجاج محشو جبن وتركي مقلي', sizes: [{name: 'M', price: 150}, {name: 'L', price: 165}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 229, section: 'crepes', name: 'كريب كوردون بلو ع استربس', desc: 'كوردون بلو غني مع قطع استربس كرسبي', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 230, section: 'crepes', name: 'كريب كوردون بلو ع شيش', desc: 'كوردون بلو مع شيش طاووق جريل', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 231, section: 'crepes', name: 'كريب استربس', desc: 'أصابع صدور دجاج مقرمشة حارة أو عادي', sizes: [{name: 'M', price: 140}, {name: 'L', price: 155}, {name: 'XL', price: 170}, {name: 'رول', price: 185}] },
-    { id: 232, section: 'crepes', name: 'كريب بطاطس بوم فريت', desc: 'بطاطس ذهبية مقرمشة غرقانة جبن', sizes: [{name: 'M', price: 85}, {name: 'L', price: 95}, {name: 'XL', price: 115}, {name: 'رول', price: 135}] },
-    { id: 233, section: 'crepes', name: 'كريب تشيكن ناتشل', desc: 'كرسبي مع خضروات وصوص رانش شيدر', sizes: [{name: 'M', price: 155}, {name: 'L', price: 170}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 234, section: 'crepes', name: 'كريب السعادة', desc: 'صوص تكساس + مكس جبن + برجر + سوسيس', sizes: [{name: 'M', price: 195}, {name: 'L', price: 215}, {name: 'XL', price: 225}, {name: 'رول', price: 235}] },
-    { id: 235, section: 'crepes', name: 'كريب ديناميت', desc: 'صوص رانش + مكس جبن + بيبروني + استربس + شيش فحم', sizes: [{name: 'M', price: 170}, {name: 'L', price: 185}, {name: 'XL', price: 205}, {name: 'رول', price: 215}] },
-    { id: 236, section: 'crepes', name: 'كريب نايتس', desc: 'شيدر صوص + فرايد تشيكن + استربس + رومي مدخن', sizes: [{name: 'M', price: 165}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 237, section: 'crepes', name: 'كريب جولي', desc: 'صوص رانش + بانية + استربس + كوردون بلو', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 238, section: 'crepes', name: 'كريب ديفيلز', desc: 'صوص باربيكيو + صدور جريل + فاهيتا فراخ + شيش فحم', sizes: [{name: 'M', price: 160}, {name: 'L', price: 180}, {name: 'XL', price: 190}, {name: 'رول', price: 200}] },
-    { id: 239, section: 'crepes', name: 'كريب منستر', desc: 'تكساس + برجر + بانية + هوت دوج + شيش فحم', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}, {name: 'XL', price: 185}, {name: 'رول', price: 195}] },
-    { id: 240, section: 'crepes', name: 'كريب فانتازي', desc: 'صوص باربيكيو + برجر بلدي + كفتة فحم + شيش فحم', sizes: [{name: 'M', price: 185}, {name: 'L', price: 205}, {name: 'XL', price: 215}, {name: 'رول', price: 235}] },
+  // === CREPES ===
+  {
+    id: 201,
+    section: "crepes",
+    name: "كريب مشكل جبن",
+    desc: "ميكس أجبان زنجر الخاصة",
+    sizes: [
+      { name: "M", price: 100 },
+      { name: "L", price: 120 },
+      { name: "XL", price: 140 },
+      { name: "رول", price: 155 },
+    ],
+  },
+  {
+    id: 202,
+    section: "crepes",
+    name: "كريب بانية / تشيكن كرسبي",
+    desc: "قطع بانيه مقرمش",
+    sizes: [
+      { name: "M", price: 80 },
+      { name: "L", price: 95 },
+      { name: "XL", price: 115 },
+      { name: "رول", price: 130 },
+    ],
+  },
+  {
+    id: 203,
+    section: "crepes",
+    name: "كريب كرسبي ناجتس",
+    desc: "قطع ناجتس دجاج ذهبية",
+    sizes: [
+      { name: "M", price: 95 },
+      { name: "L", price: 105 },
+      { name: "XL", price: 125 },
+      { name: "رول", price: 135 },
+    ],
+  },
+  {
+    id: 204,
+    section: "crepes",
+    name: "كريب سوبر كرانشي (زنجر)",
+    desc: "صدور الدجاج الحارة المقرمشة",
+    sizes: [
+      { name: "M", price: 140 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 170 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 205,
+    section: "crepes",
+    name: "كريب زنجر سوبريم",
+    desc: "زنجر مقرمش مع تركي مدخن وصوصات",
+    sizes: [
+      { name: "M", price: 145 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 175 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 206,
+    section: "crepes",
+    name: "كريب تشيكن باربيكيو",
+    desc: "دجاج مقرمش مع صوص الباربيكيو المميز",
+    sizes: [
+      { name: "M", price: 145 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 175 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 207,
+    section: "crepes",
+    name: "كريب تشيكن رانش",
+    desc: "صدور دجاج كرسبي مع صوص الرانش الغني",
+    sizes: [
+      { name: "M", price: 145 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 175 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 208,
+    section: "crepes",
+    name: "كريب تشيكن هالبينو",
+    desc: "دجاج كرسبي مع شرائح هالبينو وصوص حار",
+    sizes: [
+      { name: "M", price: 145 },
+      { name: "L", price: 160 },
+      { name: "XL", price: 180 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 209,
+    section: "crepes",
+    name: "كريب شيش فحم",
+    desc: "شيش طاووق مشوي على الفحم متبل",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 210,
+    section: "crepes",
+    name: "كريب فاهيتا دجاج",
+    desc: "فاهيتا دجاج جريل مع فلفل وبصل وبهارات",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 211,
+    section: "crepes",
+    name: "كريب مكس فراخ",
+    desc: "ميكس صدور وشيش طاووق وكرسبي",
+    sizes: [
+      { name: "M", price: 150 },
+      { name: "L", price: 165 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 212,
+    section: "crepes",
+    name: "كريب مكس لحوم",
+    desc: "ميكس برجر لحم وسجق وهوت دوج",
+    sizes: [
+      { name: "M", price: 150 },
+      { name: "L", price: 165 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 213,
+    section: "crepes",
+    name: "كريب مكس مشكل",
+    desc: "ميكس لحوم ودجاج متبل معاً",
+    sizes: [
+      { name: "M", price: 155 },
+      { name: "L", price: 170 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 214,
+    section: "crepes",
+    name: "كريب شيش ع زنجر",
+    desc: "شيش طاووق مشوي مع قطع زنجر حارة",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 215,
+    section: "crepes",
+    name: "كريب زنجر سبيشيال",
+    desc: "زنجر حار مضاعف مع إضافات السعادة",
+    sizes: [
+      { name: "XL", price: 190 },
+      { name: "رول", price: 205 },
+    ],
+  },
+  {
+    id: 216,
+    section: "crepes",
+    name: "كريب تشيكن بيكون",
+    desc: "كرسبي مع بيف بيكون وصوص جبنة",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 190 },
+      { name: "رول", price: 205 },
+    ],
+  },
+  {
+    id: 217,
+    section: "crepes",
+    name: "كريب شيش على سوسيس",
+    desc: "شيش مشوي مع قطع سوسيس",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 180 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 218,
+    section: "crepes",
+    name: "كريب زنجر ع بانية",
+    desc: "ميكس زنجر حار وبانيه كلاسيك",
+    sizes: [
+      { name: "M", price: 140 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 170 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 219,
+    section: "crepes",
+    name: "كريب زنجر ع سوسيس",
+    desc: "زنجر حار مع هوت دوج جريل",
+    sizes: [
+      { name: "M", price: 150 },
+      { name: "L", price: 165 },
+      { name: "XL", price: 180 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 220,
+    section: "crepes",
+    name: "كريب زنجر ع بطاطس",
+    desc: "زنجر حار مقرمش مع بطاطس بوم فريت",
+    sizes: [
+      { name: "M", price: 155 },
+      { name: "L", price: 170 },
+      { name: "XL", price: 180 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 221,
+    section: "crepes",
+    name: "كريب سوسيس ع بانية",
+    desc: "هوت دوج مع بانيه مقرمش",
+    sizes: [
+      { name: "M", price: 140 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 170 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 222,
+    section: "crepes",
+    name: "كريب بانية ع كفتة",
+    desc: "بانيه مع كفتة مشوية على الفحم",
+    sizes: [
+      { name: "M", price: 120 },
+      { name: "L", price: 135 },
+      { name: "XL", price: 140 },
+      { name: "رول", price: 155 },
+    ],
+  },
+  {
+    id: 223,
+    section: "crepes",
+    name: "كريب بانية ع بطاطس",
+    desc: "بانيه مقرمش اقتصادي مع بطاطس",
+    sizes: [
+      { name: "M", price: 115 },
+      { name: "L", price: 125 },
+      { name: "XL", price: 135 },
+      { name: "رول", price: 145 },
+    ],
+  },
+  {
+    id: 224,
+    section: "crepes",
+    name: "كريب برجر",
+    desc: "برجر لحم بلدي مشوي",
+    sizes: [
+      { name: "M", price: 110 },
+      { name: "L", price: 120 },
+      { name: "XL", price: 135 },
+      { name: "رول", price: 145 },
+    ],
+  },
+  {
+    id: 225,
+    section: "crepes",
+    name: "كريب سجق",
+    desc: "سجق بلدي متبل جريل",
+    sizes: [
+      { name: "M", price: 110 },
+      { name: "L", price: 120 },
+      { name: "XL", price: 135 },
+      { name: "رول", price: 145 },
+    ],
+  },
+  {
+    id: 226,
+    section: "crepes",
+    name: "كريب سوسيس",
+    desc: "هوت دوج مقطع صوصات شرقية",
+    sizes: [
+      { name: "M", price: 110 },
+      { name: "L", price: 120 },
+      { name: "XL", price: 135 },
+      { name: "رول", price: 145 },
+    ],
+  },
+  {
+    id: 227,
+    section: "crepes",
+    name: "كريب جمبري كرسبي",
+    desc: "جمبري جامبو مقرمش لعشاق السي فود",
+    sizes: [{ name: "XL", price: 230 }],
+  },
+  {
+    id: 228,
+    section: "crepes",
+    name: "كريب كوردون بلو",
+    desc: "رول دجاج محشو جبن وتركي مقلي",
+    sizes: [
+      { name: "M", price: 150 },
+      { name: "L", price: 165 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 229,
+    section: "crepes",
+    name: "كريب كوردون بلو ع استربس",
+    desc: "كوردون بلو غني مع قطع استربس كرسبي",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 230,
+    section: "crepes",
+    name: "كريب كوردون بلو ع شيش",
+    desc: "كوردون بلو مع شيش طاووق جريل",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 231,
+    section: "crepes",
+    name: "كريب استربس",
+    desc: "أصابع صدور دجاج مقرمشة حارة أو عادي",
+    sizes: [
+      { name: "M", price: 140 },
+      { name: "L", price: 155 },
+      { name: "XL", price: 170 },
+      { name: "رول", price: 185 },
+    ],
+  },
+  {
+    id: 232,
+    section: "crepes",
+    name: "كريب بطاطس بوم فريت",
+    desc: "بطاطس ذهبية مقرمشة غرقانة جبن",
+    sizes: [
+      { name: "M", price: 85 },
+      { name: "L", price: 95 },
+      { name: "XL", price: 115 },
+      { name: "رول", price: 135 },
+    ],
+  },
+  {
+    id: 233,
+    section: "crepes",
+    name: "كريب تشيكن ناتشل",
+    desc: "كرسبي مع خضروات وصوص رانش شيدر",
+    sizes: [
+      { name: "M", price: 155 },
+      { name: "L", price: 170 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 234,
+    section: "crepes",
+    name: "كريب السعادة",
+    desc: "صوص تكساس + مكس جبن + برجر + سوسيس",
+    sizes: [
+      { name: "M", price: 195 },
+      { name: "L", price: 215 },
+      { name: "XL", price: 225 },
+      { name: "رول", price: 235 },
+    ],
+  },
+  {
+    id: 235,
+    section: "crepes",
+    name: "كريب ديناميت",
+    desc: "صوص رانش + مكس جبن + بيبروني + استربس + شيش فحم",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 185 },
+      { name: "XL", price: 205 },
+      { name: "رول", price: 215 },
+    ],
+  },
+  {
+    id: 236,
+    section: "crepes",
+    name: "كريب نايتس",
+    desc: "شيدر صوص + فرايد تشيكن + استربس + رومي مدخن",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 237,
+    section: "crepes",
+    name: "كريب جولي",
+    desc: "صوص رانش + بانية + استربس + كوردون بلو",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 238,
+    section: "crepes",
+    name: "كريب ديفيلز",
+    desc: "صوص باربيكيو + صدور جريل + فاهيتا فراخ + شيش فحم",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 180 },
+      { name: "XL", price: 190 },
+      { name: "رول", price: 200 },
+    ],
+  },
+  {
+    id: 239,
+    section: "crepes",
+    name: "كريب منستر",
+    desc: "تكساس + برجر + بانية + هوت دوج + شيش فحم",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+      { name: "XL", price: 185 },
+      { name: "رول", price: 195 },
+    ],
+  },
+  {
+    id: 240,
+    section: "crepes",
+    name: "كريب فانتازي",
+    desc: "صوص باربيكيو + برجر بلدي + كفتة فحم + شيش فحم",
+    sizes: [
+      { name: "M", price: 185 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 215 },
+      { name: "رول", price: 235 },
+    ],
+  },
 
-    // === PIZZA ===
-    { id: 301, section: 'pizza', name: 'بيتزا مارجريتا', desc: 'صوص بيتزا، موزاريلا، ريحان وزعتر', sizes: [{name: 'M', price: 130}, {name: 'L', price: 160}, {name: 'XL', price: 190}] },
-    { id: 302, section: 'pizza', name: 'بيتزا خضروات جوليان', desc: 'مشروم، فلفل ألوان، زيتون، طماطم وموزاريلا', sizes: [{name: 'M', price: 130}, {name: 'L', price: 160}, {name: 'XL', price: 190}] },
-    { id: 303, section: 'pizza', name: 'بيتزا مشروم', desc: 'مشروم فريش، صوص طماطم وموزاريلا', sizes: [{name: 'M', price: 130}, {name: 'L', price: 160}, {name: 'XL', price: 190}] },
-    { id: 304, section: 'pizza', name: 'بيتزا مكس جبن', desc: 'شيدر، رومي، كيري وموزاريلا غنية', sizes: [{name: 'M', price: 160}, {name: 'L', price: 185}, {name: 'XL', price: 215}] },
-    { id: 305, section: 'pizza', name: 'بيتزا كواترو فورماج', desc: 'أربعة أنواع أجبان فاخرة بخلطة إيطالية', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 306, section: 'pizza', name: 'بيتزا كرانشي رومي مدخن', desc: 'قطع كرسبي مع شرائح رومي مدخن شيدر', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 307, section: 'pizza', name: 'بيتزا تشيكن باربيكيو', desc: 'قطع دجاج متبلة بصوص الباربيكيو الغني', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 308, section: 'pizza', name: 'بيتزا تشيكن تكساس', desc: 'دجاج متبل مع صوص تكساس هالبينو', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 309, section: 'pizza', name: 'بيتزا شيش باربيكيو', desc: 'شيش طاووق مع صوص الباربيكيو وموزاريلا', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 310, section: 'pizza', name: 'بيتزا تشيكن رانش', desc: 'صدور دجاج كرسبي مع صوص الرانش المفضل', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 311, section: 'pizza', name: 'بيتزا صدور جريل', desc: 'صدور دجاج مشوية على الجريل صحية وموزاريلا', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 312, section: 'pizza', name: 'بيتزا سوبر سوبريم فراخ', desc: 'قطع دجاج، خضار فريش، زيتون، وموزاريلا زيادة', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 313, section: 'pizza', name: 'بيتزا سوبر سوبريم لحوم', desc: 'لحم مفروم، بيبيروني، سجق، خضار وزيتون وموزاريلا', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 314, section: 'pizza', name: 'بيتزا مكس فراخ', desc: 'مزيج من قطع الشيش والكرسبي والصدور الجريل', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 315, section: 'pizza', name: 'بيتزا مفروم', desc: 'لحم مفروم متبل بخلطة شرقية وموزاريلا', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 316, section: 'pizza', name: 'بيتزا سوسيس', desc: 'هوت دوج مقطع خضروات وموزاريلا', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 317, section: 'pizza', name: 'بيتزا ديب رانش', desc: 'حواف محشوة أجبان مع صوص رانش على الوجه ودجاج', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 318, section: 'pizza', name: 'بيتزا زنجر', desc: 'قطع زنجر حارة كرسبي مع صوص هالبينو وجبنة', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 319, section: 'pizza', name: 'بيتزا فراخ مكسيكي', desc: 'دجاج، فلفل حار، بهارات مكسيكية حارة ولذيذة', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 320, section: 'pizza', name: 'بيتزا فاهيتا', desc: 'فاهيتا دجاج جريل خضروات بصل فلفل زيتون وجبنة', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 321, section: 'pizza', name: 'بيتزا شيش فحم', desc: 'قطع شيش مشوي فحم بنكهة الشواء المدخنة', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 322, section: 'pizza', name: 'بيتزا بيبيروني', desc: 'قطع بيبيروني لحم فاخرة غرقانة موزاريلا', sizes: [{name: 'M', price: 160}, {name: 'L', price: 190}, {name: 'XL', price: 220}] },
-    { id: 323, section: 'pizza', name: 'بيتزا تشيكن هالبينوش', desc: 'دجاج مع شرائح هالبينو حار وصوص شيدر', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 324, section: 'pizza', name: 'بيتزا تشيكن بيكون', desc: 'دجاج كرسبي مع بيف بيكون وصوص رانش شيدر', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 225}] },
-    { id: 325, section: 'pizza', name: 'بيتزا تونة', desc: 'قطع تونة فاخرة، بصل، فلفل ألوان وزيتون وجبنة', sizes: [{name: 'M', price: 185}, {name: 'L', price: 205}, {name: 'XL', price: 245}] },
-    { id: 326, section: 'pizza', name: 'بيتزا بسطرمة', desc: 'بسطرمة بلدي مع موزاريلا وزيتون أخضر', sizes: [{name: 'M', price: 195}, {name: 'L', price: 225}, {name: 'XL', price: 255}] },
-    { id: 327, section: 'pizza', name: 'بيتزا جمبري', desc: 'جمبري كرسبي أو جريل متبل وموزاريلا فصوص', sizes: [{name: 'M', price: 195}, {name: 'L', price: 225}, {name: 'XL', price: 255}] },
-    { id: 328, section: 'pizza', name: 'بيتزا سي رانش', desc: 'جمبري، سبيط مع صوص رانش وجبنة موزاريلا', sizes: [{name: 'M', price: 205}, {name: 'L', price: 235}, {name: 'XL', price: 265}] },
-    { id: 329, section: 'pizza', name: 'بيتزا فور سيزون', desc: 'أربعة أقسام (لحوم، دجاج، أجبان، خضروات) في بيتزا واحدة', sizes: [{name: 'M', price: 205}, {name: 'L', price: 235}, {name: 'XL', price: 265}] },
-    { id: 330, section: 'pizza', name: 'بيتزا بيف بيكون', desc: 'شرائح بيف بيكون مدخن وموزاريلا وتكساس', sizes: [{name: 'M', price: 180}, {name: 'L', price: 220}, {name: 'XL', price: 230}] },
-    { id: 331, section: 'pizza', name: 'بيتزا ناشفيل', desc: 'دجاج كرسبي مغطى بصوص ناشفيل الحار وشيدر', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 230}] },
-    { id: 332, section: 'pizza', name: 'بيتزا متر زرقاء', desc: 'بيتزا عملاقة بطول متر تناسب اللمات والعائلات', sizes: [{name: 'XL', price: 550}] },
-    { id: 333, section: 'pizza', name: 'بيتزا بسطرمة كيري', desc: 'بسطرمة بلدي غنية بقطع جبنة كيري وموزاريلا', sizes: [{name: 'M', price: 190}, {name: 'L', price: 220}, {name: 'XL', price: 270}] },
-    { id: 334, section: 'pizza', name: 'بيتزا سجق كيري', desc: 'سجق بلدي مع قطع كيري كريمي وموزاريلا', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 240}] },
-    { id: 335, section: 'pizza', name: 'بيتزا سي فوود', desc: 'جمبري وسبيط وتونة مع بهارات سي فود', sizes: [{name: 'L', price: 240}] },
+  // === PIZZA ===
+  {
+    id: 301,
+    section: "pizza",
+    name: "بيتزا مارجريتا",
+    desc: "صوص بيتزا، موزاريلا، ريحان وزعتر",
+    sizes: [
+      { name: "M", price: 130 },
+      { name: "L", price: 160 },
+      { name: "XL", price: 190 },
+    ],
+  },
+  {
+    id: 302,
+    section: "pizza",
+    name: "بيتزا خضروات جوليان",
+    desc: "مشروم، فلفل ألوان، زيتون، طماطم وموزاريلا",
+    sizes: [
+      { name: "M", price: 130 },
+      { name: "L", price: 160 },
+      { name: "XL", price: 190 },
+    ],
+  },
+  {
+    id: 303,
+    section: "pizza",
+    name: "بيتزا مشروم",
+    desc: "مشروم فريش، صوص طماطم وموزاريلا",
+    sizes: [
+      { name: "M", price: 130 },
+      { name: "L", price: 160 },
+      { name: "XL", price: 190 },
+    ],
+  },
+  {
+    id: 304,
+    section: "pizza",
+    name: "بيتزا مكس جبن",
+    desc: "شيدر، رومي، كيري وموزاريلا غنية",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 185 },
+      { name: "XL", price: 215 },
+    ],
+  },
+  {
+    id: 305,
+    section: "pizza",
+    name: "بيتزا كواترو فورماج",
+    desc: "أربعة أنواع أجبان فاخرة بخلطة إيطالية",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 306,
+    section: "pizza",
+    name: "بيتزا كرانشي رومي مدخن",
+    desc: "قطع كرسبي مع شرائح رومي مدخن شيدر",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 307,
+    section: "pizza",
+    name: "بيتزا تشيكن باربيكيو",
+    desc: "قطع دجاج متبلة بصوص الباربيكيو الغني",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 308,
+    section: "pizza",
+    name: "بيتزا تشيكن تكساس",
+    desc: "دجاج متبل مع صوص تكساس هالبينو",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 309,
+    section: "pizza",
+    name: "بيتزا شيش باربيكيو",
+    desc: "شيش طاووق مع صوص الباربيكيو وموزاريلا",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 310,
+    section: "pizza",
+    name: "بيتزا تشيكن رانش",
+    desc: "صدور دجاج كرسبي مع صوص الرانش المفضل",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 311,
+    section: "pizza",
+    name: "بيتزا صدور جريل",
+    desc: "صدور دجاج مشوية على الجريل صحية وموزاريلا",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 312,
+    section: "pizza",
+    name: "بيتزا سوبر سوبريم فراخ",
+    desc: "قطع دجاج، خضار فريش، زيتون، وموزاريلا زيادة",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 313,
+    section: "pizza",
+    name: "بيتزا سوبر سوبريم لحوم",
+    desc: "لحم مفروم، بيبيروني، سجق، خضار وزيتون وموزاريلا",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 314,
+    section: "pizza",
+    name: "بيتزا مكس فراخ",
+    desc: "مزيج من قطع الشيش والكرسبي والصدور الجريل",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 315,
+    section: "pizza",
+    name: "بيتزا مفروم",
+    desc: "لحم مفروم متبل بخلطة شرقية وموزاريلا",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 316,
+    section: "pizza",
+    name: "بيتزا سوسيس",
+    desc: "هوت دوج مقطع خضروات وموزاريلا",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 317,
+    section: "pizza",
+    name: "بيتزا ديب رانش",
+    desc: "حواف محشوة أجبان مع صوص رانش على الوجه ودجاج",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 318,
+    section: "pizza",
+    name: "بيتزا زنجر",
+    desc: "قطع زنجر حارة كرسبي مع صوص هالبينو وجبنة",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 319,
+    section: "pizza",
+    name: "بيتزا فراخ مكسيكي",
+    desc: "دجاج، فلفل حار، بهارات مكسيكية حارة ولذيذة",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 320,
+    section: "pizza",
+    name: "بيتزا فاهيتا",
+    desc: "فاهيتا دجاج جريل خضروات بصل فلفل زيتون وجبنة",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 321,
+    section: "pizza",
+    name: "بيتزا شيش فحم",
+    desc: "قطع شيش مشوي فحم بنكهة الشواء المدخنة",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 322,
+    section: "pizza",
+    name: "بيتزا بيبيروني",
+    desc: "قطع بيبيروني لحم فاخرة غرقانة موزاريلا",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 190 },
+      { name: "XL", price: 220 },
+    ],
+  },
+  {
+    id: 323,
+    section: "pizza",
+    name: "بيتزا تشيكن هالبينوش",
+    desc: "دجاج مع شرائح هالبينو حار وصوص شيدر",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 324,
+    section: "pizza",
+    name: "بيتزا تشيكن بيكون",
+    desc: "دجاج كرسبي مع بيف بيكون وصوص رانش شيدر",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 325,
+    section: "pizza",
+    name: "بيتزا تونة",
+    desc: "قطع تونة فاخرة، بصل، فلفل ألوان وزيتون وجبنة",
+    sizes: [
+      { name: "M", price: 185 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 245 },
+    ],
+  },
+  {
+    id: 326,
+    section: "pizza",
+    name: "بيتزا بسطرمة",
+    desc: "بسطرمة بلدي مع موزاريلا وزيتون أخضر",
+    sizes: [
+      { name: "M", price: 195 },
+      { name: "L", price: 225 },
+      { name: "XL", price: 255 },
+    ],
+  },
+  {
+    id: 327,
+    section: "pizza",
+    name: "بيتزا جمبري",
+    desc: "جمبري كرسبي أو جريل متبل وموزاريلا فصوص",
+    sizes: [
+      { name: "M", price: 195 },
+      { name: "L", price: 225 },
+      { name: "XL", price: 255 },
+    ],
+  },
+  {
+    id: 328,
+    section: "pizza",
+    name: "بيتزا سي رانش",
+    desc: "جمبري، سبيط مع صوص رانش وجبنة موزاريلا",
+    sizes: [
+      { name: "M", price: 205 },
+      { name: "L", price: 235 },
+      { name: "XL", price: 265 },
+    ],
+  },
+  {
+    id: 329,
+    section: "pizza",
+    name: "بيتزا فور سيزون",
+    desc: "أربعة أقسام (لحوم، دجاج، أجبان، خضروات) في بيتزا واحدة",
+    sizes: [
+      { name: "M", price: 205 },
+      { name: "L", price: 235 },
+      { name: "XL", price: 265 },
+    ],
+  },
+  {
+    id: 330,
+    section: "pizza",
+    name: "بيتزا بيف بيكون",
+    desc: "شرائح بيف بيكون مدخن وموزاريلا وتكساس",
+    sizes: [
+      { name: "M", price: 180 },
+      { name: "L", price: 220 },
+      { name: "XL", price: 230 },
+    ],
+  },
+  {
+    id: 331,
+    section: "pizza",
+    name: "بيتزا ناشفيل",
+    desc: "دجاج كرسبي مغطى بصوص ناشفيل الحار وشيدر",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 230 },
+    ],
+  },
+  {
+    id: 332,
+    section: "pizza",
+    name: "بيتزا متر زرقاء",
+    desc: "بيتزا عملاقة بطول متر تناسب اللمات والعائلات",
+    sizes: [{ name: "XL", price: 550 }],
+  },
+  {
+    id: 333,
+    section: "pizza",
+    name: "بيتزا بسطرمة كيري",
+    desc: "بسطرمة بلدي غنية بقطع جبنة كيري وموزاريلا",
+    sizes: [
+      { name: "M", price: 190 },
+      { name: "L", price: 220 },
+      { name: "XL", price: 270 },
+    ],
+  },
+  {
+    id: 334,
+    section: "pizza",
+    name: "بيتزا سجق كيري",
+    desc: "سجق بلدي مع قطع كيري كريمي وموزاريلا",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 240 },
+    ],
+  },
+  {
+    id: 335,
+    section: "pizza",
+    name: "بيتزا سي فوود",
+    desc: "جمبري وسبيط وتونة مع بهارات سي فود",
+    sizes: [{ name: "L", price: 240 }],
+  },
 
-    // === PASTA ===
-    { id: 401, section: 'pasta', name: 'باستا مكس جبن', desc: 'مكرونة فرن غرقانة بصوص الأجبان الأربعة والموزاريلا', sizes: [{name: 'M', price: 165}, {name: 'L', price: 195}, {name: 'XL', price: 215}] },
-    { id: 402, section: 'pasta', name: 'باستا كرانشي رومي مدخن', desc: 'مكرونة بقطع الدجاج كرسبي ورومي مدخن وشيدر', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 403, section: 'pasta', name: 'باستا تشيكن فريش', desc: 'مكرونة بصدور دجاج طازجة مشوية وصوص أبيض', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 404, section: 'pasta', name: 'باستا تشيكن رانش', desc: 'قطع كرسبي مع صوص رانش غني وموزاريلا سايحة', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 405, section: 'pasta', name: 'باستا تشيكن باربيكيو', desc: 'صدور دجاج بصوص الباربيكيو المميز وجبنة موزاريلا', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 406, section: 'pasta', name: 'باستا تشيكن تكساس', desc: 'قطع دجاج كرسبي مع صوص تكساس هالبينو شيدر', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 407, section: 'pasta', name: 'باستا شيش فحم', desc: 'مكرونة بقطع شيش طاووق مشوي على الفحم ونكهة مدخنة', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 235}] },
-    { id: 408, section: 'pasta', name: 'باستا مكس فراخ', desc: 'ميكس صدور دجاج كرسبي وشيش جريل مع صوصات', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 409, section: 'pasta', name: 'باستا سوبر سوبريم فراخ', desc: 'دجاج، زيتون، فلفل ألوان، صوص أبيض وموزاريلا مغطاة', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 410, section: 'pasta', name: 'باستا سوبر سوبريم لحوم', desc: 'لحم مفروم، بيبيروني، هوت دوج متبل وجبن فرن', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 411, section: 'pasta', name: 'باستا فاهيتا', desc: 'مكرونة بفاهيتا دجاج جريل خضار وصوصات مكسيكية', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 412, section: 'pasta', name: 'باستا تشيكن هالبينو', desc: 'دجاج حار كرسبي مع قطع هالبينو شطة وصوص شيدر فرن', sizes: [{name: 'M', price: 175}, {name: 'L', price: 205}, {name: 'XL', price: 225}] },
-    { id: 413, section: 'pasta', name: 'باستا جمبري', desc: 'مكرونة بجمبري جريل فصوص بصوص الكريمة الفاخرة', sizes: [{name: 'M', price: 195}, {name: 'L', price: 225}, {name: 'XL', price: 255}] },
+  // === PASTA ===
+  {
+    id: 401,
+    section: "pasta",
+    name: "باستا مكس جبن",
+    desc: "مكرونة فرن غرقانة بصوص الأجبان الأربعة والموزاريلا",
+    sizes: [
+      { name: "M", price: 165 },
+      { name: "L", price: 195 },
+      { name: "XL", price: 215 },
+    ],
+  },
+  {
+    id: 402,
+    section: "pasta",
+    name: "باستا كرانشي رومي مدخن",
+    desc: "مكرونة بقطع الدجاج كرسبي ورومي مدخن وشيدر",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 403,
+    section: "pasta",
+    name: "باستا تشيكن فريش",
+    desc: "مكرونة بصدور دجاج طازجة مشوية وصوص أبيض",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 404,
+    section: "pasta",
+    name: "باستا تشيكن رانش",
+    desc: "قطع كرسبي مع صوص رانش غني وموزاريلا سايحة",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 405,
+    section: "pasta",
+    name: "باستا تشيكن باربيكيو",
+    desc: "صدور دجاج بصوص الباربيكيو المميز وجبنة موزاريلا",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 406,
+    section: "pasta",
+    name: "باستا تشيكن تكساس",
+    desc: "قطع دجاج كرسبي مع صوص تكساس هالبينو شيدر",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 407,
+    section: "pasta",
+    name: "باستا شيش فحم",
+    desc: "مكرونة بقطع شيش طاووق مشوي على الفحم ونكهة مدخنة",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 235 },
+    ],
+  },
+  {
+    id: 408,
+    section: "pasta",
+    name: "باستا مكس فراخ",
+    desc: "ميكس صدور دجاج كرسبي وشيش جريل مع صوصات",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 409,
+    section: "pasta",
+    name: "باستا سوبر سوبريم فراخ",
+    desc: "دجاج، زيتون، فلفل ألوان، صوص أبيض وموزاريلا مغطاة",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 410,
+    section: "pasta",
+    name: "باستا سوبر سوبريم لحوم",
+    desc: "لحم مفروم، بيبيروني، هوت دوج متبل وجبن فرن",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 411,
+    section: "pasta",
+    name: "باستا فاهيتا",
+    desc: "مكرونة بفاهيتا دجاج جريل خضار وصوصات مكسيكية",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 412,
+    section: "pasta",
+    name: "باستا تشيكن هالبينو",
+    desc: "دجاج حار كرسبي مع قطع هالبينو شطة وصوص شيدر فرن",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 205 },
+      { name: "XL", price: 225 },
+    ],
+  },
+  {
+    id: 413,
+    section: "pasta",
+    name: "باستا جمبري",
+    desc: "مكرونة بجمبري جريل فصوص بصوص الكريمة الفاخرة",
+    sizes: [
+      { name: "M", price: 195 },
+      { name: "L", price: 225 },
+      { name: "XL", price: 255 },
+    ],
+  },
 
-    // === SANDWICH ROLLS ===
-    { id: 501, section: 'rolls', name: 'رول تشيكن تركي مدخن', desc: 'رول ساندوتش زنجر مع تركي مدخن وموزاريلا', price: 180 },
-    { id: 502, section: 'rolls', name: 'رول تشيكن رانش مدخن', desc: 'رول دجاج كرسبي مع صوص رانش غني مدخن', price: 180 },
-    { id: 503, section: 'rolls', name: 'رول شيش طاووق', desc: 'رول محشو بقطع شيش جريل خضروات ثومية', price: 180 },
-    { id: 504, section: 'rolls', name: 'رول زنجر حار', desc: 'رول محشو بزنجر حار جداً وهالبينو وشيدر صوص', price: 180 },
-    { id: 505, section: 'rolls', name: 'رول ميكس فراخ', desc: 'رول غني بمزيج من أنواع الفراخ كرسبي وشيش', price: 190 },
+  // === SANDWICH ROLLS ===
+  {
+    id: 501,
+    section: "rolls",
+    name: "رول تشيكن تركي مدخن",
+    desc: "رول ساندوتش زنجر مع تركي مدخن وموزاريلا",
+    price: 180,
+  },
+  {
+    id: 502,
+    section: "rolls",
+    name: "رول تشيكن رانش مدخن",
+    desc: "رول دجاج كرسبي مع صوص رانش غني مدخن",
+    price: 180,
+  },
+  {
+    id: 503,
+    section: "rolls",
+    name: "رول شيش طاووق",
+    desc: "رول محشو بقطع شيش جريل خضروات ثومية",
+    price: 180,
+  },
+  {
+    id: 504,
+    section: "rolls",
+    name: "رول زنجر حار",
+    desc: "رول محشو بزنجر حار جداً وهالبينو وشيدر صوص",
+    price: 180,
+  },
+  {
+    id: 505,
+    section: "rolls",
+    name: "رول ميكس فراخ",
+    desc: "رول غني بمزيج من أنواع الفراخ كرسبي وشيش",
+    price: 190,
+  },
 
-    // === ITALIAN HAWAWSHI ===
-    { id: 601, section: 'hawawshi', name: 'حواوشي كرانشي تركي مدخن', desc: 'حواوشي إيطالي بعجينة مميزة وكرسبي وتركي', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 230}] },
-    { id: 602, section: 'hawawshi', name: 'حواوشي تشيكن رانش', desc: 'عجينة إيطالية مخبوزة محشوة دجاج وصوص رانش جبن', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 230}] },
-    { id: 603, section: 'hawawshi', name: 'حواوشي مكس فراخ', desc: 'حشوة كرسبي وشيش طاووق وجبن موزاريلا بالفرن', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 230}] },
-    { id: 604, section: 'hawawshi', name: 'حواوشي مفروم بلدي', desc: 'لحم مفروم بلدي متبل على الطريقة الإيطالية بالجبنة', sizes: [{name: 'M', price: 170}, {name: 'L', price: 200}, {name: 'XL', price: 230}] },
+  // === ITALIAN HAWAWSHI ===
+  {
+    id: 601,
+    section: "hawawshi",
+    name: "حواوشي كرانشي تركي مدخن",
+    desc: "حواوشي إيطالي بعجينة مميزة وكرسبي وتركي",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 230 },
+    ],
+  },
+  {
+    id: 602,
+    section: "hawawshi",
+    name: "حواوشي تشيكن رانش",
+    desc: "عجينة إيطالية مخبوزة محشوة دجاج وصوص رانش جبن",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 230 },
+    ],
+  },
+  {
+    id: 603,
+    section: "hawawshi",
+    name: "حواوشي مكس فراخ",
+    desc: "حشوة كرسبي وشيش طاووق وجبن موزاريلا بالفرن",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 230 },
+    ],
+  },
+  {
+    id: 604,
+    section: "hawawshi",
+    name: "حواوشي مفروم بلدي",
+    desc: "لحم مفروم بلدي متبل على الطريقة الإيطالية بالجبنة",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 200 },
+      { name: "XL", price: 230 },
+    ],
+  },
 
-    // === MELTED CHEESE ===
-    { id: 701, section: 'melted_cheese', name: 'غرقانة جبنة بطاطس', desc: 'بطاطس مقلية غرقانة بصوص الجبنة الشيدر السايحة والموزاريلا', sizes: [{name: 'M', price: 130}, {name: 'L', price: 155}] },
-    { id: 702, section: 'melted_cheese', name: 'غرقانة جبنة استربس', desc: 'قطع استربس كرسبي غرقانة بصوص الشيدر والجبن السايحة', sizes: [{name: 'M', price: 155}, {name: 'L', price: 175}] },
-    { id: 703, section: 'melted_cheese', name: 'غرقانة جبنة شيش طاووق', desc: 'قطع شيش مشوية غارقة بالكامل في صوص الجبن الساخن', sizes: [{name: 'M', price: 170}, {name: 'L', price: 185}] },
-    { id: 704, section: 'melted_cheese', name: 'غرقانة جبنة سوسيس', desc: 'هوت دوج مقطع غرقان صوص شيدر سايح وموزاريلا بالفرن', sizes: [{name: 'M', price: 130}, {name: 'L', price: 155}] },
-    { id: 705, section: 'melted_cheese', name: 'غرقانة جبنة تشيكن هالبينو', desc: 'صدور دجاج كرسبي حارة مع هالبينو وغارقة بصوص الجبن', sizes: [{name: 'M', price: 160}, {name: 'L', price: 175}] },
-    { id: 706, section: 'melted_cheese', name: 'غرقانة جبنة سوسيس ع شيش', desc: 'ميكس هوت دوج وشيش مشوي غارقان في الجبنة السايحة', sizes: [{name: 'M', price: 170}, {name: 'L', price: 185}] },
-    { id: 707, section: 'melted_cheese', name: 'غرقانة جبنة زنجر ع شيش', desc: 'زنجر حار جداً وشيش طاووق مع فيضان صوص شيدر سايح', sizes: [{name: 'M', price: 175}, {name: 'L', price: 195}] },
-    { id: 708, section: 'melted_cheese', name: 'غرقانة جبنة مكس لحوم', desc: 'برجر وهوت دوج وسجق غارقة بالكامل بصوص الجبن الساخن', sizes: [{name: 'M', price: 175}, {name: 'L', price: 195}] }
+  // === MELTED CHEESE ===
+  {
+    id: 701,
+    section: "melted_cheese",
+    name: "غرقانة جبنة بطاطس",
+    desc: "بطاطس مقلية غرقانة بصوص الجبنة الشيدر السايحة والموزاريلا",
+    sizes: [
+      { name: "M", price: 130 },
+      { name: "L", price: 155 },
+    ],
+  },
+  {
+    id: 702,
+    section: "melted_cheese",
+    name: "غرقانة جبنة استربس",
+    desc: "قطع استربس كرسبي غرقانة بصوص الشيدر والجبن السايحة",
+    sizes: [
+      { name: "M", price: 155 },
+      { name: "L", price: 175 },
+    ],
+  },
+  {
+    id: 703,
+    section: "melted_cheese",
+    name: "غرقانة جبنة شيش طاووق",
+    desc: "قطع شيش مشوية غارقة بالكامل في صوص الجبن الساخن",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 185 },
+    ],
+  },
+  {
+    id: 704,
+    section: "melted_cheese",
+    name: "غرقانة جبنة سوسيس",
+    desc: "هوت دوج مقطع غرقان صوص شيدر سايح وموزاريلا بالفرن",
+    sizes: [
+      { name: "M", price: 130 },
+      { name: "L", price: 155 },
+    ],
+  },
+  {
+    id: 705,
+    section: "melted_cheese",
+    name: "غرقانة جبنة تشيكن هالبينو",
+    desc: "صدور دجاج كرسبي حارة مع هالبينو وغارقة بصوص الجبن",
+    sizes: [
+      { name: "M", price: 160 },
+      { name: "L", price: 175 },
+    ],
+  },
+  {
+    id: 706,
+    section: "melted_cheese",
+    name: "غرقانة جبنة سوسيس ع شيش",
+    desc: "ميكس هوت دوج وشيش مشوي غارقان في الجبنة السايحة",
+    sizes: [
+      { name: "M", price: 170 },
+      { name: "L", price: 185 },
+    ],
+  },
+  {
+    id: 707,
+    section: "melted_cheese",
+    name: "غرقانة جبنة زنجر ع شيش",
+    desc: "زنجر حار جداً وشيش طاووق مع فيضان صوص شيدر سايح",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 195 },
+    ],
+  },
+  {
+    id: 708,
+    section: "melted_cheese",
+    name: "غرقانة جبنة مكس لحوم",
+    desc: "برجر وهوت دوج وسجق غارقة بالكامل بصوص الجبن الساخن",
+    sizes: [
+      { name: "M", price: 175 },
+      { name: "L", price: 195 },
+    ],
+  },
 ];
 
 // Standard delicious extras
 const commonExtras = [
-    { name: 'جبنة شيدر سايحة زياده', price: 15 },
-    { name: 'موتزاريلا إكسترا', price: 15 },
-    { name: 'صوص رانش', price: 15 },
-    { name: 'صوص تكساس حار', price: 15 },
-    { name: 'صوص باربيكيو', price: 15 },
-    { name: 'شرائح هالبينو حار', price: 10 }
+  { name: "جبنة شيدر سايحة زياده", price: 15 },
+  { name: "موتزاريلا إكسترا", price: 15 },
+  { name: "صوص رانش", price: 15 },
+  { name: "صوص تكساس حار", price: 15 },
+  { name: "صوص باربيكيو", price: 15 },
+  { name: "شرائح هالبينو حار", price: 10 },
 ];
 
 // App State
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = [];
 let currentItem = null;
 let currentSelectedSize = null;
-let currentSpiceLevel = 'عادي';
+let currentSpiceLevel = "عادي";
 let selectedExtras = [];
-let orderType = 'delivery'; // delivery or pickup
-let searchQuery = '';
+let orderType = "delivery"; // delivery or pickup
+let searchQuery = "";
 
 // Helper function to normalize Arabic text for better search matching
 function normalizeArabic(str) {
-    if (!str) return '';
-    return str
-        .replace(/[أإآ]/g, 'ا')
-        .replace(/ة/g, 'ه')
-        .replace(/ى/g, 'ي')
-        .toLowerCase();
+  if (!str) return "";
+  return str
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ه")
+    .replace(/ى/g, "ي")
+    .toLowerCase();
 }
 
 function filterMenu(query) {
-    searchQuery = query.trim();
-    renderMenu();
+  searchQuery = query.trim();
+  renderMenu();
 }
 
 // Fetch image dynamically
 function getProductImage(item) {
-    const list = imagesByCategory[item.section];
-    if (!list || list.length === 0) return 'WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg';
-    const index = item.id % list.length;
-    return list[index];
+  const list = imagesByCategory[item.section];
+  if (!list || list.length === 0)
+    return "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg";
+  const index = item.id % list.length;
+  return list[index];
 }
 
 // 1. Render Categories Navigation Bar
 function renderCategoriesNav() {
-    const container = document.getElementById('categories-nav');
-    if (!container) return;
+  const container = document.getElementById("categories-nav");
+  if (!container) return;
 
-    container.innerHTML = mainSections.map((section, idx) => `
+  container.innerHTML = mainSections
+    .map(
+      (section, idx) => `
         <button id="nav-btn-${section.id}" 
-                class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full ${idx === 0 ? 'bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow' : 'glass text-on-surface-variant hover:text-primary'} transition-all" 
+                class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full ${idx === 0 ? "bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow" : "glass text-on-surface-variant hover:text-primary"} transition-all" 
                 onclick="scrollToCategory('${section.id}')">
             <span class="material-symbols-outlined text-xl">${section.icon}</span>
             <span>${section.name}</span>
         </button>
-    `).join('');
+    `,
+    )
+    .join("");
 }
 
 // 2. Render all categories and their products on the page
 function renderMenu() {
-    const container = document.getElementById('dynamic-menu-container');
-    if (!container) return;
+  const container = document.getElementById("dynamic-menu-container");
+  if (!container) return;
 
-    const normalizedQuery = normalizeArabic(searchQuery);
-    let totalVisibleItems = 0;
+  const normalizedQuery = normalizeArabic(searchQuery);
+  let totalVisibleItems = 0;
 
-    const sectionsHTML = mainSections.map(section => {
-        let sectionItems = menuData.filter(item => item.section === section.id);
+  const sectionsHTML = mainSections
+    .map((section) => {
+      let sectionItems = menuData.filter((item) => item.section === section.id);
 
-        // Filter by search query if present
-        if (normalizedQuery) {
-            sectionItems = sectionItems.filter(item => 
-                normalizeArabic(item.name).includes(normalizedQuery) || 
-                normalizeArabic(item.desc).includes(normalizedQuery)
-            );
-        }
+      // Filter by search query if present
+      if (normalizedQuery) {
+        sectionItems = sectionItems.filter(
+          (item) =>
+            normalizeArabic(item.name).includes(normalizedQuery) ||
+            normalizeArabic(item.desc).includes(normalizedQuery),
+        );
+      }
 
-        if (sectionItems.length === 0) return '';
+      if (sectionItems.length === 0) return "";
 
-        totalVisibleItems += sectionItems.length;
+      totalVisibleItems += sectionItems.length;
 
-        const itemsHTML = sectionItems.map(item => {
-            let priceDisplay = '';
-            if (item.sizes && item.sizes.length > 0) {
-                const minPrice = Math.min(...item.sizes.map(s => s.price));
-                priceDisplay = `يبدأ من ${minPrice} ج.م`;
-            } else {
-                priceDisplay = `${item.price} ج.م`;
-            }
+      const itemsHTML = sectionItems
+        .map((item) => {
+          let priceDisplay = "";
+          if (item.sizes && item.sizes.length > 0) {
+            const minPrice = Math.min(...item.sizes.map((s) => s.price));
+            priceDisplay = `يبدأ من ${minPrice} ج.م`;
+          } else {
+            priceDisplay = `${item.price} ج.م`;
+          }
 
-            const imgFile = getProductImage(item);
+          const imgFile = getProductImage(item);
 
-            return `
-                <div class="glass rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer hover:border-primary-container/30 border border-transparent transition-all"
+          return `
+                <div class="glass rounded-3xl overflow-hidden group flex flex-col justify-between cursor-pointer hover:border-primary-container/40 border border-white/5 hover:shadow-[0_8px_30px_rgba(255,86,37,0.15)] transition-all duration-300"
                      onclick='openCustomizationModal(${JSON.stringify(item)})'>
                     <div class="relative h-32 md:h-40 overflow-hidden">
-                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                              src="${imgFile}" 
                              alt="${item.name}"
                              loading="lazy"
                              onerror="this.src='WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg'">
-                        <div class="absolute top-2 left-2 px-2.5 py-1 glass rounded-lg text-tertiary text-xs font-bold">${priceDisplay}</div>
+                        <div class="absolute bottom-2 right-2 px-2.5 py-1 bg-black/75 backdrop-blur-md rounded-lg text-tertiary text-xs font-extrabold border border-white/10 shadow-md">${priceDisplay}</div>
                     </div>
-                    <div class="p-3 flex-1 flex flex-col justify-between">
-                        <div class="mb-2">
-                            <h4 class="font-bold text-sm mb-1 text-white leading-snug">${item.name}</h4>
-                            <p class="text-[10px] text-on-surface-variant line-clamp-2 leading-relaxed">${item.desc || 'وجبة زنجر المميزة بنكهتها الخاصة.'}</p>
+                    <div class="p-3.5 flex-1 flex flex-col justify-between gap-3">
+                        <div>
+                            <h4 class="font-bold text-[14px] text-white leading-snug group-hover:text-primary-container transition-colors duration-300">${item.name}</h4>
+                            <p class="text-[10px] text-on-surface-variant/80 line-clamp-2 leading-relaxed mt-1 min-h-[30px]">${item.desc || "وجبة زنجر المميزة بنكهتها الخاصة وقرمشتها الفريدة."}</p>
                         </div>
-                        <div class="w-full py-2 bg-primary-container/20 border border-primary-container/30 rounded-xl flex items-center justify-center text-primary-container active:scale-95 transition-all group-hover:bg-primary-container group-hover:text-white">
-                            <span class="material-symbols-outlined text-xl">add</span>
+                        <div class="w-full py-2 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-300 text-xs font-bold gap-1 transition-all duration-300 group-hover:bg-primary-container group-hover:text-on-primary group-hover:border-primary-container group-hover:shadow-[0_4px_15px_rgba(255,86,37,0.2)]">
+                            <span>اطلب هيعجبك </span>
+                            <span class="material-symbols-outlined text-sm">arrow_left</span>
                         </div>
                     </div>
                 </div>
             `;
-        }).join('');
+        })
+        .join("");
 
-        return `
+      return `
             <section class="px-margin-mobile mt-8" id="${section.id}">
                 <div class="flex items-center justify-between mb-5">
                     <h3 class="text-2xl font-bold border-r-4 border-primary-container pr-2 text-white">${section.name}</h3>
@@ -314,551 +1427,634 @@ function renderMenu() {
                 </div>
             </section>
         `;
-    }).join('');
+    })
+    .join("");
 
-    if (totalVisibleItems === 0 && normalizedQuery) {
-        container.innerHTML = `
+  if (totalVisibleItems === 0 && normalizedQuery) {
+    container.innerHTML = `
             <div class="text-center text-on-surface-variant py-20 flex flex-col items-center gap-3">
                 <span class="material-symbols-outlined text-6xl opacity-30 text-primary-container">search_off</span>
                 <p class="text-lg font-bold text-white">ملقناش أكلة بالاسم ده! 🔍</p>
                 <p class="text-xs">جرب تبحث بكلمة تانية زي (كريب، بيتزا، برجر)</p>
             </div>
         `;
-    } else {
-        container.innerHTML = sectionsHTML;
-    }
+  } else {
+    container.innerHTML = sectionsHTML;
+  }
 }
 
 // Smooth scroll to selected category section
 function scrollToCategory(id) {
-    const el = document.getElementById(id);
-    if(el) {
-        const offset = 140;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = el.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 140;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = el.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - offset;
 
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    }
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
 }
 
 // 3. Customization Modal Functions
 function openCustomizationModal(item) {
-    currentItem = item;
-    selectedExtras = [];
-    currentSpiceLevel = 'عادي';
+  currentItem = item;
+  selectedExtras = [];
+  currentSpiceLevel = "عادي";
 
-    // Set Name
-    document.getElementById('modal-item-name').innerText = item.name;
+  // Set Name
+  document.getElementById("modal-item-name").innerText = item.name;
 
-    // Build Sizes
-    const sizesSection = document.getElementById('modal-sizes-section');
-    const sizesContainer = document.getElementById('modal-sizes-container');
-    
-    if (item.sizes && item.sizes.length > 0) {
-        sizesSection.classList.remove('hidden');
-        currentSelectedSize = item.sizes[0]; // default to first size
-        
-        sizesContainer.innerHTML = item.sizes.map((sz, idx) => `
+  // Build Sizes
+  const sizesSection = document.getElementById("modal-sizes-section");
+  const sizesContainer = document.getElementById("modal-sizes-container");
+
+  if (item.sizes && item.sizes.length > 0) {
+    sizesSection.classList.remove("hidden");
+    currentSelectedSize = item.sizes[0]; // default to first size
+
+    sizesContainer.innerHTML = item.sizes
+      .map(
+        (sz, idx) => `
             <button onclick="setSize(${idx})" 
                     id="size-btn-${idx}" 
-                    class="size-option-btn py-3 rounded-xl border ${idx === 0 ? 'bg-primary-container/20 border-primary-container/50 text-white active' : 'border-white/10 glass text-gray-300'} text-sm font-bold transition-all">
+                    class="size-option-btn py-3 rounded-xl border ${idx === 0 ? "bg-primary-container/20 border-primary-container/50 text-white active" : "border-white/10 glass text-gray-300"} text-sm font-bold transition-all">
                 ${sz.name} (${sz.price} ج.م)
             </button>
-        `).join('');
-    } else {
-        sizesSection.classList.add('hidden');
-        currentSelectedSize = null;
-    }
+        `,
+      )
+      .join("");
+  } else {
+    sizesSection.classList.add("hidden");
+    currentSelectedSize = null;
+  }
 
-    // Build Spice (Hidden for sweet crepes or non-food items if applicable, but Zinger is mostly savory, so we keep it)
-    const spicySection = document.getElementById('modal-spicy-section');
-    if (item.section === 'pizza' || item.section === 'crepes' || item.section === 'burgers' || item.section === 'rolls' || item.section === 'hawawshi' || item.section === 'melted_cheese') {
-        spicySection.classList.remove('hidden');
-        setSpiceLevel('عادي');
-    } else {
-        spicySection.classList.add('hidden');
-    }
+  // Build Spice (Hidden for sweet crepes or non-food items if applicable, but Zinger is mostly savory, so we keep it)
+  const spicySection = document.getElementById("modal-spicy-section");
+  if (
+    item.section === "pizza" ||
+    item.section === "crepes" ||
+    item.section === "burgers" ||
+    item.section === "rolls" ||
+    item.section === "hawawshi" ||
+    item.section === "melted_cheese"
+  ) {
+    spicySection.classList.remove("hidden");
+    setSpiceLevel("عادي");
+  } else {
+    spicySection.classList.add("hidden");
+  }
 
-    // Build Extras
-    const extrasSection = document.getElementById('modal-extras-section');
-    const extrasContainer = document.getElementById('modal-extras-container');
+  // Build Extras
+  const extrasSection = document.getElementById("modal-extras-section");
+  const extrasContainer = document.getElementById("modal-extras-container");
 
-    if (item.section !== 'extras') {
-        extrasSection.classList.remove('hidden');
-        extrasContainer.innerHTML = commonExtras.map((extra, idx) => `
+  if (item.section !== "extras") {
+    extrasSection.classList.remove("hidden");
+    extrasContainer.innerHTML = commonExtras
+      .map(
+        (extra, idx) => `
             <label class="flex items-center justify-between p-4 glass rounded-xl cursor-pointer hover:bg-white/10 transition-colors">
                 <span class="text-sm text-gray-200">${extra.name} (+${extra.price} ج.م)</span>
                 <input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container cursor-pointer" 
                        type="checkbox" 
                        onchange="toggleExtra(${idx}, this.checked)"/>
             </label>
-        `).join('');
-    } else {
-        extrasSection.classList.add('hidden');
-    }
+        `,
+      )
+      .join("");
+  } else {
+    extrasSection.classList.add("hidden");
+  }
 
-    // Update Initial price display
-    updateModalPrice();
+  // Update Initial price display
+  updateModalPrice();
 
-    // Show Overlay and Modal
-    const overlay = document.getElementById('custom-modal-overlay');
-    const modal = document.getElementById('custom-modal');
-    
-    overlay.classList.remove('hidden');
-    setTimeout(() => overlay.classList.add('opacity-100'), 10);
-    modal.classList.remove('translate-y-full');
-    document.body.classList.add('overflow-hidden');
+  // Show Overlay and Modal
+  const overlay = document.getElementById("custom-modal-overlay");
+  const modal = document.getElementById("custom-modal");
+
+  overlay.classList.remove("hidden");
+  setTimeout(() => overlay.classList.add("opacity-100"), 10);
+  modal.classList.remove("translate-y-full");
+  document.body.classList.add("overflow-hidden");
 }
 
 function closeCustomization() {
-    const overlay = document.getElementById('custom-modal-overlay');
-    const modal = document.getElementById('custom-modal');
-    
-    overlay.classList.remove('opacity-100');
-    modal.classList.add('translate-y-full');
-    setTimeout(() => overlay.classList.add('hidden'), 300);
-    document.body.classList.remove('overflow-hidden');
+  const overlay = document.getElementById("custom-modal-overlay");
+  const modal = document.getElementById("custom-modal");
+
+  overlay.classList.remove("opacity-100");
+  modal.classList.add("translate-y-full");
+  setTimeout(() => overlay.classList.add("hidden"), 300);
+  document.body.classList.remove("overflow-hidden");
 }
 
 function setSize(idx) {
-    if (!currentItem || !currentItem.sizes) return;
-    currentSelectedSize = currentItem.sizes[idx];
-    
-    // Toggle active classes
-    document.querySelectorAll('.size-option-btn').forEach((btn, i) => {
-        if (i === idx) {
-            btn.className = "size-option-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white active text-sm font-bold transition-all";
-        } else {
-            btn.className = "size-option-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
-        }
-    });
+  if (!currentItem || !currentItem.sizes) return;
+  currentSelectedSize = currentItem.sizes[idx];
 
-    updateModalPrice();
+  // Toggle active classes
+  document.querySelectorAll(".size-option-btn").forEach((btn, i) => {
+    if (i === idx) {
+      btn.className =
+        "size-option-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white active text-sm font-bold transition-all";
+    } else {
+      btn.className =
+        "size-option-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+    }
+  });
+
+  updateModalPrice();
 }
 
 function setSpiceLevel(level) {
-    currentSpiceLevel = level;
-    const normalBtn = document.getElementById('spice-btn-normal');
-    const spicyBtn = document.getElementById('spice-btn-spicy');
-    if (!normalBtn || !spicyBtn) return;
+  currentSpiceLevel = level;
+  const normalBtn = document.getElementById("spice-btn-normal");
+  const spicyBtn = document.getElementById("spice-btn-spicy");
+  if (!normalBtn || !spicyBtn) return;
 
-    if (level === 'عادي') {
-        normalBtn.className = "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
-        spicyBtn.className = "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
-    } else {
-        spicyBtn.className = "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
-        normalBtn.className = "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
-    }
+  if (level === "عادي") {
+    normalBtn.className =
+      "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
+    spicyBtn.className =
+      "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+  } else {
+    spicyBtn.className =
+      "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
+    normalBtn.className =
+      "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+  }
 }
 
 function toggleExtra(idx, isChecked) {
-    const extra = commonExtras[idx];
-    if (isChecked) {
-        selectedExtras.push(extra);
-    } else {
-        selectedExtras = selectedExtras.filter(e => e.name !== extra.name);
-    }
-    updateModalPrice();
+  const extra = commonExtras[idx];
+  if (isChecked) {
+    selectedExtras.push(extra);
+  } else {
+    selectedExtras = selectedExtras.filter((e) => e.name !== extra.name);
+  }
+  updateModalPrice();
 }
 
 function calculateCurrentTotalPrice() {
-    if (!currentItem) return 0;
-    let basePrice = currentSelectedSize ? currentSelectedSize.price : (currentItem.price || 0);
-    let extrasPrice = selectedExtras.reduce((sum, e) => sum + e.price, 0);
-    return basePrice + extrasPrice;
+  if (!currentItem) return 0;
+  let basePrice = currentSelectedSize
+    ? currentSelectedSize.price
+    : currentItem.price || 0;
+  let extrasPrice = selectedExtras.reduce((sum, e) => sum + e.price, 0);
+  return basePrice + extrasPrice;
 }
 
 function updateModalPrice() {
-    const totalPrice = calculateCurrentTotalPrice();
-    document.getElementById('modal-item-price').innerText = totalPrice + ' ج.م';
+  const totalPrice = calculateCurrentTotalPrice();
+  document.getElementById("modal-item-price").innerText = totalPrice + " ج.م";
 }
 
 function addToCartFromModal() {
-    if (!currentItem) return;
-    
-    // Construct name with options
-    let finalName = currentItem.name;
-    if (currentSelectedSize) {
-        finalName += ` (${currentSelectedSize.name})`;
-    }
-    if (currentSpiceLevel !== 'عادي') {
-        finalName += ` (${currentSpiceLevel})`;
-    }
-    if (selectedExtras.length > 0) {
-        const extraNames = selectedExtras.map(e => e.name).join(', ');
-        finalName += ` + [${extraNames}]`;
-    }
+  if (!currentItem) return;
 
-    const finalPrice = calculateCurrentTotalPrice();
-    const uniqueId = Date.now() + Math.random();
+  // Construct name with options
+  let finalName = currentItem.name;
+  if (currentSelectedSize) {
+    finalName += ` (${currentSelectedSize.name})`;
+  }
+  if (currentSpiceLevel !== "عادي") {
+    finalName += ` (${currentSpiceLevel})`;
+  }
+  if (selectedExtras.length > 0) {
+    const extraNames = selectedExtras.map((e) => e.name).join(", ");
+    finalName += ` + [${extraNames}]`;
+  }
 
-    // Check if duplicate configuration already in cart
-    const existing = cart.find(i => i.name === finalName && i.price === finalPrice);
-    if (existing) {
-        existing.qty++;
-    } else {
-        cart.push({
-            id: uniqueId,
-            name: finalName,
-            price: finalPrice,
-            qty: 1
-        });
-    }
+  const finalPrice = calculateCurrentTotalPrice();
+  const uniqueId = Date.now() + Math.random();
 
-    updateCartUI();
-    closeCustomization();
+  // Check if duplicate configuration already in cart
+  const existing = cart.find(
+    (i) => i.name === finalName && i.price === finalPrice,
+  );
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      id: uniqueId,
+      name: finalName,
+      price: finalPrice,
+      qty: 1,
+      section: currentItem.section,
+    });
+  }
 
-    // Animate cart badge
-    const badge = document.getElementById('cart-badge');
-    badge.classList.remove('scale-0');
-    badge.classList.add('scale-100', 'animate-bounce');
-    setTimeout(() => badge.classList.remove('animate-bounce'), 1000);
+  updateCartUI();
+  closeCustomization();
+
+  // Animate cart badge
+  const badge = document.getElementById("cart-badge");
+  badge.classList.remove("scale-0");
+  badge.classList.add("scale-100", "animate-bounce");
+  setTimeout(() => badge.classList.remove("animate-bounce"), 1000);
 }
 
 // 4. Cart Drawer Functions
 function toggleCart() {
-    const overlay = document.getElementById('cart-drawer-overlay');
-    const drawer = document.getElementById('cart-drawer');
-    
-    if(drawer.classList.contains('translate-x-[-100%]')) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => overlay.classList.add('opacity-100'), 10);
-        drawer.classList.remove('translate-x-[-100%]');
-        updateCartUI();
-        document.body.classList.add('overflow-hidden');
-    } else {
-        overlay.classList.remove('opacity-100');
-        drawer.classList.add('translate-x-[-100%]');
-        setTimeout(() => overlay.classList.add('hidden'), 300);
-        document.body.classList.remove('overflow-hidden');
-    }
+  const overlay = document.getElementById("cart-drawer-overlay");
+  const drawer = document.getElementById("cart-drawer");
+
+  if (drawer.classList.contains("translate-x-[-100%]")) {
+    overlay.classList.remove("hidden");
+    setTimeout(() => overlay.classList.add("opacity-100"), 10);
+    drawer.classList.remove("translate-x-[-100%]");
+    updateCartUI();
+    document.body.classList.add("overflow-hidden");
+  } else {
+    overlay.classList.remove("opacity-100");
+    drawer.classList.add("translate-x-[-100%]");
+    setTimeout(() => overlay.classList.add("hidden"), 300);
+    document.body.classList.remove("overflow-hidden");
+  }
 }
 
 function setOrderType(type) {
-    orderType = type;
-    const delBtn = document.getElementById('type-delivery-btn');
-    const pickBtn = document.getElementById('type-pickup-btn');
-    const addressField = document.getElementById('address-field');
-    const deliveryFeeContainer = document.getElementById('delivery-fee-container');
+  orderType = type;
+  const delBtn = document.getElementById("type-delivery-btn");
+  const pickBtn = document.getElementById("type-pickup-btn");
+  const addressField = document.getElementById("address-field");
+  const deliveryFeeContainer = document.getElementById(
+    "delivery-fee-container",
+  );
 
-    if (type === 'delivery') {
-        delBtn.className = "flex-1 py-3 glass rounded-xl border border-primary-container/50 text-sm font-bold text-primary-container flex items-center justify-center gap-1 transition-all";
-        pickBtn.className = "flex-1 py-3 glass rounded-xl border border-white/10 text-sm font-bold text-gray-300 flex items-center justify-center gap-1 transition-all";
-        addressField.classList.remove('hidden');
-        deliveryFeeContainer.classList.remove('hidden');
-    } else {
-        pickBtn.className = "flex-1 py-3 glass rounded-xl border border-primary-container/50 text-sm font-bold text-primary-container flex items-center justify-center gap-1 transition-all";
-        delBtn.className = "flex-1 py-3 glass rounded-xl border border-white/10 text-sm font-bold text-gray-300 flex items-center justify-center gap-1 transition-all";
-        addressField.classList.add('hidden');
-        deliveryFeeContainer.classList.add('hidden');
-    }
+  const activeClass =
+    "flex-1 py-2.5 bg-primary-container text-on-primary font-extrabold text-xs rounded-xl flex items-center justify-center gap-1 transition-all duration-300 shadow-md";
+  const inactiveClass =
+    "flex-1 py-2.5 text-gray-400 hover:text-white font-extrabold text-xs rounded-xl flex items-center justify-center gap-1 transition-all duration-300";
 
-    updateCartUI();
+  if (type === "delivery") {
+    if (delBtn) delBtn.className = activeClass;
+    if (pickBtn) pickBtn.className = inactiveClass;
+    if (addressField) addressField.classList.remove("hidden");
+    if (deliveryFeeContainer) deliveryFeeContainer.classList.remove("hidden");
+  } else {
+    if (pickBtn) pickBtn.className = activeClass;
+    if (delBtn) delBtn.className = inactiveClass;
+    if (addressField) addressField.classList.add("hidden");
+    if (deliveryFeeContainer) deliveryFeeContainer.classList.add("hidden");
+  }
+
+  updateCartUI();
 }
 
 function updateCartUI() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    const badge = document.getElementById('cart-badge');
-    const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
-    
-    if (totalQty > 0) {
-        badge.innerText = totalQty;
-        badge.classList.remove('scale-0');
-        badge.classList.add('scale-100');
-    } else {
-        badge.classList.remove('scale-100');
-        badge.classList.add('scale-0');
-    }
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-    const container = document.getElementById('cart-items');
-    const form = document.getElementById('order-form');
-    const cartFooter = document.getElementById('cart-footer');
+  const badge = document.getElementById("cart-badge");
+  const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
 
-    if (cart.length === 0) {
-        container.innerHTML = `
+  if (totalQty > 0) {
+    badge.innerText = totalQty;
+    badge.classList.remove("scale-0");
+    badge.classList.add("scale-100");
+  } else {
+    badge.classList.remove("scale-100");
+    badge.classList.add("scale-0");
+  }
+
+  const container = document.getElementById("cart-items");
+  const form = document.getElementById("order-form");
+  const cartFooter = document.getElementById("cart-footer");
+
+  if (cart.length === 0) {
+    container.innerHTML = `
             <div class="text-center text-on-surface-variant py-16 flex flex-col items-center gap-3">
                 <span class="material-symbols-outlined text-5xl opacity-40">shopping_basket</span>
                 <p class="italic text-sm">السلة فارغة حالياً.. اطلب زنجر ودلع نفسك! 😋</p>
             </div>
         `;
-        form.classList.add('hidden');
-        cartFooter.classList.add('hidden');
-        return;
-    }
+    form.classList.add("hidden");
+    cartFooter.classList.add("hidden");
+    return;
+  }
 
-    form.classList.remove('hidden');
-    cartFooter.classList.remove('hidden');
+  form.classList.remove("hidden");
+  cartFooter.classList.remove("hidden");
 
-    container.innerHTML = cart.map((item, index) => `
-        <div class="p-4 glass rounded-2xl animate-fade-in-up space-y-3">
-            <div class="text-right">
-                <h5 class="text-sm font-bold text-white leading-relaxed mb-1">${item.name}</h5>
-                <span class="text-xs text-tertiary font-semibold">${item.price} ج.م</span>
-            </div>
-            <div class="flex items-center justify-between pt-2.5 border-t border-white/5">
-                <div class="flex items-center gap-3 bg-white/5 rounded-xl px-2.5 py-1 border border-white/5">
-                    <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary-container font-extrabold hover:bg-white/5 rounded transition-all">-</button>
-                    <span class="text-sm font-bold text-white w-4 text-center">${item.qty}</span>
-                    <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-400 font-extrabold hover:bg-white/5 rounded transition-all">+</button>
+  container.innerHTML = cart
+    .map((item, index) => {
+      const section = item.section || "crepes";
+      const list = imagesByCategory[section];
+      const imgFile =
+        list && list.length > 0
+          ? list[index % list.length]
+          : "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg";
+
+      return `
+            <div class="p-4 glass rounded-3xl animate-fade-in-up space-y-3 border border-white/5 shadow-lg">
+                <!-- Top Part: Thumbnail, Name & Price -->
+                <div class="flex items-start gap-3">
+                    <div class="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 border border-white/10 bg-black/40">
+                        <img src="${imgFile}" alt="" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1 text-right min-w-0">
+                        <h5 class="text-xs font-bold text-white leading-relaxed mb-1 break-words">${item.name}</h5>
+                        <span class="text-xs text-tertiary font-extrabold">${item.price} ج.م</span>
+                    </div>
                 </div>
-                <button onclick="removeFromCart(${index})" class="text-gray-500 hover:text-red-500 hover:bg-red-500/10 w-8 h-8 rounded-full flex items-center justify-center transition-all">
-                    <span class="material-symbols-outlined text-xl">delete</span>
-                </button>
+                <!-- Bottom Part: Quantity Controls & Delete -->
+                <div class="flex items-center justify-between pt-2.5 border-t border-white/5">
+                    <div class="flex items-center gap-3 bg-white/5 rounded-xl px-2.5 py-1 border border-white/5">
+                        <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary-container font-extrabold hover:bg-white/5 rounded transition-all">-</button>
+                        <span class="text-sm font-bold text-white w-4 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-400 font-extrabold hover:bg-white/5 rounded transition-all">+</button>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-gray-500 hover:text-red-500 hover:bg-red-500/10 w-8 h-8 rounded-full flex items-center justify-center transition-all">
+                        <span class="material-symbols-outlined text-xl">delete</span>
+                    </button>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    })
+    .join("");
 
-    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-    document.getElementById('subtotal').innerText = subtotal + ' ج.م';
-    
-    const deliveryFee = orderType === 'delivery' ? 15 : 0;
-    document.getElementById('delivery-fee').innerText = deliveryFee + ' ج.م';
-    document.getElementById('total-price').innerText = (subtotal + deliveryFee) + ' ج.م';
+  const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  document.getElementById("subtotal").innerText = subtotal + " ج.م";
+
+  const deliveryFee = orderType === "delivery" ? 15 : 0;
+  document.getElementById("delivery-fee").innerText = deliveryFee + " ج.م";
+  document.getElementById("total-price").innerText =
+    subtotal + deliveryFee + " ج.م";
 }
 
 function changeQty(index, delta) {
-    if (index < 0 || index >= cart.length) return;
-    cart[index].qty += delta;
-    if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-    }
-    updateCartUI();
+  if (index < 0 || index >= cart.length) return;
+  cart[index].qty += delta;
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+  updateCartUI();
 }
 
 function removeFromCart(index) {
-    if (index < 0 || index >= cart.length) return;
-    cart.splice(index, 1);
-    updateCartUI();
+  if (index < 0 || index >= cart.length) return;
+  cart.splice(index, 1);
+  updateCartUI();
 }
 
 // 5. Checkout function
 function checkout() {
-    if (cart.length === 0) {
-        alert("السلة فارغة! 🛒");
-        return;
-    }
+  if (cart.length === 0) {
+    alert("السلة فارغة! 🛒");
+    return;
+  }
 
-    const nameInput = document.getElementById('cust-name');
-    const phoneInput = document.getElementById('cust-phone');
-    const addressInput = document.getElementById('cust-address');
-    const noteInput = document.getElementById('order-note');
+  const nameInput = document.getElementById("cust-name");
+  const phoneInput = document.getElementById("cust-phone");
+  const addressInput = document.getElementById("cust-address");
+  const noteInput = document.getElementById("order-note");
 
-    const name = nameInput ? nameInput.value.trim() : '';
-    const phone = phoneInput ? phoneInput.value.trim() : '';
-    const address = addressInput ? addressInput.value.trim() : '';
-    const note = noteInput ? noteInput.value.trim() : '';
+  const name = nameInput ? nameInput.value.trim() : "";
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const address = addressInput ? addressInput.value.trim() : "";
+  const note = noteInput ? noteInput.value.trim() : "";
 
-    if (!name) { alert("من فضلك اكتب اسمك بالكامل لخدمتك بشكل أفضل 👤"); return; }
-    if (!phone) { alert("من فضلك اكتب رقم الموبايل للتواصل 📞"); return; }
-    // Egyptian phone regex: starting with 010, 011, 012, or 015 followed by 8 digits
-    const egPhoneRegex = /^01[0125]\d{8}$/;
-    if (!egPhoneRegex.test(phone)) {
-        alert("من فضلك اكتب رقم موبايل مصري صحيح مكون من 11 رقماً ويبدأ بـ (010, 011, 012, 015) 🇪🇬");
-        return;
-    }
-    if (orderType === 'delivery' && !address) { alert("من فضلك اكتب العنوان بالتفصيل لتوصيل طلبك سريعاً 🛵"); return; }
+  if (!name) {
+    alert("من فضلك اكتب اسمك بالكامل لخدمتك بشكل أفضل 👤");
+    return;
+  }
+  if (!phone) {
+    alert("من فضلك اكتب رقم الموبايل للتواصل 📞");
+    return;
+  }
+  // Egyptian phone regex: starting with 010, 011, 012, or 015 followed by 8 digits
+  const egPhoneRegex = /^01[0125]\d{8}$/;
+  if (!egPhoneRegex.test(phone)) {
+    alert(
+      "من فضلك اكتب رقم موبايل مصري صحيح مكون من 11 رقماً ويبدأ بـ (010, 011, 012, 015) 🇪🇬",
+    );
+    return;
+  }
+  if (orderType === "delivery" && !address) {
+    alert("من فضلك اكتب العنوان بالتفصيل لتوصيل طلبك سريعاً 🛵");
+    return;
+  }
 
-    // Prepare message
-    let msg = `*طلب جديد من موقع مطعم زنجر* 🍔🛒%0a`;
-    msg += `---------------------------%0a`;
-    msg += `👤 *الاسم:* ${name}%0a`;
-    msg += `📱 *رقم الهاتف:* ${phone}%0a`;
-    msg += `🛵 *نوع الطلب:* ${orderType === 'delivery' ? 'توصيل للمنزل' : 'استلام من الفرع'}%0a`;
-    
-    if (orderType === 'delivery') {
-        msg += `📍 *العنوان:* ${address}%0a`;
-    }
-    if (note) {
-        msg += `📝 *ملاحظات:* ${note}%0a`;
-    }
+  // Prepare message
+  let msg = `*طلب جديد من موقع مطعم زنجر* 🍔🛒%0a`;
+  msg += `---------------------------%0a`;
+  msg += `👤 *الاسم:* ${name}%0a`;
+  msg += `📱 *رقم الهاتف:* ${phone}%0a`;
+  msg += `🛵 *نوع الطلب:* ${orderType === "delivery" ? "توصيل للمنزل" : "استلام من الفرع"}%0a`;
 
-    msg += `---------------------------%0a`;
-    msg += `*🧾 الطلبات:*%0a`;
+  if (orderType === "delivery") {
+    msg += `📍 *العنوان:* ${address}%0a`;
+  }
+  if (note) {
+    msg += `📝 *ملاحظات:* ${note}%0a`;
+  }
 
-    let subtotal = 0;
-    cart.forEach(item => {
-        const itemTotal = item.price * item.qty;
-        subtotal += itemTotal;
-        msg += `▪️ ${item.name} (x${item.qty}) - ${itemTotal} ج.م%0a`;
-    });
+  msg += `---------------------------%0a`;
+  msg += `*🧾 الطلبات:*%0a`;
 
-    const deliveryFee = orderType === 'delivery' ? 15 : 0;
-    const finalTotal = subtotal + deliveryFee;
+  let subtotal = 0;
+  cart.forEach((item) => {
+    const itemTotal = item.price * item.qty;
+    subtotal += itemTotal;
+    msg += `▪️ ${item.name} (x${item.qty}) - ${itemTotal} ج.م%0a`;
+  });
 
-    msg += `---------------------------%0a`;
-    msg += `💰 *المجموع الفرعي:* ${subtotal} ج.م%0a`;
-    if (orderType === 'delivery') {
-        msg += `🛵 *خدمة التوصيل:* ${deliveryFee} ج.م%0a`;
-    }
-    msg += `💵 *الإجمالي النهائي:* ${finalTotal} ج.م%0a`;
-    msg += `---------------------------%0a`;
+  const deliveryFee = orderType === "delivery" ? 15 : 0;
+  const finalTotal = subtotal + deliveryFee;
 
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+  msg += `---------------------------%0a`;
+  msg += `💰 *المجموع الفرعي:* ${subtotal} ج.م%0a`;
+  if (orderType === "delivery") {
+    msg += `🛵 *خدمة التوصيل:* ${deliveryFee} ج.م%0a`;
+  }
+  msg += `💵 *الإجمالي النهائي:* ${finalTotal} ج.م%0a`;
+  msg += `---------------------------%0a`;
+
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
 }
 
 // 6. Branch Info Modal
 function showBranches() {
-    const overlay = document.getElementById('branch-modal-overlay');
-    const modal = document.getElementById('branch-modal');
-    if (!overlay || !modal) return;
+  const overlay = document.getElementById("branch-modal-overlay");
+  const modal = document.getElementById("branch-modal");
+  if (!overlay || !modal) return;
 
-    overlay.classList.remove('hidden');
-    modal.classList.remove('hidden');
-    
-    setTimeout(() => {
-        overlay.classList.add('opacity-100');
-        modal.classList.remove('scale-95', 'opacity-0');
-    }, 10);
-    document.body.classList.add('overflow-hidden');
+  overlay.classList.remove("hidden");
+  modal.classList.remove("hidden");
+
+  setTimeout(() => {
+    overlay.classList.add("opacity-100");
+    modal.classList.remove("scale-95", "opacity-0");
+  }, 10);
+  document.body.classList.add("overflow-hidden");
 }
 
 function closeBranches() {
-    const overlay = document.getElementById('branch-modal-overlay');
-    const modal = document.getElementById('branch-modal');
-    if (!overlay || !modal) return;
+  const overlay = document.getElementById("branch-modal-overlay");
+  const modal = document.getElementById("branch-modal");
+  if (!overlay || !modal) return;
 
-    overlay.classList.remove('opacity-100');
-    modal.classList.add('scale-95', 'opacity-0');
-    
-    setTimeout(() => {
-        overlay.classList.add('hidden');
-        modal.classList.add('hidden');
-    }, 300);
-    document.body.classList.remove('overflow-hidden');
+  overlay.classList.remove("opacity-100");
+  modal.classList.add("scale-95", "opacity-0");
+
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+    modal.classList.add("hidden");
+  }, 300);
+  document.body.classList.remove("overflow-hidden");
 }
 
 // 7. Dynamic Scroll Highlighting and scroll-to-hide header
 let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
+window.addEventListener(
+  "scroll",
+  () => {
     // 7a. Highlighting logic
-    let currentActive = '';
-    mainSections.forEach(section => {
-        const el = document.getElementById(section.id);
-        if (el) {
-            const rect = el.getBoundingClientRect();
-            // Highlight when section is visible near the top
-            if (rect.top <= 180) {
-                currentActive = section.id;
-            }
+    let currentActive = "";
+    mainSections.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        // Highlight when section is visible near the top
+        if (rect.top <= 180) {
+          currentActive = section.id;
         }
+      }
     });
 
     if (currentActive) {
-        mainSections.forEach(section => {
-            const btn = document.getElementById(`nav-btn-${section.id}`);
-            if (btn) {
-                if (section.id === currentActive) {
-                    btn.className = "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow transition-all";
-                } else {
-                    btn.className = "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-all";
-                }
-            }
-        });
+      mainSections.forEach((section) => {
+        const btn = document.getElementById(`nav-btn-${section.id}`);
+        if (btn) {
+          if (section.id === currentActive) {
+            btn.className =
+              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow transition-all";
+          } else {
+            btn.className =
+              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-all";
+          }
+        }
+      });
     }
 
     // 7b. Scroll-to-hide header & show-on-up-scroll logic
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop < 0) return; // avoid iOS bounce behavior
 
-    const header = document.querySelector('header');
-    const categoriesNav = document.getElementById('categories-nav')?.parentElement; // nav container
+    const header = document.querySelector("header");
+    const categoriesNav =
+      document.getElementById("categories-nav")?.parentElement; // nav container
 
     if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling down: hide header, set nav sticky top-0
-        if (header) header.style.transform = 'translateY(-100%)';
-        if (categoriesNav) categoriesNav.style.top = '0px';
+      // Scrolling down: hide header, set nav sticky top-0
+      if (header) header.style.transform = "translateY(-100%)";
+      if (categoriesNav) categoriesNav.style.top = "0px";
     } else {
-        // Scrolling up: show header, set nav sticky top-16 (64px)
-        if (header) header.style.transform = 'translateY(0)';
-        if (categoriesNav) categoriesNav.style.top = '64px';
+      // Scrolling up: show header, set nav sticky top-16 (64px)
+      if (header) header.style.transform = "translateY(0)";
+      if (categoriesNav) categoriesNav.style.top = "64px";
     }
     lastScrollTop = scrollTop;
-}, { passive: true });
+  },
+  { passive: true },
+);
 
 // === PWA Install Logic ===
 let deferredPrompt;
-const installBanner = document.getElementById('pwa-install-banner');
+const installBanner = document.getElementById("pwa-install-banner");
 
 // Check if running on iOS
 function isiOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
 // Check if app is already running in standalone mode (installed)
 function isStandalone() {
-    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone
+  );
 }
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
-    // Show the custom install banner (if not dismissed before)
-    if (installBanner && !localStorage.getItem('pwa-dismissed')) {
-        setTimeout(() => {
-            installBanner.classList.remove('-translate-y-40', 'opacity-0');
-        }, 2000); // show after 2 seconds
-    }
+window.addEventListener("beforeinstallprompt", (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show the custom install banner (if not dismissed before)
+  if (installBanner && !localStorage.getItem("pwa-dismissed")) {
+    setTimeout(() => {
+      installBanner.classList.remove("-translate-y-40", "opacity-0");
+    }, 2000); // show after 2 seconds
+  }
 });
 
 function triggerPwaInstall() {
-    if (deferredPrompt) {
-        // Show the native install prompt
-        deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredPrompt = null;
-            dismissPwaInstall();
-        });
-    }
+  if (deferredPrompt) {
+    // Show the native install prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
+      deferredPrompt = null;
+      dismissPwaInstall();
+    });
+  }
 }
 
 function dismissPwaInstall() {
-    if (installBanner) {
-        installBanner.classList.add('-translate-y-40', 'opacity-0');
-        localStorage.setItem('pwa-dismissed', 'true');
-    }
+  if (installBanner) {
+    installBanner.classList.add("-translate-y-40", "opacity-0");
+    localStorage.setItem("pwa-dismissed", "true");
+  }
 }
 
 // Initialization
-document.addEventListener('DOMContentLoaded', () => {
-    renderCategoriesNav();
-    renderMenu();
-    updateCartUI();
+document.addEventListener("DOMContentLoaded", () => {
+  renderCategoriesNav();
+  renderMenu();
+  updateCartUI();
 
-    // Register Service Worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registered successfully!', reg.scope))
-            .catch(err => console.log('Service Worker registration failed:', err));
+  // Register Service Worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("sw.js")
+      .then((reg) =>
+        console.log("Service Worker registered successfully!", reg.scope),
+      )
+      .catch((err) => console.log("Service Worker registration failed:", err));
+  }
+
+  // Show iOS Safari installation banner if on iOS, not installed, and not dismissed
+  if (
+    isiOS() &&
+    !isStandalone() &&
+    installBanner &&
+    !localStorage.getItem("pwa-dismissed")
+  ) {
+    const bannerTitle = installBanner.querySelector("h4");
+    const bannerDesc = installBanner.querySelector("p");
+    const installBtn = installBanner.querySelector("button");
+
+    if (bannerTitle && bannerDesc && installBtn) {
+      bannerTitle.innerText = "ثبت التطبيق على الآيفون! 🍏";
+      bannerDesc.innerHTML =
+        "اضغط على زر المشاركة <span class='material-symbols-outlined text-xs align-middle'>ios_share</span> ثم اختر *إضافة للشاشة الرئيسية*.";
+      installBtn.classList.add("hidden"); // hide native install button for iOS
     }
 
-    // Show iOS Safari installation banner if on iOS, not installed, and not dismissed
-    if (isiOS() && !isStandalone() && installBanner && !localStorage.getItem('pwa-dismissed')) {
-        const bannerTitle = installBanner.querySelector('h4');
-        const bannerDesc = installBanner.querySelector('p');
-        const installBtn = installBanner.querySelector('button');
-
-        if (bannerTitle && bannerDesc && installBtn) {
-            bannerTitle.innerText = "ثبت التطبيق على الآيفون! 🍏";
-            bannerDesc.innerHTML = "اضغط على زر المشاركة <span class='material-symbols-outlined text-xs align-middle'>ios_share</span> ثم اختر *إضافة للشاشة الرئيسية*.";
-            installBtn.classList.add('hidden'); // hide native install button for iOS
-        }
-
-        setTimeout(() => {
-            installBanner.classList.remove('-translate-y-40', 'opacity-0');
-        }, 3000);
-    }
+    setTimeout(() => {
+      installBanner.classList.remove("-translate-y-40", "opacity-0");
+    }, 3000);
+  }
 });
