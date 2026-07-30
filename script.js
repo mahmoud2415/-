@@ -54,51 +54,34 @@ const mainSections = [
   { id: "melted_cheese", name: "غرقانة جبنة", icon: "opacity" },
 ];
 
-// Grouping local images to distribute them dynamically and beautifully
+// Local menu images. If future files have descriptive names, the matcher below
+// prefers the closest name before falling back to a stable category rotation.
+const productImageBasePath = "assets/menu/";
+const productImagePrefix = "zinger-menu-";
+const fallbackProductImage =
+  "premium_fast_food_menu_hero_image_for_zinger_gourmet_restaurant_brand..png";
+
+function buildProductImage(number) {
+  return `${productImageBasePath}${productImagePrefix}${String(number).padStart(3, "0")}.webp`;
+}
+
+function buildProductImages(start, end) {
+  return Array.from({ length: end - start + 1 }, (_, index) =>
+    buildProductImage(start + index),
+  );
+}
+
 const imagesByCategory = {
-  crepes: [
-    "premium_fast_food_menu_hero_image_for_zinger_gourmet_restaurant_brand..png",
-    "WhatsApp Image 2026-07-22 at 2.03.02 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.03 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.03 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.03 AM (2).jpeg",
-  ],
-  pizza: [
-    "WhatsApp Image 2026-07-22 at 2.03.03 AM (3).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.03 AM (4).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.04 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.04 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.04 AM (2).jpeg",
-  ],
-  pasta: [
-    "WhatsApp Image 2026-07-22 at 2.03.04 AM (3).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.04 AM (4).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.05 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.05 AM (1).jpeg",
-  ],
-  burgers: [
-    "WhatsApp Image 2026-07-22 at 2.04.19 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.04.19 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.05 AM (2).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.03.05 AM (3).jpeg",
-  ],
-  rolls: [
-    "WhatsApp Image 2026-07-22 at 2.00.34 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.00.34 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.00.34 AM (2).jpeg",
-  ],
-  hawawshi: [
-    "WhatsApp Image 2026-07-22 at 2.01.51 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.01.59 AM.jpeg",
-  ],
-  melted_cheese: [
-    "WhatsApp Image 2026-07-22 at 2.04.20 AM.jpeg",
-    "WhatsApp Image 2026-07-22 at 2.04.20 AM (1).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.04.20 AM (2).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.04.20 AM (3).jpeg",
-    "WhatsApp Image 2026-07-22 at 2.04.20 AM (4).jpeg",
-  ],
+  burgers: buildProductImages(1, 12),
+  crepes: buildProductImages(13, 42),
+  pizza: buildProductImages(43, 60),
+  pasta: buildProductImages(61, 72),
+  rolls: buildProductImages(73, 80),
+  hawawshi: buildProductImages(81, 88),
+  melted_cheese: buildProductImages(89, 96),
 };
+
+const allProductImages = Object.values(imagesByCategory).flat();
 
 // Transcribed Menu Data
 const menuData = [
@@ -1365,13 +1348,41 @@ function filterMenu(query) {
   renderMenu();
 }
 
+function normalizeForImageMatching(str) {
+  return normalizeArabic(str)
+    .replace(/\.[a-z0-9]+$/i, "")
+    .replace(/[_\-().]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getSectionItemIndex(item) {
+  return menuData
+    .filter((menuItem) => menuItem.section === item.section)
+    .findIndex((menuItem) => menuItem.id === item.id);
+}
+
 // Fetch image dynamically
 function getProductImage(item) {
+  const searchableName = normalizeForImageMatching(
+    `${item.section} ${item.name} ${item.desc || ""}`,
+  );
+  const matchingImage = allProductImages.find((imagePath) => {
+    const fileName = decodeURIComponent(imagePath.split("/").pop() || "");
+    const normalizedFileName = normalizeForImageMatching(fileName);
+    return (
+      normalizedFileName.length > 4 &&
+      searchableName.includes(normalizedFileName)
+    );
+  });
+
+  if (matchingImage) return matchingImage;
+
   const list = imagesByCategory[item.section];
-  if (!list || list.length === 0)
-    return "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg";
-  const index = item.id % list.length;
-  return list[index];
+  if (!list || list.length === 0) return fallbackProductImage;
+
+  const index = getSectionItemIndex(item);
+  return list[Math.max(index, 0) % list.length];
 }
 
 // 1. Render Categories Navigation Bar
@@ -1438,7 +1449,7 @@ function renderMenu() {
                              src="${imgFile}" 
                              alt="${item.name}"
                              loading="lazy"
-                             onerror="this.src='WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg'">
+                             onerror="this.onerror=null; this.src='${fallbackProductImage}'">
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between gap-3">
                         <div>
@@ -1790,7 +1801,7 @@ function updateCartUI() {
       const imgFile =
         list && list.length > 0
           ? list[index % list.length]
-          : "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg";
+          : fallbackProductImage;
 
       return `
             <div class="p-4 bg-white rounded-2xl animate-fade-in-up space-y-3 border border-[#eae7e7] shadow-sm">
