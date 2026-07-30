@@ -2,7 +2,46 @@
 // --- Zinger Gourmet Restaurant Code ---
 // ==========================================
 
-const WA_NUMBER = "201020805451";
+const branches = [
+  {
+    id: "ismailia",
+    name: "فرع الإسماعيلية - شبين",
+    phone: "01020805451",
+    whatsapp: "201020805451",
+    address: "الإسماعيلية - حي شبين الكوم - بجوار ميدان شبين",
+    deliveryFee: 15,
+    mapLink: "https://maps.google.com/?q=شبين+الكوم+الاسماعيلية"
+  },
+  {
+    id: "faqous-manshiya",
+    name: "فرع فاقوس - المنشية",
+    phone: "01020805451",
+    whatsapp: "201020805451",
+    address: "فاقوس - حي المنشية - أمام المدرسة الثانوية العسكرية",
+    deliveryFee: 15,
+    mapLink: "https://maps.google.com/?q=المنشية+فاقوس"
+  },
+  {
+    id: "faqous-kafr",
+    name: "فرع فاقوس - كفر العدوى",
+    phone: "01020805451",
+    whatsapp: "201020805451",
+    address: "فاقوس - كفر العدوى - بجوار كوبري العدوى الجديد",
+    deliveryFee: 15,
+    mapLink: "https://maps.google.com/?q=كفر+العدوى+فاقوس"
+  },
+  {
+    id: "abukibir",
+    name: "فرع أبو كبير",
+    phone: "01020805451",
+    whatsapp: "201020805451",
+    address: "أبو كبير - شارع مصطفى كامل - خلف المحكمة",
+    deliveryFee: 15,
+    mapLink: "https://maps.google.com/?q=أبو+كبير+الشرقية"
+  }
+];
+
+let selectedBranch = null;
 
 // Main sections mapping for top scroll nav
 const mainSections = [
@@ -18,7 +57,7 @@ const mainSections = [
 // Grouping local images to distribute them dynamically and beautifully
 const imagesByCategory = {
   crepes: [
-    "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg",
+    "premium_fast_food_menu_hero_image_for_zinger_gourmet_restaurant_brand..png",
     "WhatsApp Image 2026-07-22 at 2.03.02 AM (1).jpeg",
     "WhatsApp Image 2026-07-22 at 2.03.03 AM.jpeg",
     "WhatsApp Image 2026-07-22 at 2.03.03 AM (1).jpeg",
@@ -1344,7 +1383,7 @@ function renderCategoriesNav() {
     .map(
       (section, idx) => `
         <button id="nav-btn-${section.id}" 
-                class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full ${idx === 0 ? "bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow" : "glass text-on-surface-variant hover:text-primary"} transition-all" 
+                class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full ${idx === 0 ? "bg-primary text-white font-bold shadow-md" : "bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white"} transition-all" 
                 onclick="scrollToCategory('${section.id}')">
             <span class="material-symbols-outlined text-xl">${section.icon}</span>
             <span>${section.name}</span>
@@ -1392,24 +1431,26 @@ function renderMenu() {
           const imgFile = getProductImage(item);
 
           return `
-                <div class="glass rounded-3xl overflow-hidden group flex flex-col justify-between cursor-pointer hover:border-primary-container/40 border border-white/5 hover:shadow-[0_8px_30px_rgba(255,86,37,0.15)] transition-all duration-300"
+                <div class="bg-white rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer border border-[#eae7e7] hover:border-primary/50 hover:shadow-lg transition-all duration-300"
                      onclick='openCustomizationModal(${JSON.stringify(item)})'>
-                    <div class="relative h-32 md:h-40 overflow-hidden">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    <div class="relative aspect-[4/3] overflow-hidden bg-gray-50">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                              src="${imgFile}" 
                              alt="${item.name}"
                              loading="lazy"
                              onerror="this.src='WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg'">
-                        <div class="absolute bottom-2 right-2 px-2.5 py-1 bg-black/75 backdrop-blur-md rounded-lg text-tertiary text-xs font-extrabold border border-white/10 shadow-md">${priceDisplay}</div>
                     </div>
-                    <div class="p-3.5 flex-1 flex flex-col justify-between gap-3">
+                    <div class="p-4 flex-1 flex flex-col justify-between gap-3">
                         <div>
-                            <h4 class="font-bold text-[14px] text-white leading-snug group-hover:text-primary-container transition-colors duration-300">${item.name}</h4>
-                            <p class="text-[10px] text-on-surface-variant/80 line-clamp-2 leading-relaxed mt-1 min-h-[30px]">${item.desc || "وجبة زنجر المميزة بنكهتها الخاصة وقرمشتها الفريدة."}</p>
+                            <div class="flex justify-between items-start gap-2">
+                                <h4 class="font-bold text-sm text-[#1c1b1b] leading-snug group-hover:text-primary transition-colors duration-300">${item.name}</h4>
+                                <span class="font-bold text-primary text-sm whitespace-nowrap">${priceDisplay}</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant/80 line-clamp-2 leading-relaxed mt-1.5 min-h-[32px]">${item.desc || "وجبة زنجر المميزة بنكهتها الخاصة وقرمشتها الفريدة."}</p>
                         </div>
-                        <div class="w-full py-2 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-300 text-xs font-bold gap-1 transition-all duration-300 group-hover:bg-primary-container group-hover:text-on-primary group-hover:border-primary-container group-hover:shadow-[0_4px_15px_rgba(255,86,37,0.2)]">
-                            <span>اطلب هيعجبك </span>
-                            <span class="material-symbols-outlined text-sm">arrow_left</span>
+                        <div class="w-full py-2 bg-[#f0eded] rounded-xl flex items-center justify-center text-[#1c1b1b] text-xs font-bold gap-1 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+                            <span>أضف للسلة</span>
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
                         </div>
                     </div>
                 </div>
@@ -1418,9 +1459,9 @@ function renderMenu() {
         .join("");
 
       return `
-            <section class="px-margin-mobile mt-8" id="${section.id}">
-                <div class="flex items-center justify-between mb-5">
-                    <h3 class="text-2xl font-bold border-r-4 border-primary-container pr-2 text-white">${section.name}</h3>
+            <section class="px-margin-mobile mt-10" id="${section.id}">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-extrabold border-r-4 border-primary pr-3 text-[#1c1b1b]">${section.name}</h3>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     ${itemsHTML}
@@ -1433,8 +1474,8 @@ function renderMenu() {
   if (totalVisibleItems === 0 && normalizedQuery) {
     container.innerHTML = `
             <div class="text-center text-on-surface-variant py-20 flex flex-col items-center gap-3">
-                <span class="material-symbols-outlined text-6xl opacity-30 text-primary-container">search_off</span>
-                <p class="text-lg font-bold text-white">ملقناش أكلة بالاسم ده! 🔍</p>
+                <span class="material-symbols-outlined text-6xl opacity-30 text-primary">search_off</span>
+                <p class="text-lg font-bold text-[#1c1b1b]">ملقناش أكلة بالاسم ده! 🔍</p>
                 <p class="text-xs">جرب تبحث بكلمة تانية زي (كريب، بيتزا، برجر)</p>
             </div>
         `;
@@ -1752,25 +1793,25 @@ function updateCartUI() {
           : "WhatsApp Image 2026-07-22 at 2.03.02 AM.jpeg";
 
       return `
-            <div class="p-4 glass rounded-3xl animate-fade-in-up space-y-3 border border-white/5 shadow-lg">
+            <div class="p-4 bg-white rounded-2xl animate-fade-in-up space-y-3 border border-[#eae7e7] shadow-sm">
                 <!-- Top Part: Thumbnail, Name & Price -->
                 <div class="flex items-start gap-3">
-                    <div class="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 border border-white/10 bg-black/40">
+                    <div class="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 border border-gray-200 bg-gray-50">
                         <img src="${imgFile}" alt="" class="w-full h-full object-cover"/>
                     </div>
                     <div class="flex-1 text-right min-w-0">
-                        <h5 class="text-xs font-bold text-white leading-relaxed mb-1 break-words">${item.name}</h5>
-                        <span class="text-xs text-tertiary font-extrabold">${item.price} ج.م</span>
+                        <h5 class="text-xs font-bold text-[#1c1b1b] leading-relaxed mb-1 break-words">${item.name}</h5>
+                        <span class="text-xs text-primary font-extrabold">${item.price} ج.م</span>
                     </div>
                 </div>
                 <!-- Bottom Part: Quantity Controls & Delete -->
-                <div class="flex items-center justify-between pt-2.5 border-t border-white/5">
-                    <div class="flex items-center gap-3 bg-white/5 rounded-xl px-2.5 py-1 border border-white/5">
-                        <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary-container font-extrabold hover:bg-white/5 rounded transition-all">-</button>
-                        <span class="text-sm font-bold text-white w-4 text-center">${item.qty}</span>
-                        <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-400 font-extrabold hover:bg-white/5 rounded transition-all">+</button>
+                <div class="flex items-center justify-between pt-2.5 border-t border-[#f0eded]">
+                    <div class="flex items-center gap-3 bg-[#f0eded] rounded-xl px-2.5 py-1">
+                        <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-primary font-extrabold hover:bg-gray-200 rounded transition-all">-</button>
+                        <span class="text-sm font-bold text-[#1c1b1b] w-4 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-green-600 font-extrabold hover:bg-gray-200 rounded transition-all">+</button>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-gray-500 hover:text-red-500 hover:bg-red-500/10 w-8 h-8 rounded-full flex items-center justify-center transition-all">
+                    <button onclick="removeFromCart(${index})" class="text-gray-400 hover:text-red-500 hover:bg-red-50/50 w-8 h-8 rounded-full flex items-center justify-center transition-all">
                         <span class="material-symbols-outlined text-xl">delete</span>
                     </button>
                 </div>
@@ -1782,7 +1823,8 @@ function updateCartUI() {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
   document.getElementById("subtotal").innerText = subtotal + " ج.م";
 
-  const deliveryFee = orderType === "delivery" ? 15 : 0;
+  const branchDeliveryFee = selectedBranch ? selectedBranch.deliveryFee : 15;
+  const deliveryFee = orderType === "delivery" ? branchDeliveryFee : 0;
   document.getElementById("delivery-fee").innerText = deliveryFee + " ج.م";
   document.getElementById("total-price").innerText =
     subtotal + deliveryFee + " ج.م";
@@ -1841,8 +1883,11 @@ function checkout() {
     return;
   }
 
+  const activeBranchName = selectedBranch ? selectedBranch.name : "غير محدد";
+
   // Prepare message
   let msg = `*طلب جديد من موقع مطعم زنجر* 🍔🛒%0a`;
+  msg += `*الفرع المختـار:* ${activeBranchName}%0a`;
   msg += `---------------------------%0a`;
   msg += `👤 *الاسم:* ${name}%0a`;
   msg += `📱 *رقم الهاتف:* ${phone}%0a`;
@@ -1865,7 +1910,8 @@ function checkout() {
     msg += `▪️ ${item.name} (x${item.qty}) - ${itemTotal} ج.م%0a`;
   });
 
-  const deliveryFee = orderType === "delivery" ? 15 : 0;
+  const branchDeliveryFee = selectedBranch ? selectedBranch.deliveryFee : 15;
+  const deliveryFee = orderType === "delivery" ? branchDeliveryFee : 0;
   const finalTotal = subtotal + deliveryFee;
 
   msg += `---------------------------%0a`;
@@ -1876,7 +1922,8 @@ function checkout() {
   msg += `💵 *الإجمالي النهائي:* ${finalTotal} ج.م%0a`;
   msg += `---------------------------%0a`;
 
-  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+  const branchWa = selectedBranch ? selectedBranch.whatsapp : "201020805451";
+  window.open(`https://wa.me/${branchWa}?text=${msg}`, "_blank");
 }
 
 // 6. Branch Info Modal
@@ -1884,6 +1931,31 @@ function showBranches() {
   const overlay = document.getElementById("branch-modal-overlay");
   const modal = document.getElementById("branch-modal");
   if (!overlay || !modal) return;
+
+  // Populate branch modal text
+  const modalTitle = document.getElementById("branch-modal-title-text");
+  const modalContent = document.getElementById("branch-modal-body-content");
+  if (selectedBranch) {
+    if (modalTitle) modalTitle.innerText = selectedBranch.name;
+    if (modalContent) {
+      modalContent.innerHTML = `
+        <div class="p-4 bg-gray-50 border border-gray-100 rounded-2xl text-right">
+          <p class="font-bold text-[#1c1b1b] mb-1">
+            <span class="material-symbols-outlined text-primary text-base align-middle ml-1">location_on</span>
+            العنوان بالتفصيل:
+          </p>
+          <p class="text-[#5b4039] text-xs mb-3">${selectedBranch.address}</p>
+          <p class="text-primary text-xs font-semibold">📞 أرقام الدليفري والتواصل:</p>
+          <ul class="text-[#5b4039] text-xs space-y-1 mt-1 pr-3 list-disc">
+            <li>${selectedBranch.phone}</li>
+          </ul>
+          <a href="${selectedBranch.mapLink}" target="_blank" class="mt-4 block text-center py-2 bg-primary text-white font-bold text-xs rounded-xl hover:bg-primary-container transition-all">
+            افتح في خرائط جوجل 🗺️
+          </a>
+        </div>
+      `;
+    }
+  }
 
   overlay.classList.remove("hidden");
   modal.classList.remove("hidden");
@@ -1934,10 +2006,10 @@ window.addEventListener(
         if (btn) {
           if (section.id === currentActive) {
             btn.className =
-              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-bold shadow-lg brand-glow transition-all";
+              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md transition-all";
           } else {
             btn.className =
-              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full glass text-on-surface-variant hover:text-primary transition-all";
+              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white transition-all";
           }
         }
       });
@@ -1983,23 +2055,18 @@ function isStandalone() {
 }
 
 window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
-  // Stash the event so it can be triggered later.
   deferredPrompt = e;
-  // Show the custom install banner (if not dismissed before)
   if (installBanner && !localStorage.getItem("pwa-dismissed")) {
     setTimeout(() => {
       installBanner.classList.remove("-translate-y-40", "opacity-0");
-    }, 2000); // show after 2 seconds
+    }, 2000);
   }
 });
 
 function triggerPwaInstall() {
   if (deferredPrompt) {
-    // Show the native install prompt
     deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the install prompt");
@@ -2019,8 +2086,175 @@ function dismissPwaInstall() {
   }
 }
 
+// Branch Selection Functions
+function selectBranch(branchId) {
+  const branch = branches.find(b => b.id === branchId);
+  if (!branch) return;
+
+  selectedBranch = branch;
+  localStorage.setItem("selectedBranchId", branchId);
+
+  updateBranchUI();
+
+  const landingPage = document.getElementById("branch-landing-page");
+  const mainLayout = document.getElementById("main-app-layout");
+
+  if (landingPage) {
+    landingPage.classList.add("opacity-0", "pointer-events-none");
+    setTimeout(() => {
+      landingPage.style.display = "none";
+    }, 500);
+  }
+  if (mainLayout) {
+    mainLayout.style.display = "block";
+    setTimeout(() => {
+      mainLayout.classList.remove("opacity-0");
+    }, 50);
+  }
+
+  document.body.classList.remove("overflow-hidden");
+}
+
+function showBranchAddress(branchId) {
+  const branch = branches.find(b => b.id === branchId);
+  if (!branch) return;
+
+  const modalTitle = document.getElementById("landing-branch-modal-title");
+  const modalText = document.getElementById("landing-branch-modal-text");
+  const modalPhoneList = document.getElementById("landing-branch-modal-phones");
+  const overlay = document.getElementById("landing-branch-modal-overlay");
+  const modal = document.getElementById("landing-branch-modal");
+
+  if (modalTitle) modalTitle.innerText = branch.name;
+  if (modalText) modalText.innerText = branch.address;
+  if (modalPhoneList) {
+    modalPhoneList.innerHTML = `
+      <li class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm text-primary">call</span>
+        <span>الخط الساخن والدليفري: <a href="tel:${branch.phone}" class="underline font-bold text-primary">${branch.phone}</a></span>
+      </li>
+      <li class="flex items-center gap-2 mt-2">
+        <span class="material-symbols-outlined text-sm text-[#25D366]">chat</span>
+        <span>الطلب عبر واتساب: <a href="https://wa.me/${branch.whatsapp}" target="_blank" class="underline font-bold text-[#25D366]">${branch.phone}</a></span>
+      </li>
+    `;
+  }
+
+  if (overlay && modal) {
+    overlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    setTimeout(() => {
+      overlay.classList.add("opacity-100");
+      modal.classList.remove("scale-95", "opacity-0");
+    }, 10);
+  }
+}
+
+function closeLandingBranchModal() {
+  const overlay = document.getElementById("landing-branch-modal-overlay");
+  const modal = document.getElementById("landing-branch-modal");
+  if (!overlay || !modal) return;
+
+  overlay.classList.remove("opacity-100");
+  modal.classList.add("scale-95", "opacity-0");
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+    modal.classList.add("hidden");
+  }, 300);
+}
+
+function changeBranch() {
+  localStorage.removeItem("selectedBranchId");
+  selectedBranch = null;
+
+  const landingPage = document.getElementById("branch-landing-page");
+  const mainLayout = document.getElementById("main-app-layout");
+
+  if (mainLayout) {
+    mainLayout.style.display = "none";
+    mainLayout.classList.add("opacity-0");
+  }
+
+  if (landingPage) {
+    landingPage.style.display = "block";
+    setTimeout(() => {
+      landingPage.classList.remove("opacity-0", "pointer-events-none");
+    }, 50);
+  }
+
+  document.body.classList.add("overflow-hidden");
+}
+
+function updateBranchUI() {
+  if (!selectedBranch) return;
+
+  const activeBranchNameEl = document.getElementById("active-branch-name");
+  if (activeBranchNameEl) {
+    activeBranchNameEl.innerText = selectedBranch.name;
+  }
+
+  const heroBranchNameEl = document.getElementById("hero-branch-name");
+  if (heroBranchNameEl) {
+    heroBranchNameEl.innerText = selectedBranch.name;
+  }
+
+  const callLinks = document.querySelectorAll(".branch-call-link");
+  callLinks.forEach(link => {
+    link.href = `tel:${selectedBranch.phone}`;
+  });
+
+  const branchAddressEl = document.getElementById("branch-address-text");
+  if (branchAddressEl) {
+    branchAddressEl.innerText = selectedBranch.address;
+  }
+
+  const footerBranchPhoneEl = document.getElementById("footer-branch-phone");
+  if (footerBranchPhoneEl) {
+    footerBranchPhoneEl.innerText = selectedBranch.phone;
+    footerBranchPhoneEl.parentElement.href = `tel:${selectedBranch.phone}`;
+  }
+  const footerBranchAddressEl = document.getElementById("footer-branch-address");
+  if (footerBranchAddressEl) {
+    footerBranchAddressEl.innerText = selectedBranch.address;
+  }
+
+  updateCartUI();
+}
+
+function initBranchSelector() {
+  const savedBranchId = localStorage.getItem("selectedBranchId");
+  if (savedBranchId) {
+    const branch = branches.find(b => b.id === savedBranchId);
+    if (branch) {
+      selectedBranch = branch;
+      updateBranchUI();
+      const landingPage = document.getElementById("branch-landing-page");
+      const mainLayout = document.getElementById("main-app-layout");
+      if (landingPage) landingPage.style.display = "none";
+      if (mainLayout) {
+        mainLayout.style.display = "block";
+        mainLayout.classList.remove("opacity-0");
+      }
+      return;
+    }
+  }
+
+  const landingPage = document.getElementById("branch-landing-page");
+  const mainLayout = document.getElementById("main-app-layout");
+  if (landingPage) {
+    landingPage.style.display = "block";
+    landingPage.classList.remove("opacity-0", "pointer-events-none");
+  }
+  if (mainLayout) {
+    mainLayout.style.display = "none";
+    mainLayout.classList.add("opacity-0");
+  }
+  document.body.classList.add("overflow-hidden");
+}
+
 // Initialization
 document.addEventListener("DOMContentLoaded", () => {
+  initBranchSelector();
   renderCategoriesNav();
   renderMenu();
   updateCartUI();
@@ -2050,7 +2284,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bannerTitle.innerText = "ثبت التطبيق على الآيفون! 🍏";
       bannerDesc.innerHTML =
         "اضغط على زر المشاركة <span class='material-symbols-outlined text-xs align-middle'>ios_share</span> ثم اختر *إضافة للشاشة الرئيسية*.";
-      installBtn.classList.add("hidden"); // hide native install button for iOS
+      installBtn.classList.add("hidden");
     }
 
     setTimeout(() => {

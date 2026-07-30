@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zinger Gourmet | Main Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Work+Sans:wght@400;500&amp;family=Barlow+Condensed:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#b12d00",
+            "inverse-on-surface": "#f3f0ef",
+            "on-tertiary-container": "#fcfcff",
+            "inverse-primary": "#ffb5a1",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#544600",
+            "surface": "#fcf9f8",
+            "primary": "#ad2b00",
+            "on-background": "#1c1b1b",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#f6f3f2",
+            "surface-variant": "#e5e2e1",
+            "on-primary-container": "#fffbff",
+            "outline": "#907067",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#001e2e",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-container": "#6e5c00",
+            "on-secondary-fixed": "#221b00",
+            "on-primary-fixed-variant": "#882000",
+            "on-tertiary-fixed-variant": "#004c6c",
+            "tertiary-fixed-dim": "#84cfff",
+            "secondary": "#705d00",
+            "on-primary-fixed": "#3b0900",
+            "secondary-container": "#fcd400",
+            "background": "#fcf9f8",
+            "primary-fixed-dim": "#ffb5a1",
+            "error": "#ba1a1a",
+            "on-surface": "#1c1b1b",
+            "primary-container": "#d73a05",
+            "surface-dim": "#dcd9d9",
+            "outline-variant": "#e4beb4",
+            "secondary-fixed": "#ffe16d",
+            "on-surface-variant": "#5b4039",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#e5e2e1",
+            "secondary-fixed-dim": "#e9c400",
+            "surface-container-high": "#eae7e7",
+            "tertiary-fixed": "#c7e7ff",
+            "on-error": "#ffffff",
+            "surface-bright": "#fcf9f8",
+            "tertiary": "#00628a",
+            "tertiary-container": "#007dae",
+            "inverse-surface": "#313030",
+            "primary-fixed": "#ffdbd1",
+            "surface-container": "#f0eded"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "base": "8px",
+            "section-gap": "80px",
+            "container-max": "1280px",
+            "gutter": "24px",
+            "margin-desktop": "40px"
+          },
+          "fontFamily": {
+            "label-caps": ["Barlow Condensed"],
+            "price-display": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "body-lg": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "headline-lg-mobile": ["Montserrat"],
+            "headline-xl": ["Montserrat"],
+            "headline-md": ["Montserrat"]
+          },
+          "fontSize": {
+            "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+            "price-display": ["20px", {"lineHeight": "1", "fontWeight": "900"}],
+            "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+            "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #ad2b00; border-radius: 2px; }
+    .category-chip { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .category-chip:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white">
+<!-- Shared Component: TopNavBar -->
+<nav class="bg-surface dark:bg-background flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-20 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-gutter">
+<h1 class="font-headline-md text-headline-md font-black text-primary dark:text-primary-fixed-dim tracking-tighter">ZINGER GOURMET</h1>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim border-b-4 border-primary dark:border-primary-fixed-dim pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#Burgers">Burgers</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#Crepes">Crepes</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#Pizza">Pizza</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#Pasta">Pasta</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#Hawawshi">Hawawshi</a>
+</div>
+</div>
+<div class="flex items-center gap-base">
+<div class="hidden sm:flex items-center bg-surface-container rounded-full px-4 py-2 gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-32 md:w-48 p-0" placeholder="Search menu..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg shadow-md active:scale-95 transition-all hover:bg-primary-container">Order Now</button>
+</div>
+</nav>
+<main class="w-full max-w-container-max mx-auto px-margin-desktop py-base">
+<!-- Hero Section -->
+<header class="py-section-gap flex flex-col items-center text-center">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-4">Fast-Fine Gourmet</span>
+<h2 class="font-headline-xl text-headline-xl text-on-background mb-6">Flavor That <span class="text-primary italic">Zings.</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-gutter">Hand-crafted burgers, artisan crepes, and authentic Egyptian classics. Our kitchen combines high-heat energy with gourmet precision.</p>
+<!-- Category Quick Nav -->
+<div class="flex flex-wrap justify-center gap-4 custom-scrollbar overflow-x-auto pb-4 w-full">
+<a class="category-chip bg-white shadow-sm hover:shadow-md px-6 py-3 rounded-full flex items-center gap-2 border border-outline-variant" href="#Burgers">
+<span class="material-symbols-outlined text-primary">lunch_dining</span>
+<span class="font-label-caps text-label-caps">BURGERS</span>
+</a>
+<a class="category-chip bg-white shadow-sm hover:shadow-md px-6 py-3 rounded-full flex items-center gap-2 border border-outline-variant" href="#Crepes">
+<span class="material-symbols-outlined text-primary">bakery_dining</span>
+<span class="font-label-caps text-label-caps">CREPES</span>
+</a>
+<a class="category-chip bg-white shadow-sm hover:shadow-md px-6 py-3 rounded-full flex items-center gap-2 border border-outline-variant" href="#Pizza">
+<span class="material-symbols-outlined text-primary">local_pizza</span>
+<span class="font-label-caps text-label-caps">PIZZA</span>
+</a>
+<a class="category-chip bg-white shadow-sm hover:shadow-md px-6 py-3 rounded-full flex items-center gap-2 border border-outline-variant" href="#Pasta">
+<span class="material-symbols-outlined text-primary">dinner_dining</span>
+<span class="font-label-caps text-label-caps">PASTA</span>
+</a>
+<a class="category-chip bg-white shadow-sm hover:shadow-md px-6 py-3 rounded-full flex items-center gap-2 border border-outline-variant" href="#Hawawshi">
+<span class="material-symbols-outlined text-primary">flatware</span>
+<span class="font-label-caps text-label-caps">HAWAWSHI</span>
+</a>
+</div>
+</header>
+<!-- Burgers Section -->
+<section class="py-section-gap border-t border-outline-variant" id="Burgers">
+<div class="flex justify-between items-end mb-gutter">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Ultimate Burgers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Hand-pressed beef, premium toppings, bold flavor.</p>
+</div>
+<a class="text-primary font-label-caps text-label-caps flex items-center gap-1 hover:underline" href="#">VIEW ALL <span class="material-symbols-outlined">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Item Card: Classic -->
+<div class="group bg-white rounded-xl shadow-[0_30px_30px_rgba(26,26,26,0.04)] overflow-hidden transition-all hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium gourmet beef burger with cheddar, lettuce, tomato, and pickles presented on a small wooden board against a solid vibrant orange background with Zinger brand text. High-contrast studio lighting highlights the textures of the sesame seed bun and juicy beef patty." src="https://lh3.googleusercontent.com/aida/AP1WRLtc_4lVhmQHLz3frTfjaBDvq39qSp2F0-GRbmqla1pmiYHpE2PCrplUs8fAkGT0_81jmWACMNm_-kBHK8yGt9b9NtoV5CTDPglhcGzMlchhgtFFfsu4RftHAomn5s9D_T0-yA2PLjddlGTVWZFGjRtxO6rNoBkCZnw73MAvU9x6fip5V7dypJ2NRrEK48QP9aTWgj0vGQgE459E5q7bHZKCjAg-mSoKsAbu2lcS13jy_a6Pam12eJGeAg"/>
+</div>
+<div class="p-gutter flex flex-col h-full">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-md text-headline-md">Classic Beef Burger</h4>
+<span class="font-price-display text-price-display text-primary">85 EGP</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">كلاسيك بيف برجر</p>
+<button class="mt-auto flex items-center justify-center gap-2 border-2 border-on-background px-6 py-2 font-label-caps text-label-caps hover:bg-on-background hover:text-white transition-colors">ADD TO CART</button>
+</div>
+</div>
+<!-- Item Card: Monster -->
+<div class="group bg-white rounded-xl shadow-[0_30px_30px_rgba(26,26,26,0.04)] overflow-hidden transition-all hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A massive triple monster burger featuring a beef patty, cordon bleu chicken, bacon, smoked turkey, ranch, and smoked cheddar sauce on a wooden board against a flat orange background. The lighting is cinematic and warm, emphasizing the scale and indulgence of the food." src="https://lh3.googleusercontent.com/aida/AP1WRLuMNFtxeQ9vn-hHQE7sZrV0txGSN4z8EnhF8i2_IOaRz4NVz1XwxxlsxvofEF6swcfoxBjgSwv-Aq-3SlWNOVNbXlGgn4pieZsTMgsLldT8FpGvMiPE_TaatQpdKRYc4l6ctUWDLcgSuUWQj_4zYrTO_NPb3QKlcZF5taOqZW92hGrQrOVhorSx34GBrGf4sCsAOHvm-dDIOH01ufeQDI1PovPsY1o8GJTDkbH33KE8kUKPVuOdxn1yIw"/>
+</div>
+<div class="p-gutter flex flex-col h-full">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-md text-headline-md">Cheese Free Burger</h4>
+<span class="font-price-display text-price-display text-primary">135 EGP</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">برجر تشيز فري</p>
+<button class="mt-auto flex items-center justify-center gap-2 border-2 border-on-background px-6 py-2 font-label-caps text-label-caps hover:bg-on-background hover:text-white transition-colors">ADD TO CART</button>
+</div>
+</div>
+<!-- Item Card: Premium -->
+<div class="group bg-white rounded-xl shadow-[0_30px_30px_rgba(26,26,26,0.04)] overflow-hidden transition-all hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium gourmet super night burger with beef bacon, caramelized onions, and dark dramatic lighting. Floating above a wooden board on an orange background, the burger looks sleek and high-end with sharp focus and professional food styling." src="https://lh3.googleusercontent.com/aida/AP1WRLvjWgUMxz78z6NU909Pr9hO4nfzlCVJNzfYS1o5SpKP4i-P-CLnhnB2zyjToT4HUK5-92SHdZtyXS-qBRYjE17L2KLdDEM9MAEKSxubgukeJ9bvSPC-bEqSAA_mvlipEBh9aDQscMnn3apj8_SMZPtChMFRqx8sBClD-O10axQ1nW3CgktDS-XUMM82Th8sHPNi9B7JrX10Fjsn121fVOw-ajMXvnf9qbSiENP3Gk9b23A3N8e7eGXY"/>
+</div>
+<div class="p-gutter flex flex-col h-full">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-md text-headline-md">Super Night Burger</h4>
+<span class="font-price-display text-price-display text-primary">115 EGP</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">سوبر نايت برجر</p>
+<button class="mt-auto flex items-center justify-center gap-2 border-2 border-on-background px-6 py-2 font-label-caps text-label-caps hover:bg-on-background hover:text-white transition-colors">ADD TO CART</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Crepes Section -->
+<section class="py-section-gap border-t border-outline-variant" id="Crepes">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-gutter">
+<div class="mb-4 md:mb-0">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Savory Crepes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Signature dough, filled to the brim with gourmet goodness.</p>
+</div>
+<a class="text-primary font-label-caps text-label-caps flex items-center gap-1 hover:underline" href="#">VIEW ALL <span class="material-symbols-outlined">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="group bg-white rounded-xl shadow-lg overflow-hidden">
+<img class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform" data-alt="Gourmet pastrami crepe with melted cheese, folded perfectly and floating above a wooden board on a vibrant orange backdrop. Studio commercial lighting, sharp textures of the pastrami and golden crepe dough." src="https://lh3.googleusercontent.com/aida/AP1WRLtdi3XXQJZEaUq_MmIA-C2b_eYBJrgzzjojn1QalQBdyz_KXyi8RDcAQBTifswhrppVN7ziwdjBM-6swll0juikwbx0wldU1lSBn0AZGVIEC51ORXOYmw8yNSuREFIko-mHQQ9QMhnYARXHxWCUDy1H-6svi9lufLbieMc2Ex0Z7HYfYmZtwTZ-sWtsfySywSttmPdPibYvmJ5I1F5btYYCqII6fLdxWtb_etUP9QmoGYbYoyvz44tj"/>
+<div class="p-6">
+<div class="flex justify-between mb-2"><h4 class="font-headline-md text-headline-md">Pastrami Crepe</h4><span class="font-price-display text-price-display text-primary">95 EGP</span></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">كريب بسطرمة</p>
+</div>
+</div>
+<div class="group bg-white rounded-xl shadow-lg overflow-hidden">
+<img class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform" data-alt="Seafood mix crepe with shrimp and calamari in creamy white sauce, presented floating over a board against a solid orange background. The image has a clean, energetic look with high-key lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLsHTo2eJ_a9BYeMDrpZJqSaIgtUEE7OGdEPlirVy_JIvPyyXMP96P8z9nhEsFuHy4yft9ZllN8vgQ2PiisSJZjHuTgU1-eGR1SduY3WR1GwgL-desXRhbRdM_bxtNLDI9V9z9f9PZa9ghDFCmYNuXqVrYLXvRPcfMiNpA2K0KHhaS5_M9fZ_HuonbVYiIj1pm-_mjkPzGB-icK_6CmRUkqilKEfswNg-0M_rsVh8kQJFx0WdXKJ5j45eg"/>
+<div class="p-6">
+<div class="flex justify-between mb-2"><h4 class="font-headline-md text-headline-md">Seafood Crepe</h4><span class="font-price-display text-price-display text-primary">125 EGP</span></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">كريب سي فود</p>
+</div>
+</div>
+<div class="group bg-white rounded-xl shadow-lg overflow-hidden">
+<img class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform" data-alt="Massive monster crepe loaded with crispy chicken layers and oozing cheese sauce, captured in a dynamic floating pose against a flat orange Zinger background. Commercial food photography with sharp focus on the textures." src="https://lh3.googleusercontent.com/aida/AP1WRLvj5OzEy3it7dlkI0nq-trMPWUUwwQrJb66A2bxJlX5VtIM5vogrBwSAkiUeYrN6JPg4P9KBjBNnwi9EQbiuMAFOhHBRA580v46Z52qJHVxnDqclYimrZVuRt_eCrbBVuTcv-b1NoSGEH6SEjD_VglhgrA9pHIOmZdFcwkhQaDRo5akh5qSyy9307J4Zr2hSpkvaB5ksVL1HbuaQ1rEg8JY9mat8OIaUTmPjssJ_PBiYUTSHXx2HrBF"/>
+<div class="p-6">
+<div class="flex justify-between mb-2"><h4 class="font-headline-md text-headline-md">Monster Crepe</h4><span class="font-price-display text-price-display text-primary">145 EGP</span></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">كريب منستر</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pizza Section -->
+<section class="py-section-gap border-t border-outline-variant" id="Pizza">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-gutter">Artisan Pizzas</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant hover:border-primary transition-colors">
+<img class="w-full aspect-square rounded-lg object-cover mb-4" data-alt="Classic Margherita pizza with fresh basil and mozzarella, floating above a wooden board on a solid orange background. Vibrant colors, clean aesthetic, and professional studio lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLta3Goanv3lrpKRfiPbD44jApaj3-MggV0CRl1awdXpIP_uKj0dJ9EmmoJPK6OJF3820VyBf26Rnn7vCmLmJ5O-QLHGlFZI2JrwVGNDlmKipthOxiifKa9lOoPrfn5nX6m757FiBX14llQy-0gkuGbhdLQ4MB9uwCfhSfJR7_3aNQYrZIeaOsb5FXS7xONCA2rmyTK0Xu71byjxu3yJ4_LQ-yuglEW_VtrtbaRv-ypCwXsGSDe9nKIh"/>
+<h4 class="font-headline-md text-headline-md">Margherita</h4>
+<p class="text-on-surface-variant mb-2">بيتزا مارجريتا</p>
+<div class="flex justify-between items-center"><span class="font-price-display text-price-display text-primary">90 EGP</span><button class="bg-primary-container text-white px-4 py-2 rounded-lg"><span class="material-symbols-outlined">add</span></button></div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant hover:border-primary transition-colors">
+<img class="w-full aspect-square rounded-lg object-cover mb-4" data-alt="Pepperoni pizza with generous beef pepperoni slices and gooey cheese, floating over a board with a flat orange background. High resolution, professional food styling for a gourmet fast-food brand." src="https://lh3.googleusercontent.com/aida/AP1WRLsN5ZUUYB9vA9-2QgkzgB3VjVTSPJMTeXuv-6Ewzf9WXjRQYerQU4Ojg54sbGTkdTGirWikVi5aKsAGSMVds4ujDKLP4KgFBADMo0G4mJDUWgjepZMxpwIKu5LMMwoI5OCibnTmpLl0qixTrj8PSz9gwteAzH5SuMkbPbHqm-kgv-ns1I7miIL5y8UnScjbbDPaXDNCBQFc7zkcy5HCZI6m1IuyrK0fHd-gS_2KhSj33VEUGV15Swjt8w"/>
+<h4 class="font-headline-md text-headline-md">Pepperoni</h4>
+<p class="text-on-surface-variant mb-2">بيتزا بيبيروني</p>
+<div class="flex justify-between items-center"><span class="font-price-display text-price-display text-primary">110 EGP</span><button class="bg-primary-container text-white px-4 py-2 rounded-lg"><span class="material-symbols-outlined">add</span></button></div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant hover:border-primary transition-colors">
+<img class="w-full aspect-square rounded-lg object-cover mb-4" data-alt="Super Supreme pizza loaded with mixed meats and fresh vegetables, presented floating against a vibrant orange background. Sharp details of the toppings and crispy crust are emphasized by studio lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLuH8GudoGxTSKgBP4sdV4bYxTULlFNUn44o1-ile8XTkYKw6oGOxxmaYnL5YtXb6MFgJt_WQRpmrN4uWHd4yBCmKOhE0ECjz9wiKuthzc46w_wlUKpct-en9P-p85kZV_VwK3nxCqn-hOuxUiNxB5TL1tsX7OdgjGeers8Rpj-EaLubEWR32CuAOKrU-PkaZEWxt3c_LmqgjQrsW4ea2cv-8OTzrX6Q7NLjcu5hRc5YKeUJBNHeoW8I"/>
+<h4 class="font-headline-md text-headline-md">Super Supreme</h4>
+<p class="text-on-surface-variant mb-2">بيتزا سوبر سوبريم</p>
+<div class="flex justify-between items-center"><span class="font-price-display text-price-display text-primary">130 EGP</span><button class="bg-primary-container text-white px-4 py-2 rounded-lg"><span class="material-symbols-outlined">add</span></button></div>
+</div>
+</div>
+</section>
+<!-- Pasta & Hawawshi Bento Grid -->
+<section class="py-section-gap grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Pasta Section -->
+<div class="lg:col-span-7" id="Pasta">
+<h3 class="font-headline-lg text-headline-lg mb-gutter">Baked Pasta</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<div class="bg-white p-6 rounded-2xl border border-outline-variant relative overflow-hidden group">
+<img class="absolute right-[-40px] top-1/2 -translate-y-1/2 w-48 h-48 rounded-full object-cover shadow-2xl group-hover:scale-110 transition-transform" data-alt="Gourmet baked pasta with four-cheese sauce and a golden melted top, floating on an orange background. High-contrast, vibrant, and appetizing food photography." src="https://lh3.googleusercontent.com/aida/AP1WRLvRN6Xylb_F5-PmcnS6CJivnEgBehTtTbYxkkRVoFr2gqXa4te-P6aIrOzUu6Gl1JZ8ZXpx-WdX1AlqA5qYEknftt8SJYoeEKkMORQUXZEbtLmYe89kLk4omNxPaFNfXciylXcJGYbPDo-B93Aayz-2cO4ODUVDW7gJkSi_W6QwK4BTtz45bh24Vrslkzo3D2_qI0_K62uJhZHL10RxZiY047C-uJ2CJTZAE-ZEMQclnKkv4U9PsxiU"/>
+<div class="relative z-10 pr-32">
+<h4 class="font-headline-md text-headline-md mb-1">Four Cheese</h4>
+<p class="text-on-surface-variant mb-4">باستا مكس جبن</p>
+<span class="font-price-display text-price-display text-primary">95 EGP</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant relative overflow-hidden group">
+<img class="absolute right-[-40px] top-1/2 -translate-y-1/2 w-48 h-48 rounded-full object-cover shadow-2xl group-hover:scale-110 transition-transform" data-alt="Baked pasta with spicy zinger chicken and melted cheese, floating above a wooden board on an orange background. Sharp focus on the cheesy texture and golden-brown crust." src="https://lh3.googleusercontent.com/aida/AP1WRLsj7-CQosj--xREsHF6RYcD02XNuN1Fr-f7LimY5cuuRwJE8PPxxzBdAbXjPvxKp6V8GidkAQk9OaP5kVHwDvfn0D_hbFju3WD8wLCsz0f1AOGMrSDthOJ7F-keUc7aRQnD7MyO2EOAi1r8p5ArlrXCxjaj2daeZL7r2OlaiDqQYBTwC65apcKFTlF8Ejf1b5aea3VP0EakdiBQwnZHgtw-NGhwoPKcViwINheIjOvev5hB3vNcYaFkmQ"/>
+<div class="relative z-10 pr-32">
+<h4 class="font-headline-md text-headline-md mb-1">Zinger Pasta</h4>
+<p class="text-on-surface-variant mb-4">باستا زنجر</p>
+<span class="font-price-display text-price-display text-primary">105 EGP</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant relative overflow-hidden group sm:col-span-2">
+<img class="absolute right-[-20px] top-1/2 -translate-y-1/2 w-56 h-56 rounded-full object-cover shadow-2xl group-hover:scale-110 transition-transform" data-alt="Mixed baked pasta with chicken and meat, topped with melted cheese, floating on a solid orange background. Commercial quality food imagery with clean lines and high saturation." src="https://lh3.googleusercontent.com/aida/AP1WRLvemfMjHarJTcm1CBpMybYoxaW-6yYNffZxOxp9N69EDK_i9ERjfUYANUaoAGdcu7xyC7a2Q2x72r4BmqWTiP7HxZmH3-ubBQwwhxTnOS6GuXM1WoPwBKCdm9lNFjI6H5jFrPbEB1UK9BTu0XucNrzxhlYHFo1F65ZTDpJQFxdmRRdhgweClwlpRTRnQzdNLvQVb-PaVbeFQKR6NVtbhocJYktnr7gX9gp9lrmmX-G23_DyJEw3aZ19pg"/>
+<div class="relative z-10 pr-48">
+<h4 class="font-headline-md text-headline-md mb-1">Mixed Pasta</h4>
+<p class="text-on-surface-variant mb-4">باستا مكس</p>
+<span class="font-price-display text-price-display text-primary">115 EGP</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-[200px]">The ultimate combination for those who want it all.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Hawawshi Section -->
+<div class="lg:col-span-5 bg-primary-fixed rounded-3xl p-gutter flex flex-col" id="Hawawshi">
+<h3 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-gutter">Hawawshi</h3>
+<div class="flex-grow space-y-gutter">
+<div class="bg-white/40 backdrop-blur-md p-4 rounded-xl flex items-center gap-4 hover:bg-white/60 transition-colors">
+<img class="w-24 h-24 rounded-lg object-cover shadow-md" data-alt="Alexandrian Hawawshi with spiced minced meat inside fresh dough with sesame seeds, floating on an orange background. Authentic Egyptian culinary photography style." src="https://lh3.googleusercontent.com/aida/AP1WRLuW_-OehWnG0wiLd4ochG-b4OhJr1ScOHGn2TO2zeB5nIjUehJ0lpkOprbIbz3TADd96v93pWONxJ0xmClW5w6MFO1dUhPRdX1Ur6M6JchqthEQB4TFdg4wVdKWh2hpq_5BQQShSd9KVemJEDIzXs5lSRe7tV6qMFmZT5rczU0XCH_RxM3ADgNZOjz6g7-IBxIyiIW6VcVVVYJnNJGiDJGFWRXGy7fJPJrHIwb1jIHDspt_6wbgBRLw"/>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-primary-fixed">Alexandrian</h4>
+<p class="text-on-primary-fixed-variant">حواوشي إسكندراني</p>
+<span class="font-price-display text-price-display text-primary">75 EGP</span>
+</div>
+</div>
+<div class="bg-white/40 backdrop-blur-md p-4 rounded-xl flex items-center gap-4 hover:bg-white/60 transition-colors">
+<img class="w-24 h-24 rounded-lg object-cover shadow-md" data-alt="Traditional Egyptian Baladi Hawawshi with crispy golden bread and extra meat, presented on an orange background. Rustic yet modern food photography." src="https://lh3.googleusercontent.com/aida/AP1WRLvLiU29vowGs1mVDu4UExj6Wls6a5bqNBeE8oY7HuYVVtoKYuPig8yl-pISUcU9_1IyFKyXVtfl3NB8kjHOznj9uxhT3DXXz2u26b_ycXzK1vgd3wCf7zWFa1o7kSMDkiRygTvbLe_FUGWSlVx4GJ2XYe3c3Mz18dHShBEv3Ui8knodfcH8cWlCT_IORLdyxgfKFVmck9_edzyN8AwCliKTcZjMa_-GQBSKd5SMDO1rxP0gx2WNisVT"/>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-primary-fixed">Baladi</h4>
+<p class="text-on-primary-fixed-variant">حواوشي بلدي</p>
+<span class="font-price-display text-price-display text-primary">65 EGP</span>
+</div>
+</div>
+</div>
+<div class="mt-gutter p-6 bg-primary rounded-2xl text-on-primary text-center">
+<p class="font-label-caps text-label-caps mb-2">LIMITED TIME OFFER</p>
+<p class="font-headline-md text-headline-md">Get 2 Hawawshi + Fries for 120 EGP</p>
+</div>
+</div>
+</section>
+<!-- Call to Action Section -->
+<section class="py-section-gap">
+<div class="bg-inverse-surface rounded-[40px] p-margin-desktop md:p-20 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-10 opacity-10">
+<span class="material-symbols-outlined text-[200px] text-white">restaurant</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-surface mb-6 relative z-10">Hungry for <span class="text-primary-fixed-dim">Greatness?</span></h2>
+<p class="text-surface-variant font-body-lg text-body-lg mb-gutter max-w-xl mx-auto relative z-10">Order now for lightning-fast delivery or swing by our nearest location to experience the zing in person.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-10 py-5 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all">CALL TO ORDER: 19XXX</button>
+<button class="bg-surface text-on-surface font-label-caps text-label-caps px-10 py-5 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all">OUR LOCATIONS</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-inverse-surface text-surface py-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter w-full">
+<div class="col-span-1 md:col-span-1">
+<h2 class="font-headline-md text-headline-md text-surface dark:text-primary mb-6">ZINGER GOURMET</h2>
+<p class="font-body-md text-body-md text-surface-variant mb-6">Redefining fast food with premium ingredients and a high-heat aesthetic. Always fresh, always bold.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-inverse-surface hover:bg-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">qr_code_2</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-inverse-surface hover:bg-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">camera</span>
+</a>
+</div>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary-fixed mb-6 uppercase">Main Menu</h3>
+<ul class="space-y-3 font-body-md text-body-md text-surface-variant">
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#Burgers">Gourmet Burgers</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#Crepes">Savory Crepes</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#Pizza">Artisan Pizza</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#Pasta">Baked Pasta</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary-fixed mb-6 uppercase">Quick Links</h3>
+<ul class="space-y-3 font-body-md text-body-md text-surface-variant">
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#">Locations</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#">About Our Kitchen</a></li>
+<li><a class="hover:text-primary-fixed-dim transition-all" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary-fixed mb-6 uppercase">Newsletter</h3>
+<p class="font-body-md text-body-md text-surface-variant mb-4">Get exclusive offers and new menu updates.</p>
+<div class="flex">
+<input class="bg-surface-variant/10 border-none rounded-l-lg p-3 text-surface w-full focus:ring-1 focus:ring-primary-fixed-dim" placeholder="Email address" type="email"/>
+<button class="bg-primary px-4 rounded-r-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<p class="mt-8 font-body-md text-body-md text-surface-variant/60">© 2024 Zinger Gourmet. All rights reserved.</p>
+</div>
+</footer>
+<script>
+    // Micro-interaction for category chips
+    document.querySelectorAll('.category-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('border-primary', 'bg-primary/5'));
+        chip.classList.add('border-primary', 'bg-primary/5');
+      });
+    });
+
+    // Smooth reveal animation on scroll
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+      observer.observe(section);
+    });
+  </script>
+</body></html>
