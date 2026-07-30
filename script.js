@@ -1332,6 +1332,8 @@ let currentSpiceLevel = "عادي";
 let selectedExtras = [];
 let orderType = "delivery"; // delivery or pickup
 let searchQuery = "";
+let menuRendered = false;
+let pendingMenuRender = null;
 
 // Helper function to normalize Arabic text for better search matching
 function normalizeArabic(str) {
@@ -1345,7 +1347,29 @@ function normalizeArabic(str) {
 
 function filterMenu(query) {
   searchQuery = query.trim();
-  renderMenu();
+  scheduleMenuRender({ force: true });
+}
+
+function unlockPageScroll() {
+  document.body.classList.remove("overflow-hidden");
+  document.documentElement.classList.remove("overflow-hidden");
+}
+
+function lockPageScroll() {
+  document.body.classList.add("overflow-hidden");
+  document.documentElement.classList.add("overflow-hidden");
+}
+
+function scheduleMenuRender({ force = false } = {}) {
+  if (!selectedBranch && !force) return;
+  if (menuRendered && !force) return;
+  if (pendingMenuRender) cancelAnimationFrame(pendingMenuRender);
+
+  pendingMenuRender = requestAnimationFrame(() => {
+    renderMenu();
+    menuRendered = true;
+    pendingMenuRender = null;
+  });
 }
 
 function normalizeForImageMatching(str) {
@@ -1449,6 +1473,7 @@ function renderMenu() {
                              src="${imgFile}" 
                              alt="${item.name}"
                              loading="lazy"
+                             decoding="async"
                              onerror="this.onerror=null; this.src='${fallbackProductImage}'">
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between gap-3">
@@ -1470,11 +1495,11 @@ function renderMenu() {
         .join("");
 
       return `
-            <section class="px-margin-mobile mt-10" id="${section.id}">
+            <section class="menu-section px-margin-mobile mt-10" id="${section.id}">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-2xl font-extrabold border-r-4 border-primary pr-3 text-[#1c1b1b]">${section.name}</h3>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     ${itemsHTML}
                 </div>
             </section>
@@ -2104,26 +2129,28 @@ function selectBranch(branchId) {
 
   selectedBranch = branch;
   localStorage.setItem("selectedBranchId", branchId);
-
-  updateBranchUI();
+  unlockPageScroll();
 
   const landingPage = document.getElementById("branch-landing-page");
   const mainLayout = document.getElementById("main-app-layout");
+
+  if (mainLayout) {
+    mainLayout.style.display = "block";
+    mainLayout.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      mainLayout.classList.remove("opacity-0");
+    });
+  }
+
+  updateBranchUI();
+  scheduleMenuRender();
 
   if (landingPage) {
     landingPage.classList.add("opacity-0", "pointer-events-none");
     setTimeout(() => {
       landingPage.style.display = "none";
-    }, 500);
+    }, 250);
   }
-  if (mainLayout) {
-    mainLayout.style.display = "block";
-    setTimeout(() => {
-      mainLayout.classList.remove("opacity-0");
-    }, 50);
-  }
-
-  document.body.classList.remove("overflow-hidden");
 }
 
 function showBranchAddress(branchId) {
@@ -2177,23 +2204,28 @@ function closeLandingBranchModal() {
 function changeBranch() {
   localStorage.removeItem("selectedBranchId");
   selectedBranch = null;
+  window.scrollTo({ top: 0, behavior: "auto" });
 
   const landingPage = document.getElementById("branch-landing-page");
   const mainLayout = document.getElementById("main-app-layout");
 
-  if (mainLayout) {
-    mainLayout.style.display = "none";
-    mainLayout.classList.add("opacity-0");
-  }
-
   if (landingPage) {
     landingPage.style.display = "block";
+    landingPage.classList.add("opacity-0");
+    landingPage.scrollTop = 0;
     setTimeout(() => {
       landingPage.classList.remove("opacity-0", "pointer-events-none");
-    }, 50);
+    }, 20);
   }
 
-  document.body.classList.add("overflow-hidden");
+  if (mainLayout) {
+    mainLayout.classList.add("opacity-0");
+    setTimeout(() => {
+      mainLayout.style.display = "none";
+    }, 250);
+  }
+
+  lockPageScroll();
 }
 
 function updateBranchUI() {
@@ -2244,8 +2276,10 @@ function initBranchSelector() {
       if (landingPage) landingPage.style.display = "none";
       if (mainLayout) {
         mainLayout.style.display = "block";
+        mainLayout.classList.remove("hidden");
         mainLayout.classList.remove("opacity-0");
       }
+      unlockPageScroll();
       return;
     }
   }
@@ -2260,14 +2294,16 @@ function initBranchSelector() {
     mainLayout.style.display = "none";
     mainLayout.classList.add("opacity-0");
   }
-  document.body.classList.add("overflow-hidden");
+  lockPageScroll();
 }
 
 // Initialization
 document.addEventListener("DOMContentLoaded", () => {
   initBranchSelector();
   renderCategoriesNav();
-  renderMenu();
+  if (selectedBranch) {
+    scheduleMenuRender();
+  }
   updateCartUI();
 
   // Register Service Worker

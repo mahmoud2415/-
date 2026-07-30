@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zinger-cache-v2';
+const CACHE_NAME = 'zinger-cache-v3';
 const ASSETS = [
     './',
     './index.html',
@@ -32,6 +32,27 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    const requestUrl = new URL(event.request.url);
+    const isLocalAsset = requestUrl.origin === self.location.origin;
+    const shouldRefreshFirst =
+        isLocalAsset &&
+        ['document', 'script', 'style'].includes(event.request.destination);
+
+    if (shouldRefreshFirst) {
+        event.respondWith(
+            fetch(event.request)
+                .then((networkResponse) => {
+                    const responseClone = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseClone);
+                    });
+                    return networkResponse;
+                })
+                .catch(() => caches.match(event.request))
+        );
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
             if (cachedResponse) {
