@@ -1357,7 +1357,6 @@ function unlockPageScroll() {
 
 function lockPageScroll() {
   document.body.classList.add("overflow-hidden");
-  document.documentElement.classList.add("overflow-hidden");
 }
 
 function scheduleMenuRender({ force = false } = {}) {
@@ -2205,6 +2204,7 @@ function changeBranch() {
   localStorage.removeItem("selectedBranchId");
   selectedBranch = null;
   window.scrollTo({ top: 0, behavior: "auto" });
+  unlockPageScroll();
 
   const landingPage = document.getElementById("branch-landing-page");
   const mainLayout = document.getElementById("main-app-layout");
@@ -2225,7 +2225,6 @@ function changeBranch() {
     }, 250);
   }
 
-  lockPageScroll();
 }
 
 function updateBranchUI() {
@@ -2294,7 +2293,7 @@ function initBranchSelector() {
     mainLayout.style.display = "none";
     mainLayout.classList.add("opacity-0");
   }
-  lockPageScroll();
+  unlockPageScroll();
 }
 
 // Initialization

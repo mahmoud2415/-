@@ -34,20 +34,6 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
-    <script>
-      // Anti-flash logic to prevent landing page flicker for returning users
-      (function() {
-        const savedBranch = localStorage.getItem('selectedBranchId');
-        const css = savedBranch ? 
-          '#branch-landing-page { display: none !important; } #main-app-layout { display: block !important; opacity: 1 !important; }' : 
-          '#branch-landing-page { display: block !important; } #main-app-layout { display: none !important; }';
-        const style = document.createElement('style');
-        style.type = 'text/css';
-        style.appendChild(document.createTextNode(css));
-        document.head.appendChild(style);
-      })();
-    </script>
-
     <style>
       body {
         font-family: "Cairo", sans-serif;
@@ -100,6 +86,9 @@
       .menu-section {
         content-visibility: auto;
         contain-intrinsic-size: 900px;
+      }
+      #main-app-layout {
+        display: none;
       }
       /* Transitions */
       .fade-transition {
@@ -367,7 +356,7 @@
     <!-- ========================================== -->
     <!-- --- MAIN APP CONTENT LAYOUT --- -->
     <!-- ========================================== -->
-    <div id="main-app-layout" class="opacity-0 fade-transition hidden">
+    <div id="main-app-layout" class="opacity-0 fade-transition">
       <!-- PWA Install Banner -->
       <div
         id="pwa-install-banner"
