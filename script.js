@@ -1387,6 +1387,8 @@ function getSectionItemIndex(item) {
 
 // Fetch image dynamically
 function getProductImage(item) {
+  if (item.image && item.image !== fallbackProductImage) return item.image;
+
   const searchableName = normalizeForImageMatching(
     `${item.section} ${item.name} ${item.desc || ""}`,
   );
@@ -1406,6 +1408,23 @@ function getProductImage(item) {
 
   const index = getSectionItemIndex(item);
   return list[Math.max(index, 0) % list.length];
+}
+
+function getCartItemImage(item, index = 0) {
+  if (item.productId) {
+    const product = menuData.find((menuItem) => menuItem.id === item.productId);
+    if (product) return getProductImage(product);
+  }
+
+  const productFromName = menuData.find((menuItem) =>
+    item.name && item.name.includes(menuItem.name),
+  );
+  if (productFromName) return getProductImage(productFromName);
+
+  if (item.image && item.image !== fallbackProductImage) return item.image;
+
+  const list = imagesByCategory[item.section || "crepes"];
+  return list && list.length > 0 ? list[index % list.length] : fallbackProductImage;
 }
 
 // 1. Render Categories Navigation Bar
@@ -1558,7 +1577,7 @@ function openCustomizationModal(item) {
         (sz, idx) => `
             <button onclick="setSize(${idx})" 
                     id="size-btn-${idx}" 
-                    class="size-option-btn py-3 rounded-xl border ${idx === 0 ? "bg-primary-container/20 border-primary-container/50 text-white active" : "border-white/10 glass text-gray-300"} text-sm font-bold transition-all">
+                    class="size-option-btn py-3 rounded-xl border ${idx === 0 ? "modal-choice-active active" : "modal-choice"} text-sm font-bold transition-all">
                 ${sz.name} (${sz.price} ج.م)
             </button>
         `,
@@ -1594,9 +1613,9 @@ function openCustomizationModal(item) {
     extrasContainer.innerHTML = commonExtras
       .map(
         (extra, idx) => `
-            <label class="flex items-center justify-between p-4 glass rounded-xl cursor-pointer hover:bg-white/10 transition-colors">
-                <span class="text-sm text-gray-200">${extra.name} (+${extra.price} ج.م)</span>
-                <input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary-container focus:ring-primary-container cursor-pointer" 
+            <label class="flex items-center justify-between gap-3 p-4 bg-white border border-[#e4beb4] rounded-xl cursor-pointer hover:bg-[#fff7f4] hover:border-primary/60 transition-colors shadow-sm">
+                <span class="text-sm font-bold text-[#1c1b1b]">${extra.name} (+${extra.price} ج.م)</span>
+                <input class="w-5 h-5 rounded border-gray-300 bg-white text-primary focus:ring-primary cursor-pointer" 
                        type="checkbox" 
                        onchange="toggleExtra(${idx}, this.checked)"/>
             </label>
@@ -1638,10 +1657,10 @@ function setSize(idx) {
   document.querySelectorAll(".size-option-btn").forEach((btn, i) => {
     if (i === idx) {
       btn.className =
-        "size-option-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white active text-sm font-bold transition-all";
+        "size-option-btn py-3 rounded-xl border modal-choice-active active text-sm font-bold transition-all";
     } else {
       btn.className =
-        "size-option-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+        "size-option-btn py-3 rounded-xl border modal-choice text-sm font-bold transition-all";
     }
   });
 
@@ -1656,14 +1675,14 @@ function setSpiceLevel(level) {
 
   if (level === "عادي") {
     normalBtn.className =
-      "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
+      "spice-btn py-3 rounded-xl border modal-choice-active text-sm font-bold active transition-all";
     spicyBtn.className =
-      "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+      "spice-btn py-3 rounded-xl border modal-choice text-sm font-bold transition-all";
   } else {
     spicyBtn.className =
-      "spice-btn py-3 rounded-xl border bg-primary-container/20 border-primary-container/50 text-white text-sm font-bold active transition-all";
+      "spice-btn py-3 rounded-xl border modal-choice-active text-sm font-bold active transition-all";
     normalBtn.className =
-      "spice-btn py-3 rounded-xl border border-white/10 glass text-gray-300 text-sm font-bold transition-all";
+      "spice-btn py-3 rounded-xl border modal-choice text-sm font-bold transition-all";
   }
 }
 
@@ -1716,13 +1735,17 @@ function addToCartFromModal() {
   );
   if (existing) {
     existing.qty++;
+    existing.image = existing.image || getProductImage(currentItem);
+    existing.productId = existing.productId || currentItem.id;
   } else {
     cart.push({
       id: uniqueId,
+      productId: currentItem.id,
       name: finalName,
       price: finalPrice,
       qty: 1,
       section: currentItem.section,
+      image: getProductImage(currentItem),
     });
   }
 
@@ -1820,19 +1843,14 @@ function updateCartUI() {
 
   container.innerHTML = cart
     .map((item, index) => {
-      const section = item.section || "crepes";
-      const list = imagesByCategory[section];
-      const imgFile =
-        list && list.length > 0
-          ? list[index % list.length]
-          : fallbackProductImage;
+      const imgFile = getCartItemImage(item, index);
 
       return `
             <div class="p-4 bg-white rounded-2xl animate-fade-in-up space-y-3 border border-[#eae7e7] shadow-sm">
                 <!-- Top Part: Thumbnail, Name & Price -->
                 <div class="flex items-start gap-3">
                     <div class="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 border border-gray-200 bg-gray-50">
-                        <img src="${imgFile}" alt="" class="w-full h-full object-cover"/>
+                        <img src="${imgFile}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackProductImage}'"/>
                     </div>
                     <div class="flex-1 text-right min-w-0">
                         <h5 class="text-xs font-bold text-[#1c1b1b] leading-relaxed mb-1 break-words">${item.name}</h5>
@@ -2122,6 +2140,13 @@ function dismissPwaInstall() {
 }
 
 // Branch Selection Functions
+function handleBranchCardKey(event, branchId) {
+  if (event.target !== event.currentTarget) return;
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  selectBranch(branchId);
+}
+
 function selectBranch(branchId) {
   const branch = branches.find(b => b.id === branchId);
   if (!branch) return;
