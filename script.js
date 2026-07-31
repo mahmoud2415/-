@@ -1517,7 +1517,7 @@ function renderMenu() {
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-2xl font-extrabold border-r-4 border-primary pr-3 text-[#1c1b1b]">${section.name}</h3>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                     ${itemsHTML}
                 </div>
             </section>
