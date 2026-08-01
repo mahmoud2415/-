@@ -15,20 +15,20 @@ const branches = [
   {
     id: "faqous-manshiya",
     name: "فرع فاقوس - المنشية",
-    phone: "01020805451",
-    whatsapp: "201020805451",
-    address: "فاقوس - حي المنشية - أمام المدرسة الثانوية العسكرية",
+    phone: "01002552421",
+    whatsapp: "201002552421",
+    address: "فاقوس - حي المنشية - بجوار حلواني الأسطورة",
     deliveryFee: 15,
-    mapLink: "https://maps.google.com/?q=المنشية+فاقوس"
+    mapLink: "https://www.google.com/maps/search/%D8%AD%D9%84%D9%88%D8%A7%D9%86%D9%8A%20%D8%A7%D9%84%D8%A3%D8%B3%D8%B7%D9%88%D8%B1%D8%A9/@30.73116373,31.79502818,17z?hl=ar"
   },
   {
     id: "faqous-kafr",
     name: "فرع فاقوس - كفر العدوى",
-    phone: "01020805451",
-    whatsapp: "201020805451",
-    address: "فاقوس - كفر العدوى - بجوار كوبري العدوى الجديد",
+    phone: "01002552421",
+    whatsapp: "201002552421",
+    address: "فاقوس - كفر العدوى - داخل 9A Cafe & Food Court",
     deliveryFee: 15,
-    mapLink: "https://maps.google.com/?q=كفر+العدوى+فاقوس"
+    mapLink: "https://www.google.com/maps/search/9A%20cafe%20and%20food%20court/@30.72620635,31.78810442,17z?hl=ar"
   },
   {
     id: "abukibir",
@@ -2199,6 +2199,12 @@ function showBranchAddress(branchId) {
         <span class="material-symbols-outlined text-sm text-[#25D366]">chat</span>
         <span>الطلب عبر واتساب: <a href="https://wa.me/${branch.whatsapp}" target="_blank" class="underline font-bold text-[#25D366]">${branch.phone}</a></span>
       </li>
+      <li class="mt-4 pt-4 border-t border-white/10">
+        <a href="${branch.mapLink}" target="_blank" class="w-full text-center py-2.5 bg-primary text-white font-bold text-xs rounded-xl hover:bg-primary-container transition-all flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">map</span>
+          <span>افتح الموقع في خرائط جوجل 🗺️</span>
+        </a>
+      </li>
     `;
   }
 
@@ -2283,6 +2289,10 @@ function updateBranchUI() {
   const footerBranchAddressEl = document.getElementById("footer-branch-address");
   if (footerBranchAddressEl) {
     footerBranchAddressEl.innerText = selectedBranch.address;
+  }
+  const footerBranchMapLinkEl = document.getElementById("footer-branch-map-link");
+  if (footerBranchMapLinkEl) {
+    footerBranchMapLinkEl.href = selectedBranch.mapLink;
   }
 
   updateCartUI();
