@@ -90,11 +90,11 @@ const menuData = [
     id: 101,
     section: "burgers",
     name: "كلاسيك بيف برجر",
-    desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
     image: "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
     images: [
       "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg"
     ],
+    desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
     sizes: [
       { name: "سنجل (200جم)", price: 180 },
       { name: "دبل (400جم)", price: 235 },
@@ -114,6 +114,10 @@ const menuData = [
   },
   {
     id: 103,
+    image: "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.jpeg",
+    images: [
+          "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.jpeg"
+    ],
     section: "burgers",
     name: "إكسترا مايل",
     desc: "قطعة برجر + موزاريلا تكساس + صوص جبنة + كابوتشا + طماطم + خيار مخلل",
@@ -168,6 +172,14 @@ const menuData = [
   },
   {
     id: 202,
+    image: "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).jpeg",
+    images: [
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).jpeg",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM.jpeg",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (1).jpeg",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (2).jpeg",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM.jpeg"
+    ],
     section: "crepes",
     name: "كريب بانية / تشيكن كرسبي",
     desc: "قطع بانيه مقرمش",
@@ -192,6 +204,12 @@ const menuData = [
   },
   {
     id: 204,
+    image: "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).jpeg",
+    images: [
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).jpeg",
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM.jpeg",
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.22 AM.jpeg"
+    ],
     section: "crepes",
     name: "كريب سوبر كرانشي (زنجر)",
     desc: "صدور الدجاج الحارة المقرمشة",
@@ -228,6 +246,11 @@ const menuData = [
   },
   {
     id: 207,
+    image: "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).jpeg",
+    images: [
+          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).jpeg",
+          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (2).jpeg"
+    ],
     section: "crepes",
     name: "كريب تشيكن رانش",
     desc: "صدور دجاج كرسبي مع صوص الرانش الغني",
@@ -276,6 +299,14 @@ const menuData = [
   },
   {
     id: 211,
+    image: "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.jpeg",
+    images: [
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.jpeg",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (1).jpeg",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (2).jpeg",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (3).jpeg",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM.jpeg"
+    ],
     section: "crepes",
     name: "كريب مكس فراخ",
     desc: "ميكس صدور وشيش طاووق وكرسبي",
@@ -631,6 +662,10 @@ const menuData = [
   // === PIZZA ===
   {
     id: 301,
+    image: "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.jpeg",
+    images: [
+          "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.jpeg"
+    ],
     section: "pizza",
     name: "بيتزا مارجريتا",
     desc: "صوص بيتزا، موزاريلا، ريحان وزعتر",
@@ -664,6 +699,11 @@ const menuData = [
   },
   {
     id: 304,
+    image: "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.jpeg",
+    images: [
+          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.jpeg",
+          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.39 AM.jpeg"
+    ],
     section: "pizza",
     name: "بيتزا مكس جبن",
     desc: "شيدر، رومي، كيري وموزاريلا غنية",
@@ -697,6 +737,11 @@ const menuData = [
   },
   {
     id: 307,
+    image: "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).jpeg",
+    images: [
+          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).jpeg",
+          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM.jpeg"
+    ],
     section: "pizza",
     name: "بيتزا تشيكن باربيكيو",
     desc: "قطع دجاج متبلة بصوص الباربيكيو الغني",
@@ -732,7 +777,6 @@ const menuData = [
     id: 310,
     section: "pizza",
     name: "بيتزا تشيكن رانش",
-    desc: "صدور دجاج كرسبي مع صوص الرانش المفضل",
     image: "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
     images: [
       "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
@@ -741,6 +785,7 @@ const menuData = [
       "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (3).jpeg",
       "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM.jpeg"
     ],
+    desc: "صدور دجاج كرسبي مع صوص الرانش المفضل",
     sizes: [
       { name: "M", price: 160 },
       { name: "L", price: 190 },
@@ -870,6 +915,11 @@ const menuData = [
   },
   {
     id: 322,
+    image: "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.jpeg",
+    images: [
+          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.jpeg",
+          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.41 AM.jpeg"
+    ],
     section: "pizza",
     name: "بيتزا بيبيروني",
     desc: "قطع بيبيروني لحم فاخرة غرقانة موزاريلا",
@@ -2474,10 +2524,96 @@ function initBranchSelector() {
   unlockPageScroll();
 }
 
+function initCustomModalDrag() {
+  const modal = document.getElementById("custom-modal");
+  const overlay = document.getElementById("custom-modal-overlay");
+  const scrollContainer = document.getElementById("modal-scroll-container");
+
+  if (!modal || !overlay) return;
+
+  let startY = 0;
+  let currentY = 0;
+  let isDragging = false;
+
+  modal.addEventListener("touchstart", (e) => {
+    const target = e.target;
+    // Don't drag if user is touching interactive items
+    if (
+      target.closest("button") || 
+      target.closest("input") || 
+      target.closest("label") ||
+      target.closest("#modal-image-dots") ||
+      target.closest("#modal-prev-btn") ||
+      target.closest("#modal-next-btn")
+    ) {
+      return;
+    }
+
+    // If touching inside scroll container, only drag if scrolled to top
+    if (scrollContainer && scrollContainer.contains(target) && scrollContainer.scrollTop > 0) {
+      return;
+    }
+
+    startY = e.touches[0].clientY;
+    currentY = startY;
+    isDragging = true;
+    
+    modal.style.transition = "none";
+    overlay.style.transition = "none";
+  }, { passive: true });
+
+  modal.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    currentY = e.touches[0].clientY;
+    const deltaY = currentY - startY;
+    const dragDistance = Math.max(0, deltaY);
+
+    if (dragDistance > 0) {
+      if (e.cancelable) e.preventDefault();
+      
+      modal.style.transform = `translateY(${dragDistance}px)`;
+      const progress = Math.max(0, 1 - dragDistance / modal.offsetHeight);
+      overlay.style.opacity = progress.toString();
+    } else {
+      modal.style.transform = "";
+      overlay.style.opacity = "";
+    }
+  }, { passive: false });
+
+  modal.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    modal.style.transition = "";
+    overlay.style.transition = "";
+
+    const deltaY = currentY - startY;
+
+    if (deltaY > 120) {
+      modal.style.transform = "translateY(100%)";
+      overlay.style.opacity = "0";
+      closeCustomization();
+      setTimeout(() => {
+        modal.style.transform = "";
+        overlay.style.opacity = "";
+      }, 300);
+    } else {
+      modal.style.transform = "translateY(0)";
+      overlay.style.opacity = "1";
+      setTimeout(() => {
+        modal.style.transform = "";
+        overlay.style.opacity = "";
+      }, 300);
+    }
+  });
+}
+
 // Initialization
 document.addEventListener("DOMContentLoaded", () => {
   initBranchSelector();
   renderCategoriesNav();
+  initCustomModalDrag();
   if (selectedBranch) {
     scheduleMenuRender();
   }
