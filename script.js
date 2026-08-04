@@ -91,6 +91,12 @@ const menuData = [
     section: "burgers",
     name: "كلاسيك بيف برجر",
     desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
+    image: "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
+    images: [
+      "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
+      "assets/menu_items/كلاسيك بيف برجر/test2.jpeg",
+      "assets/menu_items/كلاسيك بيف برجر/test3.jpeg"
+    ],
     sizes: [
       { name: "سنجل (200جم)", price: 180 },
       { name: "دبل (400جم)", price: 235 },
@@ -1555,11 +1561,128 @@ function scrollToCategory(id) {
   }
 }
 
+// Carousel state variables
+let currentModalImages = [];
+let currentModalImageIndex = 0;
+
+function renderModalCarousel(item) {
+  const container = document.getElementById("modal-image-container");
+  const slider = document.getElementById("modal-image-slider");
+  const dotsContainer = document.getElementById("modal-image-dots");
+  const prevBtn = document.getElementById("modal-prev-btn");
+  const nextBtn = document.getElementById("modal-next-btn");
+
+  if (!container || !slider) return;
+
+  // Determine images
+  let images = [];
+  if (item.images && Array.isArray(item.images) && item.images.length > 0) {
+    images = item.images;
+  } else if (item.image) {
+    images = [item.image];
+  } else {
+    // try fallback
+    const img = getProductImage(item);
+    if (img) {
+      images = [img];
+    }
+  }
+
+  currentModalImages = images;
+  currentModalImageIndex = 0;
+
+  if (images.length === 0) {
+    container.classList.add("hidden");
+    return;
+  }
+
+  container.classList.remove("hidden");
+
+  // Render slider slides
+  slider.innerHTML = images
+    .map(
+      (img) => `
+      <div class="w-full h-full flex-shrink-0">
+        <img class="w-full h-full object-cover" 
+             src="${img}" 
+             alt="${item.name}"
+             onerror="this.onerror=null; this.src='${fallbackProductImage}'">
+      </div>
+    `,
+    )
+    .join("");
+
+  slider.style.transform = "translateX(0%)";
+
+  if (images.length <= 1) {
+    if (prevBtn) prevBtn.classList.add("hidden");
+    if (nextBtn) nextBtn.classList.add("hidden");
+    if (dotsContainer) dotsContainer.innerHTML = "";
+  } else {
+    if (prevBtn) prevBtn.classList.remove("hidden");
+    if (nextBtn) nextBtn.classList.remove("hidden");
+
+    // Render dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = images
+        .map(
+          (_, idx) => `
+          <button onclick="showModalImage(${idx})" 
+                  id="modal-dot-${idx}" 
+                  class="w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === 0 ? "bg-white scale-125" : "bg-white/50"}" 
+                  aria-label="عرض الصورة ${idx + 1}">
+          </button>
+        `,
+        )
+        .join("");
+    }
+  }
+}
+
+function showModalImage(index) {
+  if (currentModalImages.length <= 1) return;
+  
+  // Wrap index
+  currentModalImageIndex = (index + currentModalImages.length) % currentModalImages.length;
+  
+  const slider = document.getElementById("modal-image-slider");
+  if (slider) {
+    const pct = -100 * currentModalImageIndex;
+    slider.style.transform = `translateX(${pct}%)`;
+  }
+
+  // Update dots
+  const dotsContainer = document.getElementById("modal-image-dots");
+  if (dotsContainer) {
+    for (let i = 0; i < currentModalImages.length; i++) {
+      const dot = document.getElementById(`modal-dot-${i}`);
+      if (dot) {
+        if (i === currentModalImageIndex) {
+          dot.className = "w-2.5 h-2.5 rounded-full transition-all duration-300 bg-white scale-125";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full transition-all duration-300 bg-white/50";
+        }
+      }
+    }
+  }
+}
+
+function prevModalImage() {
+  showModalImage(currentModalImageIndex - 1);
+}
+
+function nextModalImage() {
+  showModalImage(currentModalImageIndex + 1);
+}
+
 // 3. Customization Modal Functions
 function openCustomizationModal(item) {
   currentItem = item;
   selectedExtras = [];
   currentSpiceLevel = "عادي";
+
+  // Render Image Carousel
+  renderModalCarousel(item);
 
   // Set Name
   document.getElementById("modal-item-name").innerText = item.name;
