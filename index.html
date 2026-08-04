@@ -602,12 +602,12 @@
         id="custom-modal"
       >
         <div
-          class="bg-[#fcf9f8] rounded-t-3xl p-6 safe-bottom border-t border-[#e4beb4] shadow-2xl"
+          class="bg-[#fcf9f8] rounded-t-3xl p-6 safe-bottom border-t border-[#e4beb4] shadow-2xl max-h-[82vh] flex flex-col overflow-hidden"
         >
-          <div class="w-12 h-1 bg-[#e4beb4] rounded-full mx-auto mb-6"></div>
+          <div class="w-12 h-1 bg-[#e4beb4] rounded-full mx-auto mb-6 flex-shrink-0"></div>
 
           <!-- Image Carousel -->
-          <div class="relative w-full aspect-[16/10] bg-[#f5ebe8] rounded-2xl overflow-hidden mt-4 mb-5 hidden group" id="modal-image-container">
+          <div class="relative w-full aspect-[16/10] bg-[#f5ebe8] rounded-2xl overflow-hidden mt-6 mb-5 hidden group flex-shrink-0" id="modal-image-container">
             <div class="flex h-full w-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar select-none" id="modal-image-slider" dir="ltr">
               <!-- Slides injected dynamically -->
             </div>
@@ -626,12 +626,12 @@
             </div>
           </div>
 
-          <h3 class="text-xl font-black text-[#1c1b1b] mb-1" id="modal-item-name">اسم الوجبة</h3>
-          <p class="text-primary font-black mb-6 text-lg font-numeric" id="modal-item-price">
+          <h3 class="text-xl font-black text-[#1c1b1b] mb-1 flex-shrink-0" id="modal-item-name">اسم الوجبة</h3>
+          <p class="text-primary font-black mb-6 text-lg font-numeric flex-shrink-0" id="modal-item-price">
             0 ج.م
           </p>
 
-          <div id="modal-scroll-container" class="space-y-6 max-h-[50vh] overflow-y-auto pr-1 no-scrollbar text-right">
+          <div id="modal-scroll-container" class="space-y-6 max-h-[38vh] overflow-y-auto pr-1 no-scrollbar text-right flex-1">
             <!-- Size -->
             <div id="modal-sizes-section">
               <label class="block text-sm font-bold mb-3 text-[#1c1b1b]">الحجم</label>
