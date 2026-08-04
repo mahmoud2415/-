@@ -93,9 +93,7 @@ const menuData = [
     desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
     image: "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
     images: [
-      "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
-      "assets/menu_items/كلاسيك بيف برجر/test2.jpeg",
-      "assets/menu_items/كلاسيك بيف برجر/test3.jpeg"
+      "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg"
     ],
     sizes: [
       { name: "سنجل (200جم)", price: 180 },
@@ -735,6 +733,14 @@ const menuData = [
     section: "pizza",
     name: "بيتزا تشيكن رانش",
     desc: "صدور دجاج كرسبي مع صوص الرانش المفضل",
+    image: "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
+    images: [
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (1).jpeg",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (2).jpeg",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (3).jpeg",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM.jpeg"
+    ],
     sizes: [
       { name: "M", price: 160 },
       { name: "L", price: 190 },
@@ -1598,11 +1604,11 @@ function renderModalCarousel(item) {
 
   container.classList.remove("hidden");
 
-  // Render slider slides
+  // Render slider slides with snap-center for swiping
   slider.innerHTML = images
     .map(
       (img) => `
-      <div class="w-full h-full flex-shrink-0">
+      <div class="w-full h-full flex-shrink-0 snap-center">
         <img class="w-full h-full object-cover" 
              src="${img}" 
              alt="${item.name}"
@@ -1612,7 +1618,20 @@ function renderModalCarousel(item) {
     )
     .join("");
 
-  slider.style.transform = "translateX(0%)";
+  // Reset scroll position to 0
+  slider.scrollLeft = 0;
+
+  // Attach scroll event listener for touch swiping (only once)
+  if (!slider.dataset.listenerAttached) {
+    slider.addEventListener("scroll", () => {
+      const index = Math.round(slider.scrollLeft / slider.clientWidth);
+      if (index !== currentModalImageIndex && index >= 0 && index < currentModalImages.length) {
+        currentModalImageIndex = index;
+        updateModalImageDots();
+      }
+    });
+    slider.dataset.listenerAttached = "true";
+  }
 
   if (images.length <= 1) {
     if (prevBtn) prevBtn.classList.add("hidden");
@@ -1639,19 +1658,7 @@ function renderModalCarousel(item) {
   }
 }
 
-function showModalImage(index) {
-  if (currentModalImages.length <= 1) return;
-  
-  // Wrap index
-  currentModalImageIndex = (index + currentModalImages.length) % currentModalImages.length;
-  
-  const slider = document.getElementById("modal-image-slider");
-  if (slider) {
-    const pct = -100 * currentModalImageIndex;
-    slider.style.transform = `translateX(${pct}%)`;
-  }
-
-  // Update dots
+function updateModalImageDots() {
   const dotsContainer = document.getElementById("modal-image-dots");
   if (dotsContainer) {
     for (let i = 0; i < currentModalImages.length; i++) {
@@ -1664,6 +1671,19 @@ function showModalImage(index) {
         }
       }
     }
+  }
+}
+
+function showModalImage(index) {
+  if (currentModalImages.length <= 1) return;
+  
+  // Wrap index
+  currentModalImageIndex = (index + currentModalImages.length) % currentModalImages.length;
+  
+  const slider = document.getElementById("modal-image-slider");
+  if (slider) {
+    const targetLeft = currentModalImageIndex * slider.clientWidth;
+    slider.scrollTo({ left: targetLeft, behavior: "smooth" });
   }
 }
 
