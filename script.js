@@ -9,7 +9,6 @@ const branches = [
     phone: "01020805451",
     whatsapp: "201020805451",
     address: "الإسماعيلية - حي شبين الكوم - بجوار ميدان شبين",
-    deliveryFee: 15,
     mapLink: "https://maps.google.com/?q=شبين+الكوم+الاسماعيلية"
   },
   {
@@ -18,7 +17,6 @@ const branches = [
     phone: "01002552421",
     whatsapp: "201002552421",
     address: "فاقوس - حي المنشية - بجوار حلواني الأسطورة",
-    deliveryFee: 15,
     mapLink: "https://www.google.com/maps/search/%D8%AD%D9%84%D9%88%D8%A7%D9%86%D9%8A%20%D8%A7%D9%84%D8%A3%D8%B3%D8%B7%D9%88%D8%B1%D8%A9/@30.73116373,31.79502818,17z?hl=ar"
   },
   {
@@ -27,7 +25,6 @@ const branches = [
     phone: "01002552421",
     whatsapp: "201002552421",
     address: "فاقوس - كفر العدوى - داخل 9A Cafe & Food Court",
-    deliveryFee: 15,
     mapLink: "https://www.google.com/maps/search/9A%20cafe%20and%20food%20court/@30.72620635,31.78810442,17z?hl=ar"
   },
   {
@@ -36,7 +33,6 @@ const branches = [
     phone: "01020805451",
     whatsapp: "201020805451",
     address: "أبو كبير - شارع مصطفى كامل - خلف المحكمة",
-    deliveryFee: 15,
     mapLink: "https://maps.google.com/?q=أبو+كبير+الشرقية"
   }
 ];
@@ -1394,6 +1390,7 @@ let currentSpiceLevel = "عادي";
 let selectedExtras = [];
 let orderType = "delivery"; // delivery or pickup
 let searchQuery = "";
+let activeSection = mainSections[0].id;
 let menuRendered = false;
 let pendingMenuRender = null;
 
@@ -1489,6 +1486,11 @@ function getCartItemImage(item, index = 0) {
   return list && list.length > 0 ? list[index % list.length] : fallbackProductImage;
 }
 
+const ACTIVE_NAV_BTN_CLASS =
+  "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md transition-all";
+const INACTIVE_NAV_BTN_CLASS =
+  "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white transition-all";
+
 // 1. Render Categories Navigation Bar
 function renderCategoriesNav() {
   const container = document.getElementById("categories-nav");
@@ -1496,16 +1498,48 @@ function renderCategoriesNav() {
 
   container.innerHTML = mainSections
     .map(
-      (section, idx) => `
-        <button id="nav-btn-${section.id}" 
-                class="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full ${idx === 0 ? "bg-primary text-white font-bold shadow-md" : "bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white"} transition-all" 
-                onclick="scrollToCategory('${section.id}')">
+      (section) => `
+        <button id="nav-btn-${section.id}"
+                class="${section.id === activeSection ? ACTIVE_NAV_BTN_CLASS : INACTIVE_NAV_BTN_CLASS}"
+                onclick="selectCategory('${section.id}')">
             <span class="material-symbols-outlined text-xl">${section.icon}</span>
             <span>${section.name}</span>
         </button>
     `,
     )
     .join("");
+}
+
+function highlightCategoryNav(sectionId) {
+  mainSections.forEach((section) => {
+    const btn = document.getElementById(`nav-btn-${section.id}`);
+    if (!btn) return;
+    btn.className =
+      section.id === sectionId ? ACTIVE_NAV_BTN_CLASS : INACTIVE_NAV_BTN_CLASS;
+  });
+
+  const activeBtn = document.getElementById(`nav-btn-${sectionId}`);
+  if (activeBtn)
+    activeBtn.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+}
+
+// Show a single category at a time so the menu stays short on mobile
+function selectCategory(id, { scroll = true } = {}) {
+  activeSection = id;
+
+  const searchInput = document.getElementById("menu-search");
+  if (searchQuery && searchInput) {
+    searchInput.value = "";
+    searchQuery = "";
+  }
+
+  highlightCategoryNav(id);
+  renderMenu();
+  if (scroll) scrollToCategory(id);
 }
 
 // 2. Render all categories and their products on the page
@@ -1516,7 +1550,11 @@ function renderMenu() {
   const normalizedQuery = normalizeArabic(searchQuery);
   let totalVisibleItems = 0;
 
-  const sectionsHTML = mainSections
+  const visibleSections = normalizedQuery
+    ? mainSections
+    : mainSections.filter((section) => section.id === activeSection);
+
+  const sectionsHTML = visibleSections
     .map((section) => {
       let sectionItems = menuData.filter((item) => item.section === section.id);
 
@@ -1574,14 +1612,36 @@ function renderMenu() {
         })
         .join("");
 
+      const sectionIdx = mainSections.findIndex((s) => s.id === section.id);
+      const nextSection = mainSections[sectionIdx + 1];
+      const sectionEndHTML = normalizedQuery
+        ? ""
+        : `
+                <div class="mt-8 pt-6 border-t border-[#eae7e7] flex flex-col items-center gap-3">
+                    <p class="text-xs text-on-surface-variant">دي كل أصناف ${section.name}</p>
+                    ${
+                      nextSection
+                        ? `<button onclick="selectCategory('${nextSection.id}')" class="px-6 py-3 rounded-2xl bg-primary text-white text-sm font-bold flex items-center gap-2 active:scale-95 transition-all">
+                            <span>التالي: ${nextSection.name}</span>
+                            <span class="material-symbols-outlined text-lg">arrow_back</span>
+                          </button>`
+                        : `<button onclick="toggleCart()" class="px-6 py-3 rounded-2xl bg-primary text-white text-sm font-bold flex items-center gap-2 active:scale-95 transition-all">
+                            <span>راجع طلبك</span>
+                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                          </button>`
+                    }
+                </div>`;
+
       return `
-            <section class="menu-section px-margin-mobile mt-10" id="${section.id}">
+            <section class="menu-section px-margin-mobile mt-6" id="${section.id}">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-2xl font-extrabold border-r-4 border-primary pr-3 text-[#1c1b1b]">${section.name}</h3>
+                    <span class="text-xs text-on-surface-variant font-bold">${sectionItems.length} صنف</span>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                     ${itemsHTML}
                 </div>
+                ${sectionEndHTML}
             </section>
         `;
     })
@@ -1976,9 +2036,6 @@ function setOrderType(type) {
   const delBtn = document.getElementById("type-delivery-btn");
   const pickBtn = document.getElementById("type-pickup-btn");
   const addressField = document.getElementById("address-field");
-  const deliveryFeeContainer = document.getElementById(
-    "delivery-fee-container",
-  );
 
   const activeClass =
     "flex-1 py-2.5 bg-primary-container text-on-primary font-extrabold text-xs rounded-xl flex items-center justify-center gap-1 transition-all duration-300 shadow-md";
@@ -1989,12 +2046,10 @@ function setOrderType(type) {
     if (delBtn) delBtn.className = activeClass;
     if (pickBtn) pickBtn.className = inactiveClass;
     if (addressField) addressField.classList.remove("hidden");
-    if (deliveryFeeContainer) deliveryFeeContainer.classList.remove("hidden");
   } else {
     if (pickBtn) pickBtn.className = activeClass;
     if (delBtn) delBtn.className = inactiveClass;
     if (addressField) addressField.classList.add("hidden");
-    if (deliveryFeeContainer) deliveryFeeContainer.classList.add("hidden");
   }
 
   updateCartUI();
@@ -2067,13 +2122,7 @@ function updateCartUI() {
     .join("");
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-  document.getElementById("subtotal").innerText = subtotal + " ج.م";
-
-  const branchDeliveryFee = selectedBranch ? selectedBranch.deliveryFee : 15;
-  const deliveryFee = orderType === "delivery" ? branchDeliveryFee : 0;
-  document.getElementById("delivery-fee").innerText = deliveryFee + " ج.م";
-  document.getElementById("total-price").innerText =
-    subtotal + deliveryFee + " ج.م";
+  document.getElementById("total-price").innerText = subtotal + " ج.م";
 }
 
 function changeQty(index, delta) {
@@ -2156,16 +2205,8 @@ function checkout() {
     msg += `▪️ ${item.name} (x${item.qty}) - ${itemTotal} ج.م%0a`;
   });
 
-  const branchDeliveryFee = selectedBranch ? selectedBranch.deliveryFee : 15;
-  const deliveryFee = orderType === "delivery" ? branchDeliveryFee : 0;
-  const finalTotal = subtotal + deliveryFee;
-
   msg += `---------------------------%0a`;
-  msg += `💰 *المجموع الفرعي:* ${subtotal} ج.م%0a`;
-  if (orderType === "delivery") {
-    msg += `🛵 *خدمة التوصيل:* ${deliveryFee} ج.م%0a`;
-  }
-  msg += `💵 *الإجمالي النهائي:* ${finalTotal} ج.م%0a`;
+  msg += `💵 *الإجمالي النهائي:* ${subtotal} ج.م%0a`;
   msg += `---------------------------%0a`;
 
   const branchWa = selectedBranch ? selectedBranch.whatsapp : "201020805451";
@@ -2228,40 +2269,12 @@ function closeBranches() {
   document.body.classList.remove("overflow-hidden");
 }
 
-// 7. Dynamic Scroll Highlighting and scroll-to-hide header
+// 7. Scroll-to-hide header
 let lastScrollTop = 0;
 window.addEventListener(
   "scroll",
   () => {
-    // 7a. Highlighting logic
-    let currentActive = "";
-    mainSections.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        // Highlight when section is visible near the top
-        if (rect.top <= 180) {
-          currentActive = section.id;
-        }
-      }
-    });
-
-    if (currentActive) {
-      mainSections.forEach((section) => {
-        const btn = document.getElementById(`nav-btn-${section.id}`);
-        if (btn) {
-          if (section.id === currentActive) {
-            btn.className =
-              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md transition-all";
-          } else {
-            btn.className =
-              "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white transition-all";
-          }
-        }
-      });
-    }
-
-    // 7b. Scroll-to-hide header & show-on-up-scroll logic
+    // Scroll-to-hide header & show-on-up-scroll logic
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop < 0) return; // avoid iOS bounce behavior
 
