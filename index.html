@@ -493,24 +493,22 @@
           </h2>
         </div>
 
-        <!-- Search Bar -->
-        <div class="px-margin-mobile mt-3 mb-2 max-w-md mx-auto">
-          <div class="relative">
-            <span class="material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
-            <input
-              type="text"
-              id="menu-search"
-              oninput="filterMenu(this.value)"
-              placeholder="ابحث عن أكلتك المفضلة (كريب، بيتزا، برجر...)..."
-              class="w-full pl-4 pr-12 py-3.5 bg-white border border-[#eae7e7] rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-colors"
-            />
-          </div>
-        </div>
-
-        <!-- Categories Navigation Container -->
+        <!-- Search + Categories Navigation Container -->
         <nav
-          class="sticky top-16 z-40 bg-surface/90 backdrop-blur-md py-4 border-b border-gray-100 transition-[top] duration-300"
+          class="sticky top-16 z-40 bg-surface/95 backdrop-blur-md pt-3 pb-4 border-b border-gray-100 transition-[top] duration-300"
         >
+          <div class="px-margin-mobile mb-3 max-w-md mx-auto">
+            <div class="relative">
+              <span class="material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+              <input
+                type="text"
+                id="menu-search"
+                oninput="filterMenu(this.value)"
+                placeholder="ابحث عن أكلتك المفضلة (كريب، بيتزا، برجر...)..."
+                class="w-full pl-4 pr-12 py-3 bg-white border border-[#eae7e7] rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-colors"
+              />
+            </div>
+          </div>
           <div
             class="flex gap-3 overflow-x-auto no-scrollbar px-margin-mobile"
             id="categories-nav"
@@ -524,6 +522,19 @@
           <!-- Rendered dynamically -->
         </div>
       </main>
+
+      <!-- Floating Cart Bar -->
+      <button
+        id="floating-cart-bar"
+        onclick="toggleCart()"
+        class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[45] hidden w-[92%] max-w-md py-3.5 px-5 rounded-2xl bg-primary text-white shadow-[0_8px_25px_rgba(173,43,0,0.35)] flex items-center justify-between active:scale-[0.98] transition-all"
+      >
+        <span class="flex items-center gap-2 font-black text-sm">
+          <span class="material-symbols-outlined text-lg">shopping_cart</span>
+          <span>عرض السلة (<span id="floating-cart-count" class="font-numeric">0</span>)</span>
+        </span>
+        <span class="font-black text-sm font-numeric" id="floating-cart-total">0 ج.م</span>
+      </button>
 
       <!-- Bottom Nav Bar -->
       <nav
@@ -648,12 +659,32 @@
             </div>
           </div>
 
-          <button
-            class="w-full mt-6 py-4 bg-primary text-white font-black rounded-2xl shadow-lg hover:bg-primary-container active:scale-[0.98] transition-all"
-            onclick="addToCartFromModal()"
-          >
-            أضف للسلة
-          </button>
+          <div class="flex items-center gap-3 mt-6">
+            <div class="flex items-center gap-3 bg-[#f0eded] rounded-2xl px-3 py-3">
+              <button
+                onclick="changeModalQty(-1)"
+                class="w-7 h-7 flex items-center justify-center text-primary font-black text-lg rounded-lg hover:bg-white transition-all"
+                aria-label="قلل الكمية"
+              >
+                -
+              </button>
+              <span class="text-base font-black text-[#1c1b1b] w-5 text-center font-numeric" id="modal-qty">1</span>
+              <button
+                onclick="changeModalQty(1)"
+                class="w-7 h-7 flex items-center justify-center text-green-600 font-black text-lg rounded-lg hover:bg-white transition-all"
+                aria-label="زود الكمية"
+              >
+                +
+              </button>
+            </div>
+            <button
+              class="flex-1 py-4 bg-primary text-white font-black rounded-2xl shadow-lg hover:bg-primary-container active:scale-[0.98] transition-all"
+              onclick="addToCartFromModal()"
+              id="modal-add-btn"
+            >
+              أضف للسلة
+            </button>
+          </div>
         </div>
       </div>
 

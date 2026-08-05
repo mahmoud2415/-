@@ -86,9 +86,9 @@ const menuData = [
     id: 101,
     section: "burgers",
     name: "كلاسيك بيف برجر",
-    image: "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
+    image: "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.webp",
     images: [
-      "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg"
+      "assets/menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.webp"
     ],
     desc: "قطعة برجر + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
     sizes: [
@@ -110,9 +110,9 @@ const menuData = [
   },
   {
     id: 103,
-    image: "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.jpeg",
+    image: "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.webp",
     images: [
-          "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.jpeg"
+          "assets/menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.webp"
     ],
     section: "burgers",
     name: "إكسترا مايل",
@@ -168,13 +168,13 @@ const menuData = [
   },
   {
     id: 202,
-    image: "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).jpeg",
+    image: "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).webp",
     images: [
-          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).jpeg",
-          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM.jpeg",
-          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (1).jpeg",
-          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (2).jpeg",
-          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM.jpeg"
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM (1).webp",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.14 AM.webp",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (1).webp",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM (2).webp",
+          "assets/menu_items/كريب بانية - تشيكن كرسبي/WhatsApp Image 2026-08-02 at 12.11.15 AM.webp"
     ],
     section: "crepes",
     name: "كريب بانية / تشيكن كرسبي",
@@ -200,11 +200,11 @@ const menuData = [
   },
   {
     id: 204,
-    image: "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).jpeg",
+    image: "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).webp",
     images: [
-          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).jpeg",
-          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM.jpeg",
-          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.22 AM.jpeg"
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM (1).webp",
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM.webp",
+          "assets/menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.22 AM.webp"
     ],
     section: "crepes",
     name: "كريب سوبر كرانشي (زنجر)",
@@ -242,10 +242,10 @@ const menuData = [
   },
   {
     id: 207,
-    image: "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).jpeg",
+    image: "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).webp",
     images: [
-          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).jpeg",
-          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (2).jpeg"
+          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (1).webp",
+          "assets/menu_items/كريب تشيكن رانش/WhatsApp Image 2026-08-02 at 12.08.57 AM (2).webp"
     ],
     section: "crepes",
     name: "كريب تشيكن رانش",
@@ -295,13 +295,13 @@ const menuData = [
   },
   {
     id: 211,
-    image: "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.jpeg",
+    image: "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.webp",
     images: [
-          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.jpeg",
-          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (1).jpeg",
-          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (2).jpeg",
-          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (3).jpeg",
-          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM.jpeg"
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.18 AM.webp",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (1).webp",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (2).webp",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM (3).webp",
+          "assets/menu_items/كريب مكس فراخ/WhatsApp Image 2026-08-02 at 12.09.19 AM.webp"
     ],
     section: "crepes",
     name: "كريب مكس فراخ",
@@ -658,9 +658,9 @@ const menuData = [
   // === PIZZA ===
   {
     id: 301,
-    image: "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.jpeg",
+    image: "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.webp",
     images: [
-          "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.jpeg"
+          "assets/menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.webp"
     ],
     section: "pizza",
     name: "بيتزا مارجريتا",
@@ -695,10 +695,10 @@ const menuData = [
   },
   {
     id: 304,
-    image: "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.jpeg",
+    image: "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.webp",
     images: [
-          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.jpeg",
-          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.39 AM.jpeg"
+          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.webp",
+          "assets/menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.39 AM.webp"
     ],
     section: "pizza",
     name: "بيتزا مكس جبن",
@@ -733,10 +733,10 @@ const menuData = [
   },
   {
     id: 307,
-    image: "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).jpeg",
+    image: "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).webp",
     images: [
-          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).jpeg",
-          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM.jpeg"
+          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM (1).webp",
+          "assets/menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM.webp"
     ],
     section: "pizza",
     name: "بيتزا تشيكن باربيكيو",
@@ -773,13 +773,13 @@ const menuData = [
     id: 310,
     section: "pizza",
     name: "بيتزا تشيكن رانش",
-    image: "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
+    image: "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).webp",
     images: [
-      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
-      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (1).jpeg",
-      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (2).jpeg",
-      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (3).jpeg",
-      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM.jpeg"
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).webp",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (1).webp",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (2).webp",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM (3).webp",
+      "assets/menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.26 AM.webp"
     ],
     desc: "صدور دجاج كرسبي مع صوص الرانش المفضل",
     sizes: [
@@ -911,10 +911,10 @@ const menuData = [
   },
   {
     id: 322,
-    image: "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.jpeg",
+    image: "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.webp",
     images: [
-          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.jpeg",
-          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.41 AM.jpeg"
+          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.webp",
+          "assets/menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.41 AM.webp"
     ],
     section: "pizza",
     name: "بيتزا بيبيروني",
@@ -1387,6 +1387,7 @@ let cart = [];
 let currentItem = null;
 let currentSelectedSize = null;
 let currentSpiceLevel = "عادي";
+let currentQty = 1;
 let selectedExtras = [];
 let orderType = "delivery"; // delivery or pickup
 let searchQuery = "";
@@ -1810,6 +1811,7 @@ function openCustomizationModal(item) {
   currentItem = item;
   selectedExtras = [];
   currentSpiceLevel = "عادي";
+  currentQty = 1;
 
   // Render Image Carousel
   renderModalCarousel(item);
@@ -1959,8 +1961,19 @@ function calculateCurrentTotalPrice() {
 }
 
 function updateModalPrice() {
-  const totalPrice = calculateCurrentTotalPrice();
-  document.getElementById("modal-item-price").innerText = totalPrice + " ج.م";
+  const unitPrice = calculateCurrentTotalPrice();
+  document.getElementById("modal-item-price").innerText = unitPrice + " ج.م";
+
+  const qtyEl = document.getElementById("modal-qty");
+  if (qtyEl) qtyEl.innerText = currentQty;
+
+  const addBtn = document.getElementById("modal-add-btn");
+  if (addBtn) addBtn.innerText = `أضف للسلة • ${unitPrice * currentQty} ج.م`;
+}
+
+function changeModalQty(delta) {
+  currentQty = Math.min(20, Math.max(1, currentQty + delta));
+  updateModalPrice();
 }
 
 function addToCartFromModal() {
@@ -1987,7 +2000,7 @@ function addToCartFromModal() {
     (i) => i.name === finalName && i.price === finalPrice,
   );
   if (existing) {
-    existing.qty++;
+    existing.qty += currentQty;
     existing.image = existing.image || getProductImage(currentItem);
     existing.productId = existing.productId || currentItem.id;
   } else {
@@ -1996,7 +2009,7 @@ function addToCartFromModal() {
       productId: currentItem.id,
       name: finalName,
       price: finalPrice,
-      qty: 1,
+      qty: currentQty,
       section: currentItem.section,
       image: getProductImage(currentItem),
     });
@@ -2021,7 +2034,6 @@ function toggleCart() {
     overlay.classList.remove("hidden");
     setTimeout(() => overlay.classList.add("opacity-100"), 10);
     drawer.classList.remove("translate-x-[-100%]");
-    updateCartUI();
     document.body.classList.add("overflow-hidden");
   } else {
     overlay.classList.remove("opacity-100");
@@ -2029,6 +2041,8 @@ function toggleCart() {
     setTimeout(() => overlay.classList.add("hidden"), 300);
     document.body.classList.remove("overflow-hidden");
   }
+
+  updateCartUI();
 }
 
 function setOrderType(type) {
@@ -2060,6 +2074,7 @@ function updateCartUI() {
 
   const badge = document.getElementById("cart-badge");
   const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+  const cartTotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 
   if (totalQty > 0) {
     badge.innerText = totalQty;
@@ -2069,6 +2084,8 @@ function updateCartUI() {
     badge.classList.remove("scale-100");
     badge.classList.add("scale-0");
   }
+
+  updateFloatingCartBar(totalQty, cartTotal);
 
   const container = document.getElementById("cart-items");
   const form = document.getElementById("order-form");
@@ -2121,8 +2138,26 @@ function updateCartUI() {
     })
     .join("");
 
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-  document.getElementById("total-price").innerText = subtotal + " ج.م";
+  document.getElementById("total-price").innerText = cartTotal + " ج.م";
+}
+
+// Sticky bar so the customer always sees the running total on mobile
+function updateFloatingCartBar(totalQty, cartTotal) {
+  const bar = document.getElementById("floating-cart-bar");
+  if (!bar) return;
+
+  const drawerOpen = !document
+    .getElementById("cart-drawer")
+    ?.classList.contains("translate-x-[-100%]");
+
+  if (totalQty > 0 && !drawerOpen) {
+    bar.classList.remove("hidden");
+    document.getElementById("floating-cart-count").innerText = totalQty;
+    document.getElementById("floating-cart-total").innerText =
+      cartTotal + " ج.م";
+  } else {
+    bar.classList.add("hidden");
+  }
 }
 
 function changeQty(index, delta) {
@@ -2178,6 +2213,8 @@ function checkout() {
     return;
   }
 
+  saveCustomerInfo({ name, phone, address });
+
   const activeBranchName = selectedBranch ? selectedBranch.name : "غير محدد";
 
   // Prepare message
@@ -2211,6 +2248,35 @@ function checkout() {
 
   const branchWa = selectedBranch ? selectedBranch.whatsapp : "201020805451";
   window.open(`https://wa.me/${branchWa}?text=${msg}`, "_blank");
+}
+
+// Remember the customer so they don't retype their details every order
+function saveCustomerInfo(info) {
+  try {
+    localStorage.setItem("customerInfo", JSON.stringify(info));
+  } catch (e) {
+    /* storage unavailable */
+  }
+}
+
+function loadCustomerInfo() {
+  let info = null;
+  try {
+    info = JSON.parse(localStorage.getItem("customerInfo"));
+  } catch (e) {
+    return;
+  }
+  if (!info) return;
+
+  const fields = {
+    "cust-name": info.name,
+    "cust-phone": info.phone,
+    "cust-address": info.address,
+  };
+  Object.entries(fields).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el && value) el.value = value;
+  });
 }
 
 // 6. Branch Info Modal
@@ -2631,6 +2697,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleMenuRender();
   }
   updateCartUI();
+  loadCustomerInfo();
 
   // Register Service Worker
   if ("serviceWorker" in navigator) {
