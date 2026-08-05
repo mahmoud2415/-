@@ -48,6 +48,7 @@ const mainSections = [
   { id: "rolls", name: "وتش رول", icon: "layers" },
   { id: "hawawshi", name: "حواوشي إيطالي", icon: "local_fire_department" },
   { id: "melted_cheese", name: "غرقانة جبنة", icon: "opacity" },
+  { id: "extras", name: "الإضافات", icon: "lunch_dining" },
 ];
 
 // Local menu images. If future files have descriptive names, the matcher below
@@ -55,7 +56,7 @@ const mainSections = [
 const productImageBasePath = "assets/menu/";
 const productImagePrefix = "zinger-menu-";
 const fallbackProductImage =
-  "premium_fast_food_menu_hero_image_for_zinger_gourmet_restaurant_brand..png";
+  "assets/placeholder.webp";
 
 function buildProductImage(number) {
   return `${productImageBasePath}${productImagePrefix}${String(number).padStart(3, "0")}.webp`;
@@ -1370,16 +1371,114 @@ const menuData = [
       { name: "L", price: 195 },
     ],
   },
+
+  // === EXTRAS (الإضافات زي ما هي في المنيو الورقي) ===
+  {
+    id: 801,
+    section: "extras",
+    name: "باكت بطاطس",
+    desc: "بطاطس مقلية مقرمشة",
+    sizes: [
+      { name: "صغير", price: 30 },
+      { name: "وسط", price: 50 },
+      { name: "كبير", price: 70 },
+    ],
+  },
+  {
+    id: 802,
+    section: "extras",
+    name: "باكت بطاطس شيدر",
+    desc: "بطاطس مقلية بصوص الشيدر",
+    sizes: [
+      { name: "صغير", price: 75 },
+      { name: "كبير", price: 95 },
+    ],
+  },
+  {
+    id: 803,
+    section: "extras",
+    name: "حلقات بصل",
+    desc: "أونيون رينجز مقرمش",
+    sizes: [
+      { name: "صغير", price: 70 },
+      { name: "كبير", price: 90 },
+    ],
+  },
+  {
+    id: 804,
+    section: "extras",
+    name: "موتزريلا ستيكس",
+    desc: "أصابع موتزريلا مقلية",
+    price: 60,
+  },
+  {
+    id: 805,
+    section: "extras",
+    name: "صوص رانش",
+    desc: "علبة صوص رانش",
+    price: 30,
+  },
+  {
+    id: 806,
+    section: "extras",
+    name: "صوص باربيكيو",
+    desc: "علبة صوص باربيكيو",
+    price: 30,
+  },
+  {
+    id: 807,
+    section: "extras",
+    name: "صوص تكساسي",
+    desc: "علبة صوص تكساسي",
+    price: 30,
+  },
+  {
+    id: 808,
+    section: "extras",
+    name: "بيبسي كانز",
+    desc: "مشروب غازي مثلج",
+    price: 20,
+  },
+  {
+    id: 809,
+    section: "extras",
+    name: "بيبسي لتر",
+    desc: "زجاجة 1 لتر",
+    price: 40,
+  },
+  {
+    id: 810,
+    section: "extras",
+    name: "مياه صغيرة",
+    desc: "زجاجة مياه صغيرة",
+    price: 10,
+  },
+  {
+    id: 811,
+    section: "extras",
+    name: "مياه كبيرة",
+    desc: "زجاجة مياه كبيرة",
+    price: 20,
+  },
 ];
 
-// Standard delicious extras
+// الإضافات المتاحة جوه الصنف — منقولة زي ما هي من قسم "الإضافات" في المنيو الورقي
 const commonExtras = [
-  { name: "جبنة شيدر سايحة زياده", price: 15 },
-  { name: "موتزاريلا إكسترا", price: 15 },
-  { name: "صوص رانش", price: 15 },
-  { name: "صوص تكساس حار", price: 15 },
-  { name: "صوص باربيكيو", price: 15 },
-  { name: "شرائح هالبينو حار", price: 10 },
+  { name: "باكت بطاطس صغير", price: 30 },
+  { name: "باكت بطاطس وسط", price: 50 },
+  { name: "باكت بطاطس كبير", price: 70 },
+  { name: "باكت بطاطس شيدر صغير", price: 75 },
+  { name: "باكت بطاطس شيدر كبير", price: 95 },
+  { name: "حلقات بصل صغير", price: 70 },
+  { name: "حلقات بصل كبير", price: 90 },
+  { name: "موتزريلا ستيكس", price: 60 },
+  { name: "صوص رانش", price: 30 },
+  { name: "صوص باربيكيو", price: 30 },
+  { name: "صوص تكساسي", price: 30 },
+  { name: "بيبسي كانز", price: 20 },
+  { name: "بيبسي لتر", price: 40 },
+  { name: "مياه صغيرة", price: 10 },
+  { name: "مياه كبيرة", price: 20 },
 ];
 
 // App State
@@ -1585,9 +1684,9 @@ function renderMenu() {
           const imgFile = getProductImage(item);
 
           return `
-                <div class="bg-white rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer border border-[#eae7e7] hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                <div class="bg-white rounded-2xl overflow-hidden group flex flex-row sm:flex-col cursor-pointer border border-[#eae7e7] hover:border-primary/50 hover:shadow-lg transition-all duration-300"
                      onclick='openCustomizationModal(${JSON.stringify(item)})'>
-                    <div class="relative aspect-[4/3] overflow-hidden bg-gray-50">
+                    <div class="relative w-28 sm:w-full flex-shrink-0 aspect-square sm:aspect-[4/3] overflow-hidden bg-gray-50">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                              src="${imgFile}" 
                              alt="${item.name}"
@@ -1595,13 +1694,13 @@ function renderMenu() {
                              decoding="async"
                              onerror="this.onerror=null; this.src='${fallbackProductImage}'">
                     </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="p-3 sm:p-4 flex-1 min-w-0 flex flex-col justify-between gap-2 sm:gap-3">
                         <div>
                             <div class="flex justify-between items-start gap-2">
                                 <h4 class="font-bold text-sm text-[#1c1b1b] leading-snug group-hover:text-primary transition-colors duration-300">${item.name}</h4>
                                 <span class="font-bold text-primary text-sm whitespace-nowrap">${priceDisplay}</span>
                             </div>
-                            <p class="text-xs text-on-surface-variant/80 line-clamp-2 leading-relaxed mt-1.5 min-h-[32px]">${item.desc || "وجبة زنجر المميزة بنكهتها الخاصة وقرمشتها الفريدة."}</p>
+                            <p class="text-xs text-on-surface-variant/80 line-clamp-2 leading-relaxed mt-1.5">${item.desc || "وجبة زنجر المميزة بنكهتها الخاصة وقرمشتها الفريدة."}</p>
                         </div>
                         <div class="w-full py-2 bg-[#f0eded] rounded-xl flex items-center justify-center text-[#1c1b1b] text-xs font-bold gap-1 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
                             <span>أضف للسلة</span>
@@ -1639,7 +1738,7 @@ function renderMenu() {
                     <h3 class="text-2xl font-extrabold border-r-4 border-primary pr-3 text-[#1c1b1b]">${section.name}</h3>
                     <span class="text-xs text-on-surface-variant font-bold">${sectionItems.length} صنف</span>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                     ${itemsHTML}
                 </div>
                 ${sectionEndHTML}
@@ -2085,8 +2184,6 @@ function updateCartUI() {
     badge.classList.add("scale-0");
   }
 
-  updateFloatingCartBar(totalQty, cartTotal);
-
   const container = document.getElementById("cart-items");
   const form = document.getElementById("order-form");
   const cartFooter = document.getElementById("cart-footer");
@@ -2139,25 +2236,6 @@ function updateCartUI() {
     .join("");
 
   document.getElementById("total-price").innerText = cartTotal + " ج.م";
-}
-
-// Sticky bar so the customer always sees the running total on mobile
-function updateFloatingCartBar(totalQty, cartTotal) {
-  const bar = document.getElementById("floating-cart-bar");
-  if (!bar) return;
-
-  const drawerOpen = !document
-    .getElementById("cart-drawer")
-    ?.classList.contains("translate-x-[-100%]");
-
-  if (totalQty > 0 && !drawerOpen) {
-    bar.classList.remove("hidden");
-    document.getElementById("floating-cart-count").innerText = totalQty;
-    document.getElementById("floating-cart-total").innerText =
-      cartTotal + " ج.م";
-  } else {
-    bar.classList.add("hidden");
-  }
 }
 
 function changeQty(index, delta) {
