@@ -83,6 +83,18 @@
       .animate-fade-in-up {
         animation: fade-in-up 0.25s ease-out;
       }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .animate-float {
+        animation: float 4.5s ease-in-out infinite;
+      }
       .hero-card {
         background: linear-gradient(
           135deg,
@@ -205,7 +217,111 @@
           opacity 0.25s ease,
           transform 0.25s ease;
       }
+      /* Dark Mode Custom Styles */
+      .dark .branch-card {
+        background: linear-gradient(135deg, #201f1f 0%, #1c1b1b 100%);
+        border-color: rgba(255, 255, 255, 0.08);
+        color: #e5e2e1;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+      }
+      .dark .branch-card:hover {
+        border-color: #e33d00;
+        box-shadow: 0 16px 34px rgba(227, 61, 0, 0.25);
+      }
+      .dark .branch-card h3 {
+        color: #e5e2e1;
+      }
+      .dark .branch-address-btn {
+        border-color: rgba(255, 255, 255, 0.08);
+        color: #e5e2e1;
+        background: #2a2a2a;
+      }
+      .dark .branch-address-btn:hover {
+        border-color: #e33d00;
+        color: #e33d00;
+        background: #1c1b1b;
+      }
+      .dark .landing-social-link {
+        background: #1c1b1b;
+        border-color: rgba(255, 255, 255, 0.08);
+        color: #e33d00;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+      }
+      .dark .landing-social-link:hover {
+        background: #201f1f;
+        border-color: #e33d00;
+      }
+      .dark .modal-choice {
+        background: #201f1f;
+        border-color: rgba(255, 255, 255, 0.08);
+        color: #e5e2e1;
+      }
+      .dark .modal-choice:hover {
+        background: #2a2a2a;
+        border-color: #e33d00;
+      }
+      .dark .modal-choice-active {
+        background: #e33d00;
+        border-color: #e33d00;
+        color: #fff;
+        box-shadow: 0 8px 18px rgba(227, 61, 0, 0.3);
+      }
+      .dark .hero-card {
+        background: linear-gradient(
+          135deg,
+          #1c1b1b 0%,
+          #131313 45%,
+          #181717 100%
+        );
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+      .dark .hero-card::before {
+        background: radial-gradient(
+          circle,
+          rgba(227, 61, 0, 0.15) 0%,
+          rgba(227, 61, 0, 0) 70%
+        );
+      }
+      .dark .hero-action-btn:hover {
+        box-shadow: 0 10px 22px rgba(227, 61, 0, 0.25);
+      }
+      .dark .menu-product-card {
+        background: linear-gradient(135deg, #201f1f 0%, #1c1b1b 100%);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+      }
+      .dark .menu-product-card:hover {
+        border-color: rgba(227, 61, 0, 0.45);
+        box-shadow: 0 18px 40px rgba(227, 61, 0, 0.18);
+      }
+      @keyframes pop {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+      }
+      .animate-pop {
+        animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
     </style>
+
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("selectedTheme");
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
 
     <script id="tailwind-config">
       tailwind.config = {
@@ -213,8 +329,8 @@
         theme: {
           extend: {
             colors: {
-              primary: "#ad2b00",
-              "primary-container": "#d73a05",
+              primary: "#e33d00",
+              "primary-container": "#ff5117",
               surface: "#fcf9f8",
               "on-surface": "#1c1b1b",
               "on-surface-variant": "#5b4039",
@@ -232,21 +348,27 @@
       };
     </script>
   </head>
-  <body class="bg-surface text-on-surface overflow-x-hidden">
+  <body
+    class="bg-surface text-on-surface dark:bg-[#131313] dark:text-[#e5e2e1] transition-colors duration-300 overflow-x-hidden"
+  >
     <!-- ========================================== -->
     <!-- --- BRANCH SELECTION LANDING SCREEN --- -->
     <!-- ========================================== -->
     <div
       id="branch-landing-page"
-      class="fixed inset-0 z-[150] bg-gradient-to-b from-[#fff7f4] via-surface to-[#f6e8e4] text-[#1c1b1b] overflow-y-auto px-4 py-8 flex flex-col justify-between fade-transition"
+      class="fixed inset-0 z-[150] bg-gradient-to-b from-[#fff7f4] via-surface to-[#f6e8e4] dark:from-[#1c1b1b] dark:via-[#131313] dark:to-[#0e0e0e] text-[#1c1b1b] dark:text-[#e5e2e1] overflow-y-auto px-4 py-8 flex flex-col justify-between fade-transition transition-colors duration-300"
     >
       <div class="max-w-md mx-auto w-full flex flex-col items-center">
         <!-- Brand Header -->
         <div class="w-full text-center mt-4 mb-8">
-          <h1 class="text-4xl font-black tracking-tight text-[#1c1b1b]">
+          <h1
+            class="text-4xl font-black tracking-tight text-[#1c1b1b] dark:text-[#e5e2e1]"
+          >
             مطعم زنجر
           </h1>
-          <p class="text-xs text-[#b12d00] font-bold tracking-widest mt-1">
+          <p
+            class="text-xs text-[#b12d00] dark:text-[#e33d00] font-bold tracking-widest mt-1"
+          >
             ZINGER
           </p>
         </div>
@@ -304,11 +426,11 @@
         </div>
 
         <h2
-          class="text-xl font-black tracking-wide text-center text-[#1c1b1b] mb-2"
+          class="text-xl font-black tracking-wide text-center text-[#1c1b1b] dark:text-[#e5e2e1] mb-2"
         >
           اختر الفرع
         </h2>
-        <p class="text-xs text-[#5b4039] text-center mb-6">
+        <p class="text-xs text-[#5b4039] dark:text-gray-400 text-center mb-6">
           اضغط على الفرع لفتح المنيو مباشرة
         </p>
 
@@ -531,27 +653,31 @@
 
       <!-- Landing Page Footer -->
       <footer
-        class="w-full mt-16 border-t border-gray-200/50 pt-8 pb-4 text-right"
+        class="w-full mt-16 border-t border-gray-200/50 dark:border-white/10 pt-8 pb-4 text-right"
       >
         <div class="max-w-md mx-auto space-y-6">
           <div class="text-center">
             <h3 class="text-lg font-black text-primary mb-2">
               مطعم زنجر | ZINGER
             </h3>
-            <p class="text-xs text-[#5b4039] leading-relaxed px-4">
+            <p
+              class="text-xs text-[#5b4039] dark:text-gray-400 leading-relaxed px-4"
+            >
               طعم زنجر المميز بنكهته وقرمشته الفريدة. نقدم لعملائنا برجر، كريب،
               بيتزا، وباستا بأجود المكونات الطازجة.
             </p>
           </div>
           <div
-            class="bg-white/40 backdrop-blur-md border border-[#e4beb4]/40 p-5 rounded-2xl space-y-3"
+            class="bg-white/40 dark:bg-[#1c1b1b]/40 backdrop-blur-md border border-[#e4beb4]/40 dark:border-white/10 p-5 rounded-2xl space-y-3"
           >
             <h4
-              class="text-xs font-bold text-primary mb-2 border-b border-[#e4beb4]/30 pb-2"
+              class="text-xs font-bold text-primary mb-2 border-b border-[#e4beb4]/30 dark:border-white/10 pb-2"
             >
               📍 فروعنا وعناويننا:
             </h4>
-            <ul class="text-[11px] text-[#5b4039] space-y-2.5">
+            <ul
+              class="text-[11px] text-[#5b4039] dark:text-gray-300 space-y-2.5"
+            >
               <li class="flex items-start gap-1">
                 <span class="text-primary font-bold">• فرع الإسماعيلية:</span>
                 <span>شبين الكوم - بجوار ميدان شبين</span>
@@ -570,7 +696,9 @@
               </li>
             </ul>
           </div>
-          <p class="text-center text-[10px] text-[#5b4039] font-numeric pt-4">
+          <p
+            class="text-center text-[10px] text-[#5b4039] dark:text-gray-400 font-numeric pt-4"
+          >
             © 2026 مطعم زنجر. All rights reserved.
           </p>
         </div>
@@ -657,7 +785,7 @@
 
       <!-- Top App Bar -->
       <header
-        class="w-full z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm flex items-center justify-between px-margin-mobile h-16"
+        class="sticky top-0 w-full z-50 bg-white/95 dark:bg-[#131313]/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/10 shadow-sm flex items-center justify-between px-margin-mobile h-16 transition-colors duration-300"
       >
         <div class="flex items-center gap-3">
           <h1
@@ -666,7 +794,7 @@
             مطعم زنجر
           </h1>
           <div
-            class="flex items-center bg-gray-100 text-xs px-2.5 py-1 rounded-full text-[#1c1b1b] font-bold"
+            class="flex items-center bg-gray-100 dark:bg-[#201f1f] text-xs px-2.5 py-1 rounded-full text-[#1c1b1b] dark:text-[#e5e2e1] font-bold"
           >
             <span class="material-symbols-outlined text-xs ml-1 text-primary"
               >store</span
@@ -676,13 +804,11 @@
               onclick="changeBranch()"
               class="mr-2 text-primary font-bold hover:underline flex items-center text-[10px]"
             >
-              (تغيير)
+              غيير الفرع
             </button>
           </div>
         </div>
-        <div class="flex items-center gap-4">
-          <!-- تم إزالة أيقونة الاتصال العلوية حسب الطلب -->
-        </div>
+        
       </header>
 
       <main class="pb-32 max-w-container-max mx-auto">
@@ -691,9 +817,19 @@
             class="hero-card relative overflow-hidden rounded-[30px] p-4 sm:p-5"
           >
             <div class="grid gap-4 md:grid-cols-[1.1fr_0.9fr] items-center">
-              <div class="order-2 md:order-1 text-right">
+              <div
+                class="order-2 md:order-1 text-center md:text-right flex flex-col items-center md:items-start"
+              >
+                <div
+                  class="inline-flex items-center gap-1.5 bg-[#ad2b00]/10 border border-[#ad2b00]/25 text-[#ad2b00] px-3.5 py-1.5 rounded-full text-[11px] font-bold mb-3 shadow-sm select-none"
+                >
+                  <span class="material-symbols-outlined text-xs animate-pulse"
+                    >local_fire_department</span
+                  >
+                  <span>الأكثر طلباً في المنطقة 🔥</span>
+                </div>
                 <p
-                  class="text-[11px] font-black tracking-[0.25em] text-[#b12d00] mb-2"
+                  class="text-[11px] font-black tracking-[0.2em] text-[#b12d00] mb-2 uppercase"
                 >
                   طعم جديد في كل لقمة
                 </p>
@@ -702,11 +838,13 @@
                 >
                   اكتشف أشهر الوجبات من مطعم زنجر
                 </h2>
-                <p class="mt-3 text-sm sm:text-[15px] leading-8 text-[#5b4039]">
-                  من البيتزا والكريب إلى البرجر اللذيذ، كل شيء مصمم لتقديم تجربة
+                <p
+                  class="mt-3 text-sm sm:text-[15px] leading-8 text-[#5b4039] max-w-lg"
+                >
+                  من البيتزا والكريب والباستا إلى البرجر اللذيذ، كل شيء مصمم لتقديم تجربة
                   طعام مريحة ومميزة.
                 </p>
-                <div class="mt-5 flex flex-wrap gap-3">
+                <div class="mt-6 flex justify-center w-full">
                   <a
                     href="#menu-section"
                     class="hero-action-btn inline-flex items-center justify-center rounded-2xl bg-primary px-5 py-3 text-sm font-black text-white shadow-lg"
@@ -716,7 +854,7 @@
                 </div>
               </div>
 
-              <div class="order-1 md:order-2">
+              <div class="order-1 md:order-2 animate-float">
                 <div
                   class="overflow-hidden rounded-[24px] border border-white/70 shadow-md"
                 >
@@ -733,7 +871,7 @@
 
         <!-- Branch line -->
         <div id="menu-section" class="px-margin-mobile mt-4 text-right">
-          <h2 class="text-lg font-black text-[#1c1b1b]">
+          <h2 class="text-lg font-black text-[#1c1b1b] dark:text-[#e5e2e1]">
             منيو
             <span class="text-primary" id="hero-branch-name">فرع فاقوس</span>
           </h2>
@@ -741,12 +879,12 @@
 
         <!-- Search + Categories Navigation Container -->
         <nav
-          class="z-40 bg-surface/95 backdrop-blur-md pt-3 pb-4 border-b border-gray-100"
+          class="sticky top-16 z-40 bg-surface/95 dark:bg-[#131313]/95 backdrop-blur-md pt-3 pb-4 border-b border-gray-100 dark:border-white/10 shadow-sm transition-colors duration-300"
         >
           <div class="px-margin-mobile mb-3 max-w-md mx-auto">
             <div class="relative">
               <span
-                class="material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant"
+                class="material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 text-on-surface-variant dark:text-gray-400"
                 >search</span
               >
               <input
@@ -754,7 +892,7 @@
                 id="menu-search"
                 oninput="filterMenu(this.value)"
                 placeholder="ابحث عن أكلتك المفضلة (كريب، بيتزا، برجر...)..."
-                class="w-full pl-4 pr-12 py-3 bg-white border border-[#eae7e7] rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-colors"
+                class="w-full pl-4 pr-12 py-3 bg-white dark:bg-[#1c1b1b] border border-[#eae7e7] dark:border-white/10 rounded-2xl text-sm text-[#1c1b1b] dark:text-[#e5e2e1] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm transition-colors"
               />
             </div>
           </div>
@@ -774,7 +912,7 @@
 
       <!-- Bottom Nav Bar -->
       <nav
-        class="fixed bottom-0 w-full z-50 rounded-t-3xl bg-white border-t border-gray-100 shadow-[0_-4px_25px_rgba(26,26,26,0.06)] flex justify-around items-center h-20 pb-safe px-4"
+        class="fixed bottom-0 w-full z-50 rounded-t-3xl bg-white dark:bg-[#1c1b1b] border-t border-gray-100 dark:border-white/10 shadow-[0_-4px_25px_rgba(0,0,0,0.2)] flex justify-around items-center h-20 pb-safe px-4 transition-colors duration-300"
       >
         <button
           onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
@@ -784,7 +922,7 @@
           <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
         </button>
         <button
-          class="relative flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+          class="relative flex flex-col items-center justify-center text-on-surface-variant dark:text-gray-400 hover:text-primary transition-colors"
           onclick="toggleCart()"
         >
           <span class="material-symbols-outlined">shopping_cart</span>
@@ -797,14 +935,14 @@
         </button>
         <a
           href="tel:01020805451"
-          class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors branch-call-link"
+          class="flex flex-col items-center justify-center text-on-surface-variant dark:text-gray-400 hover:text-primary transition-colors branch-call-link"
         >
           <span class="material-symbols-outlined">phone</span>
           <span class="text-[10px] mt-1">اتصال</span>
         </a>
         <button
           onclick="showBranches()"
-          class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+          class="flex flex-col items-center justify-center text-on-surface-variant dark:text-gray-400 hover:text-primary transition-colors"
         >
           <span class="material-symbols-outlined">location_on</span>
           <span class="text-[10px] mt-1">المطعم</span>
@@ -824,10 +962,10 @@
         id="custom-modal"
       >
         <div
-          class="bg-[#fcf9f8] rounded-t-3xl p-6 safe-bottom border-t border-[#e4beb4] shadow-2xl max-h-[82vh] flex flex-col overflow-hidden"
+          class="bg-[#fcf9f8] dark:bg-[#1c1b1b] rounded-t-3xl p-6 safe-bottom border-t border-[#e4beb4] dark:border-white/10 shadow-2xl max-h-[82vh] flex flex-col overflow-hidden transition-colors duration-300"
         >
           <div
-            class="w-12 h-1 bg-[#e4beb4] rounded-full mx-auto mb-6 flex-shrink-0"
+            class="w-12 h-1 bg-[#e4beb4] dark:bg-white/10 rounded-full mx-auto mb-6 flex-shrink-0"
           ></div>
 
           <div
@@ -836,7 +974,7 @@
           >
             <!-- Image Carousel -->
             <div
-              class="relative w-full aspect-[16/10] bg-[#f5ebe8] rounded-2xl overflow-hidden mt-6 mb-5 hidden group"
+              class="relative w-full aspect-[16/10] bg-[#f5ebe8] dark:bg-[#201f1f] rounded-2xl overflow-hidden mt-6 mb-5 hidden group"
               id="modal-image-container"
             >
               <div
@@ -877,7 +1015,7 @@
             </div>
 
             <h3
-              class="text-xl font-black text-[#1c1b1b] mb-1 flex-shrink-0"
+              class="text-xl font-black text-[#1c1b1b] dark:text-[#e5e2e1] mb-1 flex-shrink-0"
               id="modal-item-name"
             >
               اسم الوجبة
@@ -891,7 +1029,8 @@
 
             <!-- Size -->
             <div id="modal-sizes-section">
-              <label class="block text-sm font-bold mb-3 text-[#1c1b1b]"
+              <label
+                class="block text-sm font-bold mb-3 text-[#1c1b1b] dark:text-[#e5e2e1]"
                 >الحجم</label
               >
               <div class="grid grid-cols-2 gap-3" id="modal-sizes-container">
@@ -902,7 +1041,7 @@
             <!-- Spice Level -->
             <div id="modal-spicy-section">
               <label
-                class="text-sm font-bold flex items-center gap-2 mb-3 text-[#1c1b1b]"
+                class="text-sm font-bold flex items-center gap-2 mb-3 text-[#1c1b1b] dark:text-[#e5e2e1]"
               >
                 <span
                   class="material-symbols-outlined text-primary"
@@ -914,14 +1053,14 @@
               <div class="grid grid-cols-2 gap-3" id="modal-spicy-container">
                 <button
                   onclick="setSpiceLevel('عادي')"
-                  class="spice-btn py-3 rounded-xl border border-gray-200 text-sm font-bold text-[#1c1b1b]"
+                  class="spice-btn py-3 rounded-xl border border-gray-200 dark:border-white/10 text-sm font-bold text-[#1c1b1b] dark:text-[#e5e2e1]"
                   id="spice-btn-normal"
                 >
                   عادي
                 </button>
                 <button
                   onclick="setSpiceLevel('حار 🔥')"
-                  class="spice-btn py-3 rounded-xl border border-gray-200 text-sm font-bold text-[#1c1b1b]"
+                  class="spice-btn py-3 rounded-xl border border-gray-200 dark:border-white/10 text-sm font-bold text-[#1c1b1b] dark:text-[#e5e2e1]"
                   id="spice-btn-spicy"
                 >
                   حار 🔥
@@ -931,7 +1070,8 @@
 
             <!-- Add-ons -->
             <div id="modal-extras-section">
-              <label class="block text-sm font-bold mb-3 text-[#1c1b1b]"
+              <label
+                class="block text-sm font-bold mb-3 text-[#1c1b1b] dark:text-[#e5e2e1]"
                 >الإضافات</label
               >
               <div class="space-y-3" id="modal-extras-container">
@@ -942,23 +1082,23 @@
 
           <div class="flex items-center gap-3 mt-6">
             <div
-              class="flex items-center gap-3 bg-[#f0eded] rounded-2xl px-3 py-3"
+              class="flex items-center gap-3 bg-[#f0eded] dark:bg-[#201f1f] rounded-2xl px-3 py-3"
             >
               <button
                 onclick="changeModalQty(-1)"
-                class="w-7 h-7 flex items-center justify-center text-primary font-black text-lg rounded-lg hover:bg-white transition-all"
+                class="w-7 h-7 flex items-center justify-center text-primary font-black text-lg rounded-lg hover:bg-white dark:hover:bg-[#1c1b1b] transition-all"
                 aria-label="قلل الكمية"
               >
                 -
               </button>
               <span
-                class="text-base font-black text-[#1c1b1b] w-5 text-center font-numeric"
+                class="text-base font-black text-[#1c1b1b] dark:text-[#e5e2e1] w-5 text-center font-numeric"
                 id="modal-qty"
                 >1</span
               >
               <button
                 onclick="changeModalQty(1)"
-                class="w-7 h-7 flex items-center justify-center text-green-600 font-black text-lg rounded-lg hover:bg-white transition-all"
+                class="w-7 h-7 flex items-center justify-center text-green-600 font-black text-lg rounded-lg hover:bg-white dark:hover:bg-[#1c1b1b] transition-all"
                 aria-label="زود الكمية"
               >
                 +
@@ -984,14 +1124,14 @@
 
       <!-- Cart Drawer -->
       <div
-        class="fixed left-0 top-0 bottom-0 w-[92%] max-w-lg bg-gradient-to-b from-primary/10 via-[#fff7f4] to-surface border-r border-[#f4d8cf] z-[90] translate-x-[-100%] transition-transform duration-500 ease-in-out shadow-2xl flex flex-col h-full rounded-r-3xl overflow-hidden"
+        class="fixed left-0 top-0 bottom-0 w-[92%] max-w-lg bg-gradient-to-b from-primary/10 via-[#fff7f4] to-surface dark:from-primary/20 dark:via-[#1c1b1b] dark:to-[#131313] border-r border-[#f4d8cf] dark:border-white/10 z-[90] translate-x-[-100%] transition-transform duration-500 ease-in-out shadow-2xl flex flex-col h-full rounded-r-3xl overflow-hidden transition-colors duration-300"
         id="cart-drawer"
       >
         <div
-          class="p-6 border-b border-[#e8c2b5] flex items-center justify-between bg-primary/15 backdrop-blur-sm rounded-b-3xl"
+          class="p-6 border-b border-[#e8c2b5] dark:border-white/10 flex items-center justify-between bg-primary/15 dark:bg-primary/20 backdrop-blur-sm rounded-b-3xl"
         >
           <h3
-            class="text-2xl font-black text-[#1c1b1b] flex items-center gap-2"
+            class="text-2xl font-black text-[#1c1b1b] dark:text-[#e5e2e1] flex items-center gap-2"
           >
             <span class="material-symbols-outlined text-primary"
               >shopping_cart</span
@@ -999,7 +1139,7 @@
             سلة المشتريات
           </h3>
           <button
-            class="material-symbols-outlined text-[#5b4039] w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 active:scale-90 transition-transform"
+            class="material-symbols-outlined text-[#5b4039] dark:text-gray-300 w-8 h-8 rounded-full bg-gray-100 dark:bg-[#201f1f] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#2a2a2a] active:scale-90 transition-transform"
             onclick="toggleCart()"
           >
             close
@@ -1015,29 +1155,29 @@
           </div>
 
           <div class="hidden" id="order-form">
-            <hr class="border-gray-100 my-6" />
+            <hr class="border-gray-100 dark:border-white/10 my-6" />
             <h4
-              class="text-lg font-black text-[#1c1b1b] mb-4 flex items-center gap-2"
+              class="text-lg font-black text-[#1c1b1b] dark:text-[#e5e2e1] mb-4 flex items-center gap-2"
             >
               <span class="material-symbols-outlined text-primary">person</span>
               بيانات الطلب والتوصيل
             </h4>
             <div class="space-y-4">
               <input
-                class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                class="w-full p-4 bg-white dark:bg-[#201f1f] border border-gray-200 dark:border-white/10 rounded-2xl text-sm text-[#1c1b1b] dark:text-[#e5e2e1] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 id="cust-name"
                 placeholder="الاسم بالكامل"
                 type="text"
               />
               <input
-                class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                class="w-full p-4 bg-white dark:bg-[#201f1f] border border-gray-200 dark:border-white/10 rounded-2xl text-sm text-[#1c1b1b] dark:text-[#e5e2e1] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 id="cust-phone"
                 placeholder="رقم الموبايل"
                 type="tel"
               />
 
               <div
-                class="bg-gray-100 border border-gray-200 rounded-2xl p-1 flex gap-1"
+                class="bg-gray-100 dark:bg-[#201f1f] border border-gray-200 dark:border-white/10 rounded-2xl p-1 flex gap-1"
               >
                 <button
                   type="button"
@@ -1054,7 +1194,7 @@
                   type="button"
                   onclick="setOrderType('pickup')"
                   id="type-pickup-btn"
-                  class="flex-1 py-2.5 text-[#5b4039] hover:text-[#1c1b1b] font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-all duration-300"
+                  class="flex-1 py-2.5 text-[#5b4039] dark:text-gray-400 hover:text-[#1c1b1b] dark:hover:text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-all duration-300"
                 >
                   <span class="material-symbols-outlined text-base">store</span>
                   استلام من المطعم بنفسي
@@ -1063,18 +1203,9 @@
 
               <div id="address-field">
                 <textarea
-                  class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  class="w-full p-4 bg-white dark:bg-[#201f1f] border border-gray-200 dark:border-white/10 rounded-2xl text-sm text-[#1c1b1b] dark:text-[#e5e2e1] placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                   id="cust-address"
                   placeholder="العنوان بالتفصيل (اسم المنطقة، الشارع، علامة مميزة)"
-                  rows="2"
-                ></textarea>
-              </div>
-
-              <div>
-                <textarea
-                  class="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm text-[#1c1b1b] placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                  id="order-note"
-                  placeholder="ملاحظات إضافية (مثال: بدون كاتشب، الشطة خفيفة)"
                   rows="2"
                 ></textarea>
               </div>
@@ -1083,12 +1214,12 @@
 
           <!-- Cart Summary & Checkout (Scrollable Card) -->
           <div
-            class="p-5 border border-[#f4d8cf] bg-[#fff6f2] rounded-3xl mt-6 shadow-sm"
+            class="p-5 border border-[#f4d8cf] dark:border-white/10 bg-[#fff6f2] dark:bg-[#201f1f] rounded-3xl mt-6 shadow-sm transition-colors duration-300"
             id="cart-footer"
           >
             <div class="space-y-3 mb-6 font-numeric">
               <div
-                class="flex justify-between text-xl font-black text-[#1c1b1b]"
+                class="flex justify-between text-xl font-black text-[#1c1b1b] dark:text-[#e5e2e1]"
               >
                 <span class="font-sans">الإجمالي</span>
                 <span id="total-price" class="text-primary">0 ج.م</span>
@@ -1116,7 +1247,7 @@
         onclick="closeBranches()"
       ></div>
       <div
-        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-white border border-gray-100 rounded-3xl p-6 z-[110] scale-95 transition-all duration-300 hidden opacity-0 text-right"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-white dark:bg-[#1c1b1b] border border-gray-100 dark:border-white/10 rounded-3xl p-6 z-[110] scale-95 transition-all duration-300 hidden opacity-0 text-right transition-colors duration-300"
         id="branch-modal"
       >
         <h4
@@ -1132,7 +1263,7 @@
           <!-- Populated dynamically -->
         </div>
         <button
-          class="w-full mt-6 py-3 bg-gray-100 border border-gray-200 hover:bg-gray-200 text-[#1c1b1b] font-bold rounded-xl active:scale-[0.98] transition-all"
+          class="w-full mt-6 py-3 bg-gray-100 dark:bg-[#201f1f] border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-[#2a2a2a] text-[#1c1b1b] dark:text-[#e5e2e1] font-bold rounded-xl active:scale-[0.98] transition-all"
           onclick="closeBranches()"
         >
           إغلاق
