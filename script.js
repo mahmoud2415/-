@@ -6,8 +6,8 @@ const branches = [
   {
     id: "ismailia",
     name: "فرع الإسماعيلية - شبين",
-    phone: "01020805451",
-    whatsapp: "201020805451",
+    phone: "01034456624",
+    whatsapp: "201034456624",
     address: "الإسماعيلية - حي شبين الكوم - بجوار ميدان شبين",
     mapLink: "https://maps.google.com/?q=شبين+الكوم+الاسماعيلية",
   },
@@ -32,8 +32,8 @@ const branches = [
   {
     id: "abukibir",
     name: "فرع أبو كبير",
-    phone: "01020805451",
-    whatsapp: "201020805451",
+    phone: "01013707060",
+    whatsapp: "201013707060",
     address: "أبو كبير - شارع مصطفى كامل - خلف المحكمة",
     mapLink: "https://maps.google.com/?q=أبو+كبير+الشرقية",
   },
@@ -58,6 +58,47 @@ const mainSections = [
 const productImageBasePath = "assets/menu/";
 const productImagePrefix = "zinger-menu-";
 const fallbackProductImage = "assets/placeholder.webp";
+const crepeFallbackImage =
+  "menu_items/كريب سوبر كرانشي (زنجر)/WhatsApp Image 2026-08-02 at 12.10.21 AM.jpeg";
+const pizzaFallbackImages = [
+  "menu_items/بيتزا مارجريتا/WhatsApp Image 2026-08-02 at 12.10.02 AM.jpeg",
+  "menu_items/بيتزا مكس جبن/WhatsApp Image 2026-08-02 at 12.10.38 AM.jpeg",
+  "menu_items/بيتزا تشيكن باربيكيو/WhatsApp Image 2026-08-02 at 12.11.02 AM.jpeg",
+  "menu_items/بيتزا تشيكن رانش/WhatsApp Image 2026-08-02 at 12.11.25 AM (1).jpeg",
+  "menu_items/بيتزا بيبيروني/WhatsApp Image 2026-08-02 at 12.11.40 AM.jpeg",
+];
+const burgerFallbackImages = [
+  "menu_items/كلاسيك بيف برجر/WhatsApp Image 2026-08-02 at 1.58.49 AM.jpeg",
+  "menu_items/إكسترا مايل/WhatsApp Image 2026-08-02 at 1.51.11 AM.jpeg",
+];
+const pastaFallbackImage = "assets/pasta-clean.jpg";
+const rollsFallbackImage = "menu_items/وش رول/unnamed.jpg";
+const hawawshiFallbackImage = "menu_items/حووشي.jpg";
+const meltedCheeseFallbackImage = "menu_items/غرقانة جبنه.jpg";
+const extrasFallbackImages = {
+  fries:
+    "menu_items/الإضافات/sfda.jpg",
+  cheddarFries:
+    "https://loremflickr.com/900/700/french-fries,cheese?lock=802",
+  onionRings:
+    "menu_items/الإضافات/unnafdsaasfmed.jpg",
+  mozzarella:
+    "menu_items/الإضافات/sdfs.jpg",
+  ranch:
+    "menu_items/الإضافات/df.jpg",
+  barbecue:
+    "menu_items/الإضافات/dsfa.jpg",
+  texas:
+    "menu_items/الإضافات/unnamdsed.jpg",
+  pepsiCan:
+    "menu_items/الإضافات/unnamed.jpg",
+  pepsiBottle:
+    "menu_items/الإضافات/unnamedd.jpg",
+  smallWater:
+    "menu_items/الإضافات/unnadfdfmed.jpg",
+  largeWater:
+    "menu_items/الإضافات/unnamexxzd.jpg",
+};
 
 function buildProductImage(number) {
   return `${productImageBasePath}${productImagePrefix}${String(number).padStart(3, "0")}.webp`;
@@ -104,6 +145,8 @@ const menuData = [
     id: 102,
     section: "burgers",
     name: "برجر هالبينو",
+    image:
+      "assets/menu/zinger-menu-005.webp",
     desc: "قطعة برجر + هالبينو + صوص تكساس + صوص رانش + كابوتشا + طماطم + خيار مخلل",
     sizes: [
       { name: "سنجل (200جم)", price: 180 },
@@ -131,6 +174,8 @@ const menuData = [
     id: 104,
     section: "burgers",
     name: "سوبر نايت برجر",
+    image:
+      "assets/menu/zinger-menu-010.webp",
     desc: "قطعة برجر + شرائح شيدر + بيف بيكون + بصل مكرمل + مشوي + كابوتشا + طماطم + خيار مخلل",
     sizes: [
       { name: "سنجل (200جم)", price: 180 },
@@ -142,6 +187,8 @@ const menuData = [
     id: 105,
     section: "burgers",
     name: "برجر تشيز فري",
+    image:
+      "assets/menu/zinger-menu-009.webp",
     desc: "قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل",
     price: 340,
     sizes: [{ name: "تربل (600جم)", price: 340 }],
@@ -150,6 +197,8 @@ const menuData = [
     id: 106,
     section: "burgers",
     name: "برجر كوردن بلو",
+    image:
+      "assets/menu/zinger-menu-011.webp",
     desc: "قطعة بيف + كوردن بلو تشيكن + بيف بيكون + تركي مدخن + صوص رانش + صوص شيدر مدخن + كابوتشا + طماطم + خيار مخلل",
     sizes: [
       { name: "سنجل (200جم)", price: 160 },
@@ -162,6 +211,8 @@ const menuData = [
     id: 201,
     section: "crepes",
     name: "كريب مشكل جبن",
+    image:
+      "assets/menu/zinger-menu-027.webp",
     desc: "ميكس أجبان زنجر الخاصة",
     sizes: [
       { name: "M", price: 100 },
@@ -195,6 +246,8 @@ const menuData = [
     id: 203,
     section: "crepes",
     name: "كريب كرسبي ناجتس",
+    image:
+      "assets/menu/zinger-menu-012.webp",
     desc: "قطع ناجتس دجاج ذهبية",
     sizes: [
       { name: "M", price: 95 },
@@ -226,6 +279,8 @@ const menuData = [
     id: 205,
     section: "crepes",
     name: "كريب زنجر سوبريم",
+    image:
+      "assets/menu/zinger-menu-014.webp",
     desc: "زنجر مقرمش مع تركي مدخن وصوصات",
     sizes: [
       { name: "M", price: 145 },
@@ -238,6 +293,8 @@ const menuData = [
     id: 206,
     section: "crepes",
     name: "كريب تشيكن باربيكيو",
+    image:
+      "assets/menu/zinger-menu-015.webp",
     desc: "دجاج مقرمش مع صوص الباربيكيو المميز",
     sizes: [
       { name: "M", price: 145 },
@@ -268,6 +325,8 @@ const menuData = [
     id: 208,
     section: "crepes",
     name: "كريب تشيكن هالبينو",
+    image:
+      "assets/menu/zinger-menu-020.webp",
     desc: "دجاج كرسبي مع شرائح هالبينو وصوص حار",
     sizes: [
       { name: "M", price: 145 },
@@ -280,6 +339,8 @@ const menuData = [
     id: 209,
     section: "crepes",
     name: "كريب شيش فحم",
+    image:
+      "assets/menu/zinger-menu-019.webp",
     desc: "شيش طاووق مشوي على الفحم متبل",
     sizes: [
       { name: "M", price: 160 },
@@ -292,6 +353,8 @@ const menuData = [
     id: 210,
     section: "crepes",
     name: "كريب فاهيتا دجاج",
+    image:
+      "assets/menu/zinger-menu-059.webp",
     desc: "فاهيتا دجاج جريل مع فلفل وبصل وبهارات",
     sizes: [
       { name: "M", price: 160 },
@@ -325,6 +388,8 @@ const menuData = [
     id: 212,
     section: "crepes",
     name: "كريب مكس لحوم",
+    image:
+      "assets/menu/zinger-menu-056.webp",
     desc: "ميكس برجر لحم وسجق وهوت دوج",
     sizes: [
       { name: "M", price: 150 },
@@ -337,6 +402,8 @@ const menuData = [
     id: 213,
     section: "crepes",
     name: "كريب مكس مشكل",
+    image:
+      "assets/menu/zinger-menu-054.webp",
     desc: "ميكس لحوم ودجاج متبل معاً",
     sizes: [
       { name: "M", price: 155 },
@@ -349,6 +416,8 @@ const menuData = [
     id: 214,
     section: "crepes",
     name: "كريب شيش ع زنجر",
+    image:
+      "assets/menu/zinger-menu-061.webp",
     desc: "شيش طاووق مشوي مع قطع زنجر حارة",
     sizes: [
       { name: "M", price: 160 },
@@ -361,6 +430,8 @@ const menuData = [
     id: 215,
     section: "crepes",
     name: "كريب زنجر سبيشيال",
+    image:
+      "assets/menu/zinger-menu-055.webp",
     desc: "زنجر حار مضاعف مع إضافات السعادة",
     sizes: [
       { name: "XL", price: 190 },
@@ -371,6 +442,8 @@ const menuData = [
     id: 216,
     section: "crepes",
     name: "كريب تشيكن بيكون",
+    image:
+      "assets/menu/zinger-menu-060.webp",
     desc: "كرسبي مع بيف بيكون وصوص جبنة",
     sizes: [
       { name: "M", price: 160 },
@@ -383,6 +456,8 @@ const menuData = [
     id: 217,
     section: "crepes",
     name: "كريب شيش على سوسيس",
+    image:
+      "assets/menu/zinger-menu-063.webp",
     desc: "شيش مشوي مع قطع سوسيس",
     sizes: [
       { name: "M", price: 160 },
@@ -395,6 +470,8 @@ const menuData = [
     id: 218,
     section: "crepes",
     name: "كريب زنجر ع بانية",
+    image:
+      "assets/menu/zinger-menu-062.webp",
     desc: "ميكس زنجر حار وبانيه كلاسيك",
     sizes: [
       { name: "M", price: 140 },
@@ -407,6 +484,8 @@ const menuData = [
     id: 219,
     section: "crepes",
     name: "كريب زنجر ع سوسيس",
+    image:
+      "assets/menu/zinger-menu-064.webp",
     desc: "زنجر حار مع هوت دوج جريل",
     sizes: [
       { name: "M", price: 150 },
@@ -1400,6 +1479,10 @@ const menuData = [
     id: 802,
     section: "extras",
     name: "باكت بطاطس شيدر",
+    image:  extrasFallbackImages.fries,
+    images: [
+      extrasFallbackImages.fries,
+    ],
     desc: "بطاطس مقلية بصوص الشيدر",
     sizes: [
       { name: "صغير", price: 75 },
@@ -1558,6 +1641,45 @@ function getSectionItemIndex(item) {
 
 // Fetch image dynamically
 function getProductImage(item) {
+  if (
+    item.section === "crepes" &&
+    (!item.image || item.image.startsWith(productImageBasePath))
+  ) {
+    return crepeFallbackImage;
+  }
+
+  if (item.section === "pizza" && !item.image) {
+    const index = getSectionItemIndex(item);
+    return pizzaFallbackImages[index % pizzaFallbackImages.length];
+  }
+
+  if (item.section === "burgers" && item.image?.startsWith(productImageBasePath)) {
+    const index = getSectionItemIndex(item);
+    return burgerFallbackImages[index % burgerFallbackImages.length];
+  }
+
+  if (item.section === "pasta") return pastaFallbackImage;
+
+  if (item.section === "rolls") return rollsFallbackImage;
+
+  if (item.section === "hawawshi") return hawawshiFallbackImage;
+
+  if (item.section === "melted_cheese") return meltedCheeseFallbackImage;
+
+  if (item.section === "extras" && !item.image) {
+    if (item.name.includes("شيدر")) return extrasFallbackImages.cheddarFries;
+    if (item.name.includes("بطاطس")) return extrasFallbackImages.fries;
+    if (item.name.includes("بصل")) return extrasFallbackImages.onionRings;
+    if (item.name.includes("موتزريلا")) return extrasFallbackImages.mozzarella;
+    if (item.name.includes("رانش")) return extrasFallbackImages.ranch;
+    if (item.name.includes("باربيكيو")) return extrasFallbackImages.barbecue;
+    if (item.name.includes("تكساسي")) return extrasFallbackImages.texas;
+    if (item.name.includes("كانز")) return extrasFallbackImages.pepsiCan;
+    if (item.name.includes("لتر")) return extrasFallbackImages.pepsiBottle;
+    if (item.name.includes("صغيرة")) return extrasFallbackImages.smallWater;
+    return extrasFallbackImages.largeWater;
+  }
+
   if (item.image && item.image !== fallbackProductImage) return item.image;
 
   const searchableName = normalizeForImageMatching(
@@ -2344,7 +2466,7 @@ function checkout() {
   msg += `%0a*💰 الإجمالي:* ${subtotal} ج.م%0a`;
   msg += `%0a*شكراً لاستخدامك موقع مطعم زنجر ❤️`;
 
-  const branchWa = selectedBranch ? selectedBranch.whatsapp : "201020805451";
+  const branchWa = selectedBranch ? selectedBranch.whatsapp : "201034456624";
   window.open(`https://wa.me/${branchWa}?text=${msg}`, "_blank");
 }
 
