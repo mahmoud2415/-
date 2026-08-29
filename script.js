@@ -1723,9 +1723,9 @@ function getCartItemImage(item, index = 0) {
 }
 
 const ACTIVE_NAV_BTN_CLASS =
-  "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md transition-all";
+  "flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-white text-xs sm:text-sm font-bold shadow-sm transition-all active:scale-95";
 const INACTIVE_NAV_BTN_CLASS =
-  "flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#eae7e7] text-on-surface-variant hover:text-primary hover:bg-white transition-all";
+  "flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-[#eae7e7] text-on-surface-variant text-xs sm:text-sm font-bold hover:text-primary hover:bg-white transition-all active:scale-95";
 
 // 1. Render Categories Navigation Bar
 function renderCategoriesNav() {
@@ -1738,7 +1738,7 @@ function renderCategoriesNav() {
         <button id="nav-btn-${section.id}"
                 class="${section.id === activeSection ? ACTIVE_NAV_BTN_CLASS : INACTIVE_NAV_BTN_CLASS}"
                 onclick="selectCategory('${section.id}')">
-            <span class="material-symbols-outlined text-xl">${section.icon}</span>
+            <span class="material-symbols-outlined text-lg">${section.icon}</span>
             <span>${section.name}</span>
         </button>
     `,
